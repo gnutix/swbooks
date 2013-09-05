@@ -24,28 +24,28 @@ Blue: #6699cc
 /* -- Bases -- */
 
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 
-	border: none;
-	outline: none;
+    border: none;
+    outline: none;
 }
 
 html {
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
-	font: 62.5%/1.6em Tahoma, Arial, Verdana, Helvetica, sans-serif;
-	color: #000000;
+    font: 62.5%/1.6em Tahoma, Arial, Verdana, Helvetica, sans-serif;
+    color: #000000;
 }
 
 
 /* -- Utilitaires -- */
 
 .spacer {
-	clear: both;
-	font-size: 1px;
+    clear: both;
+    font-size: 1px;
 }
 
 .red { background-color: #ff3333; }
@@ -70,217 +70,217 @@ body {
 .noWrap { white-space: nowrap; }
 
 
-	/* -- Margins -- */
-	
-	.marginTop { margin-top: 20px; }
-	.marginTopMini { margin-top: 10px; }
-	.marginTopBig { margin-top: 40px; }
-	.marginTopZero { margin-top: 0; }
-	
-	.marginRight { margin-right: 20px; }
-	.marginRightMini { margin-right: 10px; }
-	.marginRightBig { margin-right: 40px; }
-	.marginRightZero { margin-right: 0; }
-	
-	.marginBottom { margin-bottom: 20px; }
-	.marginBottomMini { margin-bottom: 10px; }
-	.marginBottomBig { margin-bottom: 40px; }
-	.marginBottomZero { margin-bottom: 0; }
-	
-	.marginLeft { margin-left: 20px; }
-	.marginLeftMini { margin-left: 10px; }
-	.marginLeftBig { margin-left: 40px; }
-	.marginLeftZero { margin-left: 0; }
-	
-	/* -- / Margins -- */
+    /* -- Margins -- */
+
+    .marginTop { margin-top: 20px; }
+    .marginTopMini { margin-top: 10px; }
+    .marginTopBig { margin-top: 40px; }
+    .marginTopZero { margin-top: 0; }
+
+    .marginRight { margin-right: 20px; }
+    .marginRightMini { margin-right: 10px; }
+    .marginRightBig { margin-right: 40px; }
+    .marginRightZero { margin-right: 0; }
+
+    .marginBottom { margin-bottom: 20px; }
+    .marginBottomMini { margin-bottom: 10px; }
+    .marginBottomBig { margin-bottom: 40px; }
+    .marginBottomZero { margin-bottom: 0; }
+
+    .marginLeft { margin-left: 20px; }
+    .marginLeftMini { margin-left: 10px; }
+    .marginLeftBig { margin-left: 40px; }
+    .marginLeftZero { margin-left: 0; }
+
+    /* -- / Margins -- */
 
 
 /* -- Balises HTML -- */
 
 h1 {
-	color: #f8990c;
-	font-size: 18pt;
-	text-shadow: #666666 0.025cm 0.025cm 0.05cm;
-	margin-bottom: 2%;
+    color: #f8990c;
+    font-size: 18pt;
+    text-shadow: #666666 0.025cm 0.025cm 0.05cm;
+    margin-bottom: 2%;
 }
 
 h2 {
-	color: #336699;
-	margin: 5% 0 2% 0;
-	font-size: 14pt;
-	text-align: left;
-	text-shadow: #666666 0.025cm 0.025cm 0.05cm;
+    color: #336699;
+    margin: 5% 0 2% 0;
+    font-size: 14pt;
+    text-align: left;
+    text-shadow: #666666 0.025cm 0.025cm 0.05cm;
 }
 
 p, ul, ol, dl {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 p, ul li, ol li, dl dt, dl dd {
-	line-height: 16pt;
+    line-height: 16pt;
 }
 
 
 /* -- Contenu -- */
 
 #global {
-	width: 968px;
-	margin: 1% auto;
-	border: 1px #6699cc solid;
-	font-size: 11pt;
-	text-align: justify;
-	background-color: #f5f8fc;
+    width: 968px;
+    margin: 1% auto;
+    border: 1px #6699cc solid;
+    font-size: 11pt;
+    text-align: justify;
+    background-color: #f5f8fc;
 }
 
 #content {
-	margin: 2%;
+    margin: 2%;
 }
 
 
-	/* -- Légende -- */
-	
-	#content dl.editors dt {
-		float: left;
-		width: 50px;
-	}
+    /* -- Lï¿½gende -- */
 
-	#content ul.legend {
-		height: 47px;
-		list-style: none;
-		margin-left: 0;
-		border-left: 1px #6699cc solid;
-	}
+    #content dl.editors dt {
+        float: left;
+        width: 50px;
+    }
 
-	#content ul.legend li {
-		float: left;
-		width: 14.5%;
-		height: 45px;
-		padding: 0 1%;
-		border: 1px #6699cc solid;
-		text-align: center;
-		line-height: 45px;
-		border-left: none;
-	}
+    #content ul.legend {
+        height: 47px;
+        list-style: none;
+        margin-left: 0;
+        border-left: 1px #6699cc solid;
+    }
 
-	#content ul.legend li.adult,
-	#content table.booklist tbody tr td.adult { background-color: #b0ddb0; }
-	#content ul.legend li.young,
-	#content table.booklist tbody tr td.young { background-color: #ddb0b0; }
-	#content ul.legend li.comic,
-	#content table.booklist tbody tr td.comic { background-color: #00dcff; }
-	#content ul.legend li.ebook,
-	#content table.booklist tbody tr td.ebook { background-color: #ffffb0; }
-	#content ul.legend li.story,
-	#content table.booklist tbody tr td.story { background-color: #e0b0ff; }
-	
-	/* -- / Légende -- */
-	
-	
-	/* -- Liste de raccourcis vers les ères -- */
+    #content ul.legend li {
+        float: left;
+        width: 14.5%;
+        height: 45px;
+        padding: 0 1%;
+        border: 1px #6699cc solid;
+        text-align: center;
+        line-height: 45px;
+        border-left: none;
+    }
 
-	#content ul.shortcuts {
-		list-style: none;
-	}
-	
-	#content ul.shortcuts li {
-		height: 30px;
-		line-height: 30px;
-		margin-bottom: 4px;
-		background-repeat: no-repeat;
-		background-position: 0 0;
-	}
-	
-	#content ul.shortcuts li a {
-		color: #000000;
-		padding-left: 40px;
-		text-decoration: none;
-	}
-	
-	#content ul.shortcuts li.oldRepublic,
-	#content table.booklist tbody tr th.oldRepublic { background-image: url('../images/eras/old_republic.png'); }
-	#content ul.shortcuts li.riseEmpire,
-	#content table.booklist tbody tr th.riseEmpire { background-image: url('../images/eras/rise_empire.png'); }
-	#content ul.shortcuts li.rebellion,
-	#content table.booklist tbody tr th.rebellion { background-image: url('../images/eras/rebellion.png'); }
-	#content ul.shortcuts li.newRepublic,
-	#content table.booklist tbody tr th.newRepublic { background-image: url('../images/eras/new_republic.png'); }
-	#content ul.shortcuts li.newJediOrder,
-	#content table.booklist tbody tr th.newJediOrder { background-image: url('../images/eras/new_jedi_order.png'); }
-	#content ul.shortcuts li.legacy,
-	#content table.booklist tbody tr th.legacy { background-image: url('../images/eras/legacy.png'); }
-	#content ul.shortcuts li.other,
-	#content table.booklist tbody tr th.other { background-image: url('../images/eras/other.png'); }
-	
-	/* -- / Liste de raccourcis vers les ères -- */
+    #content ul.legend li.adult,
+    #content table.booklist tbody tr td.adult { background-color: #b0ddb0; }
+    #content ul.legend li.young,
+    #content table.booklist tbody tr td.young { background-color: #ddb0b0; }
+    #content ul.legend li.comic,
+    #content table.booklist tbody tr td.comic { background-color: #00dcff; }
+    #content ul.legend li.ebook,
+    #content table.booklist tbody tr td.ebook { background-color: #ffffb0; }
+    #content ul.legend li.story,
+    #content table.booklist tbody tr td.story { background-color: #e0b0ff; }
 
-	
-	/* -- Tableau des livres -- */
-	
-	#content table.booklist {
-		font-size: 10pt;
-	}
+    /* -- / Lï¿½gende -- */
 
-	#content table.booklist {
-		width: 100%;
-		border-collapse: collapse;
-	}
-	
-	#content table.booklist thead tr th {
-		text-align: center;
-		padding-bottom: 10px;
-	}
-	
-	/* -- NE PAS TOUCHER -- */
-	#content table.booklist thead tr th.timeline { width: 16%; }
-	#content table.booklist thead tr th.title { width: 38%; }
-	#content table.booklist thead tr th.author { width: 20%; }
-	#content table.booklist thead tr th.voe { width: 5%; }
-	#content table.booklist thead tr th.vfe { width: 5%; }
-	#content table.booklist thead tr th.vo { width: 4%; }
-	#content table.booklist thead tr th.vor { width: 4%; }
-	#content table.booklist thead tr th.vf { width: 4%; }
-	#content table.booklist thead tr th.vfr { width: 4%; }
-	/* -- / NE PAS TOUCHER -- */
-	
-	#content table.booklist tbody tr th {
-		height: 40px;
-		border: 1px #6699cc solid;
-		font-size: 12pt;
-		text-align: left;
-		padding-left: 45px;
-		background-color: #e6e6e6;
-		background-repeat: no-repeat;
-		background-position: 6px center;
-	}
-	
-	#content table.booklist tbody tr th a {
-		color: #000000;
-		text-decoration: none;
-	}
-	
-	#content table.booklist tbody tr td {
-		padding: 5px;
-		border: 1px #6699cc solid;
-	}
-	
-	#content table.booklist tbody tr td.little {
-		padding: 0;
-		text-align: center;
-	}
-	
-	#content table.booklist tbody tr td.separator {
-		border: none;
-		line-height: 1px;
-		text-indent: -10000px;
-	}
-	
-	#content table.booklist tbody tr td ul.authorsList {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	
-	/* -- / Tableau des livres -- */
+
+    /* -- Liste de raccourcis vers les ï¿½res -- */
+
+    #content ul.shortcuts {
+        list-style: none;
+    }
+
+    #content ul.shortcuts li {
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 4px;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+    }
+
+    #content ul.shortcuts li a {
+        color: #000000;
+        padding-left: 40px;
+        text-decoration: none;
+    }
+
+    #content ul.shortcuts li.oldRepublic,
+    #content table.booklist tbody tr th.oldRepublic { background-image: url('../images/eras/old_republic.png'); }
+    #content ul.shortcuts li.riseEmpire,
+    #content table.booklist tbody tr th.riseEmpire { background-image: url('../images/eras/rise_empire.png'); }
+    #content ul.shortcuts li.rebellion,
+    #content table.booklist tbody tr th.rebellion { background-image: url('../images/eras/rebellion.png'); }
+    #content ul.shortcuts li.newRepublic,
+    #content table.booklist tbody tr th.newRepublic { background-image: url('../images/eras/new_republic.png'); }
+    #content ul.shortcuts li.newJediOrder,
+    #content table.booklist tbody tr th.newJediOrder { background-image: url('../images/eras/new_jedi_order.png'); }
+    #content ul.shortcuts li.legacy,
+    #content table.booklist tbody tr th.legacy { background-image: url('../images/eras/legacy.png'); }
+    #content ul.shortcuts li.other,
+    #content table.booklist tbody tr th.other { background-image: url('../images/eras/other.png'); }
+
+    /* -- / Liste de raccourcis vers les ï¿½res -- */
+
+
+    /* -- Tableau des livres -- */
+
+    #content table.booklist {
+        font-size: 10pt;
+    }
+
+    #content table.booklist {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #content table.booklist thead tr th {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    /* -- NE PAS TOUCHER -- */
+    #content table.booklist thead tr th.timeline { width: 16%; }
+    #content table.booklist thead tr th.title { width: 38%; }
+    #content table.booklist thead tr th.author { width: 20%; }
+    #content table.booklist thead tr th.voe { width: 5%; }
+    #content table.booklist thead tr th.vfe { width: 5%; }
+    #content table.booklist thead tr th.vo { width: 4%; }
+    #content table.booklist thead tr th.vor { width: 4%; }
+    #content table.booklist thead tr th.vf { width: 4%; }
+    #content table.booklist thead tr th.vfr { width: 4%; }
+    /* -- / NE PAS TOUCHER -- */
+
+    #content table.booklist tbody tr th {
+        height: 40px;
+        border: 1px #6699cc solid;
+        font-size: 12pt;
+        text-align: left;
+        padding-left: 45px;
+        background-color: #e6e6e6;
+        background-repeat: no-repeat;
+        background-position: 6px center;
+    }
+
+    #content table.booklist tbody tr th a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    #content table.booklist tbody tr td {
+        padding: 5px;
+        border: 1px #6699cc solid;
+    }
+
+    #content table.booklist tbody tr td.little {
+        padding: 0;
+        text-align: center;
+    }
+
+    #content table.booklist tbody tr td.separator {
+        border: none;
+        line-height: 1px;
+        text-indent: -10000px;
+    }
+
+    #content table.booklist tbody tr td ul.authorsList {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* -- / Tableau des livres -- */
 
 
 /* -- / Contenu * --/
