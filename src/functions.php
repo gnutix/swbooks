@@ -1,18 +1,4 @@
 <?php
-/**
- * Récupère le contenu d'un XML sous forme d'objet SimpleXML
- *
- * @param string $path Chemin d'accès du XML
- * @return SimpleXMLElement
- */
-function getXML($path) {
-
-    // On vérifie que le chemin du XML existe
-    if (!file_exists($path)) return false;
-
-    // On crée l'objet SimpleXML
-    return simplexml_load_file($path);
-}
 
 /**
  * Récupère le contenu du XML et le transforme en tableau utilisable

@@ -2,13 +2,12 @@
 
 namespace Gnutix\StarWarsLibrary\LibraryFactory;
 
-use Gnutix\Library\Loader\XmlFileLoader;
 use Gnutix\Library\LibraryFactory\XmlLibraryFactory as BaseXmlLibraryFactory;
 
 /**
  * Library Factory for the XML data
  *
- * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()
+ * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()   This allows the auto-completion to work correctly
  */
 class XmlLibraryFactory extends BaseXmlLibraryFactory
 {
