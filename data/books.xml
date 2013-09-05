@@ -9,7 +9,7 @@ Here you can find a complete example of book node :
     <title>Ruin</title>
 
     <author>Michael A. Stackpole</author>
-    <editor vo="dr" vf="fn|unknown" />
+    <editor vo="dr" vf="fn" />
     <publish vo="06.06.2000" vf="22.01.2001" />
 
     <vo copies="1" readings="1" />
@@ -17,7 +17,7 @@ Here you can find a complete example of book node :
 </book>
 -->
 <library>
-    <informations>
+    <information>
         <editors>
             <editor lang="en" code="dr" name="Del Rey" />
             <editor lang="en" code="bs" name="Bantam Spectra" />
@@ -44,7 +44,7 @@ Here you can find a complete example of book node :
             <type code="story" name="Short story" />
             <type code="publish" name="Not published" />
         </types>
-    </informations>
+    </information>
 
     <books>
         <era id="oldRepublic" name="Old Republic era">

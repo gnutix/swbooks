@@ -344,7 +344,7 @@ function getEditorInfos($xml, $editor, $lang) {
     if (!(string) $editor) return false;
 
     // On récupère le nom de l'éditeur
-    $editorInfos = $xml->xpath('//informations/editors/editor[@code=\''.$editor.'\'][@lang=\''.$lang.'\']');
+    $editorInfos = $xml->xpath('//information/editors/editor[@code=\''.$editor.'\'][@lang=\''.$lang.'\']');
 
     // On retourne
     return $editorInfos[0];
