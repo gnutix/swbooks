@@ -1,5 +1,6 @@
 {
     "autoload": {
+        "files": ["src/functions.php"],
         "psr-0": { "": "src/" }
     },
     "require": {

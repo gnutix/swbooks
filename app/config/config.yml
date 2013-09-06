@@ -1,0 +1,14 @@
+imports:
+    - { resource: services.yml }
+    - { resource: ../../src/Gnutix/Library/DependencyInjection/services.yml }
+    - { resource: ../../src/Gnutix/StarWarsLibrary/DependencyInjection/services.yml }
+
+parameters:
+
+    # Twig
+    twig.templates_locations: %root_dir%/web/views
+    twig.options: { cache: %root_dir%/cache/twig }
+
+# Modules configuration
+gnutix_library:
+    source_file_path: %root_dir%/data/books.xml

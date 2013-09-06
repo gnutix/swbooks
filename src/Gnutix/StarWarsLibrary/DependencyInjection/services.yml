@@ -1,0 +1,2 @@
+parameters:
+    gnutix_library.library_factory.xml_library_factory.class: Gnutix\StarWarsLibrary\LibraryFactory\XmlLibraryFactory

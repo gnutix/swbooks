@@ -1,23 +1,16 @@
-parameters:
-
-    # Application configuration
-    gnutix_library.source_file_path: %root_dir%/data/books.xml
-    gnutix_library.templates_root_dir: %root_dir%/web/views
-    gnutix_library.twig.options: { cache: %root_dir%/cache/twig }
-
-    # Library overriding
-    gnutix_library.library_factory.xml_library_factory.class: Gnutix\StarWarsLibrary\LibraryFactory\XmlLibraryFactory
-
 services:
 
     #
     # Twig templating
     #
 
-    gnutix_library.twig.loader:
-        class: Twig_Loader_Filesystem
-        arguments: [ %gnutix_library.templates_root_dir% ]
+    twig:
+        alias: twig.environment
 
-    gnutix_library.twig.environment:
+    twig.loader:
+        class: Twig_Loader_Filesystem
+        arguments: [ %twig.templates_locations% ]
+
+    twig.environment:
         class: Twig_Environment
-        arguments: [ @gnutix_library.twig.loader, %gnutix_library.twig.options% ]
+        arguments: [ @twig.loader, %twig.options% ]
