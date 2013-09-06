@@ -13,7 +13,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
     /** @var \Symfony\Component\HttpKernel\Client */
     protected $client;
 
-    /** @var \Symfony\Component\DOMCrawler\Crawler */
+    /** @var \Symfony\Component\DomCrawler\Crawler */
     protected $crawler;
 
     /**
