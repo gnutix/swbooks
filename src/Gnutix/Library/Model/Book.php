@@ -7,7 +7,7 @@ use Gnutix\Library\Model;
 /**
  * Book
  */
-class Book
+class Book extends ArrayPopulatedEntity
 {
     /** @var \Gnutix\Library\Model\Category */
     protected $category;
@@ -20,18 +20,6 @@ class Book
 
     /** @var \Gnutix\Library\Model\Release[] */
     protected $releases;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->category = $data['category'];
-        $this->series = $data['series'];
-        $this->seriesBookId = $data['seriesBookId'];
-        $this->author = $data['author'];
-        $this->releases = $data['releases'];
-    }
 
     /**
      * @return \Gnutix\Library\Model\Author

@@ -58,25 +58,66 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     {
         return array(
             'books' => $this->buildBooks($data),
-            'categories' => $this->buildClassInstanceFromNodeAttributes($data, '//information/types/type', 'category'),
-            'editors' => $this->buildClassInstanceFromNodeAttributes($data, '//information/editors/editor', 'editor'),
+            'categories' => $this->buildClassInstanceFromNodeAttributes(
+                $data,
+                '//information/types/type',
+                'category',
+                array('code' => 'id')
+            ),
+            'editors' => $this->buildClassInstanceFromNodeAttributes(
+                $data,
+                '//information/editors/editor',
+                'editor',
+                array('code' => 'id', 'lang' => 'preferredLanguage')
+            ),
         );
+    }
+
+    /**
+     * @param array $data
+     * @param array $keys
+     *
+     * @return array
+     */
+    protected function renameArrayKeys(array $data, array $keys)
+    {
+        foreach ($keys as $old => $new) {
+            if (!isset($data[$old])) {
+                continue;
+            }
+
+            $data[$new] = $data[$old];
+            unset($data[$old]);
+        }
+
+        return $data;
     }
 
     /**
      * @param \SimpleXMLElement $data          The XML data
      * @param string            $xpathSelector The XPath selector
      * @param string            $targetClass   The target for the class
+     * @param array             $renameKeys    The rename keys array
      *
      * @return array
      */
-    protected function buildClassInstanceFromNodeAttributes(\SimpleXMLElement $data, $xpathSelector, $targetClass)
-    {
+    protected function buildClassInstanceFromNodeAttributes(
+        \SimpleXMLElement $data,
+        $xpathSelector,
+        $targetClass,
+        array $renameKeys = array()
+    ) {
         $editors = array();
         $className = $this->classes[$targetClass];
 
         foreach ($data->xpath($xpathSelector) as $element) {
-            $editors[] = new $className($this->getSimpleXmlElementAttributesAsArray($element));
+            $dependencies = $this->getSimpleXmlElementAttributesAsArray($element);
+
+            if (!empty($renameKeys)) {
+                $dependencies = $this->renameArrayKeys($dependencies, $renameKeys);
+            }
+
+            $editors[] = new $className($dependencies);
         }
 
         return $editors;
@@ -153,7 +194,12 @@ class XmlLibraryFactory implements LibraryFactoryInterface
             $releases[] = new $this->classes['release'](
                 array(
                     'title' => (string) $book->{'title'},
-                    'editor' => new $this->classes['editor']($editorAttributes),
+                    'editor' => new $this->classes['editor'](
+                        $this->renameArrayKeys(
+                            $editorAttributes,
+                            array('code' => 'id', 'lang' => 'preferredLanguage')
+                        )
+                    ),
                     'date' => isset($publishAttributes[$release]) ? $publishAttributes[$release] : null,
                     'language' => $editorAttributes['lang'],
                     'nbCopiesOwned' => isset($releaseNode['copies']) ? (int) $releaseNode['copies'] : null,
@@ -165,8 +211,8 @@ class XmlLibraryFactory implements LibraryFactoryInterface
         return array(
             'category' => new $this->classes['category'](
                 array(
+                    'id' => $bookAttributes['type'],
                     'name' => $categoryAttributes['name'],
-                    'code' => $bookAttributes['type'],
                 )
             ),
             'series' => null !== $series

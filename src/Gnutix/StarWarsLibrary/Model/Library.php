@@ -13,16 +13,6 @@ class Library extends BaseLibrary
     protected $eras;
 
     /**
-     * {@inheritDoc}
-     */
-    public function __construct(array $data)
-    {
-        parent::__construct($data);
-
-        $this->eras = $data['eras'];
-    }
-
-    /**
      * @return \Gnutix\StarWarsLibrary\Model\Era[]
      */
     public function getEras()

@@ -5,7 +5,7 @@ namespace Gnutix\Library\Model;
 /**
  * Release
  */
-class Release
+class Release extends ArrayPopulatedEntity
 {
     /** @var string */
     protected $title;
@@ -26,24 +26,11 @@ class Release
     protected $nbReadings;
 
     /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->title = $data['title'];
-        $this->editor = $data['editor'];
-        $this->date = (null !== $data['date']) ? new \DateTime($data['date']) : null;
-        $this->language = $data['language'];
-        $this->nbCopiesOwned = $data['nbCopiesOwned'];
-        $this->nbReadings = $data['nbReadings'];
-    }
-
-    /**
      * @return \DateTime
      */
     public function getDate()
     {
-        return $this->date;
+        return null !== $this->date ? new \DateTime($this->date) : null;
     }
 
     /**

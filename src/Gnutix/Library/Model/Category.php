@@ -5,22 +5,13 @@ namespace Gnutix\Library\Model;
 /**
  * Book's category
  */
-class Category
+class Category extends ArrayPopulatedEntity
 {
     /** @var string */
     protected $id;
 
     /** @var string */
     protected $name;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->id = $data['code'];
-        $this->name = $data['name'];
-    }
 
     /**
      * @return string

@@ -7,7 +7,7 @@ use Gnutix\Library\LibraryInterface;
 /**
  * Library manager
  */
-class Library implements LibraryInterface
+class Library extends ArrayPopulatedEntity implements LibraryInterface
 {
     /** @var \Gnutix\Library\Model\Book[] */
     protected $books;
@@ -17,16 +17,6 @@ class Library implements LibraryInterface
 
     /** @var \Gnutix\Library\Model\Editor[] */
     protected $editors;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->books = $data['books'];
-        $this->categories = $data['categories'];
-        $this->editors = $data['editors'];
-    }
 
     /**
      * {@inheritDoc}

@@ -5,7 +5,7 @@ namespace Gnutix\Library\Model;
 /**
  * Books Editor
  */
-class Editor
+class Editor extends ArrayPopulatedEntity
 {
     /** @var string */
     protected $id;
@@ -15,16 +15,6 @@ class Editor
 
     /** @var string */
     protected $preferredLanguage;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->id = $data['code'];
-        $this->name = $data['name'];
-        $this->preferredLanguage = $data['lang'];
-    }
 
     /**
      * @return string

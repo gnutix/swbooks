@@ -2,25 +2,18 @@
 
 namespace Gnutix\StarWarsLibrary\Model;
 
+use Gnutix\Library\Model\ArrayPopulatedEntity;
+
 /**
  * Chronological Marker
  */
-class ChronologicalMarker
+class ChronologicalMarker extends ArrayPopulatedEntity
 {
     /** @var string */
     protected $date;
 
     /** @var \Gnutix\StarWarsLibrary\Model\Era */
     protected $era;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->date = $data['date'];
-        $this->era = $data['era'];
-    }
 
     /**
      * @return string

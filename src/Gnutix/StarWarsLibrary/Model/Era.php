@@ -2,25 +2,18 @@
 
 namespace Gnutix\StarWarsLibrary\Model;
 
+use Gnutix\Library\Model\ArrayPopulatedEntity;
+
 /**
  * Chronological Era
  */
-class Era
+class Era extends ArrayPopulatedEntity
 {
     /** @var string */
     protected $id;
 
     /** @var string */
     protected $name;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
-    {
-        $this->id = $data['id'];
-        $this->name = $data['name'];
-    }
 
     /**
      * @return string
