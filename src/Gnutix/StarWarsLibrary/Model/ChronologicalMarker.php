@@ -2,12 +2,12 @@
 
 namespace Gnutix\StarWarsLibrary\Model;
 
-use Gnutix\Library\Model\ArrayPopulatedEntity;
+use Gnutix\Library\Helper\ArrayPopulatedObject;
 
 /**
  * Chronological Marker
  */
-class ChronologicalMarker extends ArrayPopulatedEntity
+class ChronologicalMarker extends ArrayPopulatedObject
 {
     /** @var string */
     protected $date;

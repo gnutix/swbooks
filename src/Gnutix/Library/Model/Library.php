@@ -3,11 +3,12 @@
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\LibraryInterface;
+use Gnutix\Library\Helper\ArrayPopulatedObject;
 
 /**
  * Library manager
  */
-class Library extends ArrayPopulatedEntity implements LibraryInterface
+class Library extends ArrayPopulatedObject implements LibraryInterface
 {
     /** @var \Gnutix\Library\Model\Book[] */
     protected $books;

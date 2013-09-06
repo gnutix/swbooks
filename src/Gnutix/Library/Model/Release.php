@@ -2,10 +2,12 @@
 
 namespace Gnutix\Library\Model;
 
+use Gnutix\Library\Helper\ArrayPopulatedObject;
+
 /**
  * Release
  */
-class Release extends ArrayPopulatedEntity
+class Release extends ArrayPopulatedObject
 {
     /** @var string */
     protected $title;
@@ -55,5 +57,21 @@ class Release extends ArrayPopulatedEntity
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbCopiesOwned()
+    {
+        return $this->nbCopiesOwned;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNbReadings()
+    {
+        return $this->nbReadings;
     }
 }

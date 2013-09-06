@@ -2,12 +2,12 @@
 
 namespace Gnutix\Library\Model;
 
-use Gnutix\Library\Model;
+use Gnutix\Library\Helper\ArrayPopulatedObject;
 
 /**
  * Book
  */
-class Book extends ArrayPopulatedEntity
+class Book extends ArrayPopulatedObject
 {
     /** @var \Gnutix\Library\Model\Category */
     protected $category;
@@ -38,22 +38,6 @@ class Book extends ArrayPopulatedEntity
     }
 
     /**
-     * @return int
-     */
-    public function getNbCopiesOwned()
-    {
-        return $this->nbCopiesOwned;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNbReadings()
-    {
-        return $this->nbReadings;
-    }
-
-    /**
      * @return \Gnutix\Library\Model\Release[]
      */
     public function getReleases()
@@ -67,13 +51,5 @@ class Book extends ArrayPopulatedEntity
     public function getSeries()
     {
         return $this->series;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSeriesBookId()
-    {
-        return $this->seriesBookId;
     }
 }

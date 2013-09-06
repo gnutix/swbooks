@@ -1,11 +1,11 @@
 <?php
 
-namespace Gnutix\Library\Model;
+namespace Gnutix\Library\Helper;
 
 /**
- * Array populated entity
+ * Array populated object
  */
-class ArrayPopulatedEntity
+class ArrayPopulatedObject
 {
     /**
      * @param array $data

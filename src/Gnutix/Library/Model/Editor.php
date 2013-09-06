@@ -2,10 +2,12 @@
 
 namespace Gnutix\Library\Model;
 
+use Gnutix\Library\Helper\ArrayPopulatedObject;
+
 /**
  * Books Editor
  */
-class Editor extends ArrayPopulatedEntity
+class Editor extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;

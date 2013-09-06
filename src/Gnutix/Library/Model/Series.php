@@ -2,10 +2,12 @@
 
 namespace Gnutix\Library\Model;
 
+use Gnutix\Library\Helper\ArrayPopulatedObject;
+
 /**
  * Book Series
  */
-class Series extends ArrayPopulatedEntity
+class Series extends ArrayPopulatedObject
 {
     /** @var string */
     protected $name;

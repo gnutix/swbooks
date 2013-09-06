@@ -2,10 +2,12 @@
 
 namespace Gnutix\Library\Model;
 
+use Gnutix\Library\Helper\ArrayPopulatedObject;
+
 /**
  * Book's category
  */
-class Category extends ArrayPopulatedEntity
+class Category extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;
