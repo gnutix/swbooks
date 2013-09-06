@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="template/css/standard.css" rel="stylesheet" type="text/css" media="all">
+    <link href="<?php echo basename(__DIR__) .'/css/standard.css'; ?>" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="global">

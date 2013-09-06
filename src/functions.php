@@ -129,8 +129,8 @@ function displayBooksFromXML($xml) {
             }
 
             // En cas de date inconnue, on définit dans très très longtemps
-            if ((string) $book->publish['vo'] == 'unknown') $publishVO = MAX_TIMESTAMP;
-            if ((string) $book->publish['vf'] == 'unknown') $publishVF = MAX_TIMESTAMP;
+            if ((string) $book->publish['vo'] == 'unknown') $publishVO = 2147483647;
+            if ((string) $book->publish['vf'] == 'unknown') $publishVF = 2147483647;
 
             // On récupère la date de publication VO
             if ($publishVF == 0) {
