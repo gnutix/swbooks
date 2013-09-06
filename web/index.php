@@ -1,19 +1,17 @@
 <?php
 
-use Gnutix\Library\Loader\XmlFileLoader;
-use Gnutix\StarWarsLibrary\LibraryFactory\XmlLibraryFactory;
+$container = require_once __DIR__.'/../app/bootstrap.php';
 
-// Bootstrap the application
-require_once __DIR__.'/../app/bootstrap.php';
-
-// Build the library from the XML file
-$xmlFileLoader = new XmlFileLoader(__DIR__.'/../data/books.xml');
-$libraryFactory = new XmlLibraryFactory($xmlFileLoader);
+// Add the deprecated functions to generate the array
+require_once __DIR__.'/../src/functions.php';
+$container->get('gnutix_library.twig.environment')->addFunction(
+    new Twig_SimpleFunction('deprecated_display_books_from_xml', 'displayBooksFromXml')
+);
 
 // Render the template
-echo $twig->render(
+echo $container->get('gnutix_library.twig.environment')->render(
     'index.html.twig',
     array(
-        'library' => $libraryFactory->getLibrary(),
+        'library' => $container->get('gnutix_library.library_factory')->getLibrary(),
     )
 );

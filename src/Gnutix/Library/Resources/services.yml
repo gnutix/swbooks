@@ -1,0 +1,18 @@
+parameters:
+    gnutix_library.loader.xml_file_loader.class: Gnutix\Library\Loader\XmlFileLoader
+    gnutix_library.library_factory.xml_library_factory.class: Gnutix\Library\LibraryFactory\XmlLibraryFactory
+
+services:
+    gnutix_library.loader:
+        alias: gnutix_library.loader.xml_file_loader
+
+    gnutix_library.library_factory:
+        alias: gnutix_library.library_factory.xml_library_factory
+
+    gnutix_library.loader.xml_file_loader:
+        class: %gnutix_library.loader.xml_file_loader.class%
+        arguments: [%gnutix_library.source_file_path%]
+
+    gnutix_library.library_factory.xml_library_factory:
+        class: %gnutix_library.library_factory.xml_library_factory.class%
+        arguments: [@gnutix_library.loader.xml_file_loader]
