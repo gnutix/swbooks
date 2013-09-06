@@ -22,4 +22,4 @@ project's root folder.
 Tests suite
 ===========
 
-To execute the tests suite, simply run `phpunit` in the project's root folder.
+To execute the tests suite, simply run `bin/phpunit` in the project's root folder.
