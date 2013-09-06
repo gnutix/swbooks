@@ -10,6 +10,9 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
  */
 class Library extends ArrayPopulatedObject implements LibraryInterface
 {
+    /** @var mixed */
+    protected $rawData;
+
     /** @var \Gnutix\Library\Model\Book[] */
     protected $books;
 
@@ -18,6 +21,14 @@ class Library extends ArrayPopulatedObject implements LibraryInterface
 
     /** @var \Gnutix\Library\Model\Editor[] */
     protected $editors;
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->rawData;
+    }
 
     /**
      * {@inheritDoc}

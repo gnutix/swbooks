@@ -10,6 +10,9 @@ use Gnutix\Library\LibraryFactoryInterface;
  */
 class XmlLibraryFactory implements LibraryFactoryInterface
 {
+    /** @var \SimpleXMLElement */
+    protected $rawData;
+
     /** @var array */
     protected $classes;
 
@@ -21,8 +24,9 @@ class XmlLibraryFactory implements LibraryFactoryInterface
      */
     public function __construct(XmlFileLoader $loader)
     {
+        $this->rawData = $loader->getData();
         $this->classes = $this->getClassesNames();
-        $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
+        $this->library = new $this->classes['library']($this->getLibraryDependencies($this->rawData));
     }
 
     /**
@@ -57,6 +61,7 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     protected function getLibraryDependencies(\SimpleXMLElement $data)
     {
         return array(
+            'rawData' => $this->rawData,
             'books' => $this->buildBooks($data),
             'categories' => $this->buildClassInstanceFromNodeAttributes(
                 $data,

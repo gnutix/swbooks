@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="<?php echo basename(__DIR__) .'/css/standard.css'; ?>" rel="stylesheet" type="text/css">
+    <link href="css/standard.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="global">
@@ -17,38 +17,30 @@
 
         <h2>Books' editors</h2>
         <dl class="editors">
-            <?php
-            foreach ($library->getEditors() as $editor) {
-                echo '<dt>'.
-                        '<acronym title="'.$editor->getName().'" lang="'.$editor->getPreferredLanguage().'">'.
-                            strtoupper($editor->getId()).
-                        '</acronym>'.
-                    '</dt>
-                    <dd>'.$editor->getName().'</dd>';
-            }
-            ?>
+            {% for editor in library.editors %}
+                <dt>
+                    <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">{{ editor.id|upper }}</abbr>
+                </dt>
+                <dd>{{ editor.name }}</dd>
+            {% endfor %}
         </dl>
 
         <div class="spacer"></div>
 
         <h2>Books' types</h2>
         <ul class="legend">
-            <?php
-            foreach ($library->getCategories() as $category) {
-                echo '<li class="'.$category->getId().'">'.$category->getName().'</li>';
-            }
-            ?>
+            {% for category in library.categories %}
+                <li class="{{ category.id }}">{{ category.name }}</li>
+            {% endfor %}
         </ul>
 
         <div class="spacer"></div>
 
         <h2>Shortcuts to the eras</h2>
         <ul class="shortcuts">
-            <?php
-            foreach ($library->getEras() as $era) {
-                echo '<li class="'.$era->getId().'"><a href="#'.$era->getId().'">'.$era->getName().'</a></li>';
-            }
-            ?>
+            {% for era in library.eras %}
+                <li class="{{ era.id }}"><a href="#{{ era.id }}">{{ era.name }}</a></li>
+            {% endfor %}
         </ul>
 
         <h2>Books' list</h2>
@@ -67,7 +59,7 @@
             </tr>
             </thead>
             <tbody>
-                <?php displayBooksFromXML($xmlFileLoader->getData()); ?>
+                {{ deprecated_display_books_from_xml(library.rawData) }}
             </tbody>
         </table>
     </div>

@@ -1,13 +1,10 @@
 <?php
 
 /**
- * Récupère le contenu du XML et le transforme en tableau utilisable
- *
- * @param SimpleXMLElement $xml Objet du XML
- * @return array
+ * @param \SimpleXMLElement $xml
  */
-function displayBooksFromXML($xml) {
-
+function displayBooksFromXML(\SimpleXMLElement $xml)
+{
     // Divers
     $now = time();
 
@@ -265,18 +262,15 @@ function displayBooksFromXML($xml) {
 }
 
 /**
- * Fonction de récupération du nombre de rowspans à effectuer
+ * @param \SimpleXMLElement $era       Tableau contenant une série de livres
+ * @param int               $index     Index de l'élément de base
+ * @param string            $node      Noeud à comparer
+ * @param string            $attribute Attribut à comparer (optionnel)
  *
- * @param array $books Tableau contenant une série de livres
- * @param int $index Index de l'élément de base
- * @param string $node Noeud à comparer
- * @param string $attribute Attribut à comparer (optionnel)
  * @return int Nombre de rowspan à effectuer
  */
-function getNumberRowspan($era, $index, $node, $attribute = null) {
-
-    //echo 'test '.$era[0]->book[0]->editor['vo'].'<br />';
-
+function getNumberRowspan(\SimpleXMLElement $era, $index, $node, $attribute = null)
+{
     // On prépare l'itérateur pour les rowspan
     $rowspan = 0;
     $iterator = 0;
@@ -317,15 +311,14 @@ function getNumberRowspan($era, $index, $node, $attribute = null) {
 }
 
 /**
- * Récupère le nom de l'éditeur dans la langue demandée
+ * @param \SimpleXMLElement $xml
+ * @param string            $editor
+ * @param string            $lang
  *
- * @param string $xml
- * @param string $editor
- * @param string $lang
  * @return array
  */
-function getEditorInfos($xml, $editor, $lang) {
-
+function getEditorInfos(\SimpleXMLElement $xml, $editor, $lang)
+{
     // On vérifie que c'est bien une chaine
     if (!(string) $editor) return false;
 
@@ -337,12 +330,12 @@ function getEditorInfos($xml, $editor, $lang) {
 }
 
 /**
- * Affiche correctement la date à partir d'un tableau
- *
  * @param array $params
+ *
  * @return string
  */
-function displayDate($params) {
+function displayDate($params)
+{
     $date = ($params[0] != '00') ? $params[0].'.' : null;
     $date .= ($params[1] != '00') ? $params[1].'.' : null;
     $date .= $params[2];
