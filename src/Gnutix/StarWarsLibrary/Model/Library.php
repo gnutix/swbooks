@@ -13,16 +13,13 @@ class Library extends BaseLibrary
     protected $eras;
 
     /**
-     * @param array $books
-     * @param array $categories
-     * @param array $editors
-     * @param array $eras
+     * {@inheritDoc}
      */
-    public function __construct(array $books, array $categories, array $editors, array $eras)
+    public function __construct(array $data)
     {
-        parent::__construct($books, $categories, $editors);
+        parent::__construct($data);
 
-        $this->eras = $eras;
+        $this->eras = $data['eras'];
     }
 
     /**

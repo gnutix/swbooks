@@ -19,8 +19,12 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
         return array_merge(
             parent::getClassesNames(),
             array(
-                'library' => '\Gnutix\StarWarsLibrary\Model\Library',
+                // Override the parent's classes names
                 'book' => '\Gnutix\StarWarsLibrary\Model\Book',
+                'library' => '\Gnutix\StarWarsLibrary\Model\Library',
+
+                // Add new ones
+                'chronologicalMarker' => '\Gnutix\StarWarsLibrary\Model\ChronologicalMarker',
                 'era' => '\Gnutix\StarWarsLibrary\Model\Era',
             )
         );
@@ -29,29 +33,26 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
     /**
      * {@inheritDoc}
      */
-    protected function buildLibrary(\SimpleXMLElement $data)
+    protected function getLibraryDependencies(\SimpleXMLElement $data)
     {
-        $this->library = new $this->classes['library'](
-            $this->buildBooks($data),
-            $this->buildCategories($data),
-            $this->buildEditors($data),
-            $this->buildEras($data)
+        return array_merge(
+            parent::getLibraryDependencies($data),
+            array(
+                'eras' => $this->buildClassInstanceFromNodeAttributes($data, '//books/era', 'era'),
+            )
         );
     }
 
     /**
-     * @param \SimpleXMLElement $data
-     *
-     * @return array
+     * {@inheritDoc}
      */
-    protected function buildEras(\SimpleXMLElement $data)
+    protected function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
     {
-        $eras = array();
-
-        foreach ($data->xpath('//books/era') as $element) {
-            $eras[] = new $this->classes['era']($this->getSimpleXmlElementAttributesAsArray($element));
-        }
-
-        return $eras;
+        return array_merge(
+            parent::getBooksDependencies($data, $book),
+            array(
+                'chronologicalMarker' => (string) $book->{'time'},
+            )
+        );
     }
 }

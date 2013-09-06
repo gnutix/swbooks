@@ -19,15 +19,13 @@ class Library implements LibraryInterface
     protected $editors;
 
     /**
-     * @param array $books
-     * @param array $categories
-     * @param array $editors
+     * @param array $data
      */
-    public function __construct(array $books, array $categories = array(), array $editors = array())
+    public function __construct(array $data)
     {
-        $this->books = $books;
-        $this->categories = $categories;
-        $this->editors = $editors;
+        $this->books = $data['books'];
+        $this->categories = $data['categories'];
+        $this->editors = $data['editors'];
     }
 
     /**

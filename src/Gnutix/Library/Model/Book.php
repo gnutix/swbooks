@@ -15,20 +15,23 @@ class Book
     /** @var \Gnutix\Library\Model\Series */
     protected $series;
 
-    /** @var int */
-    protected $seriesBookId;
-
     /** @var \Gnutix\Library\Model\Author */
     protected $author;
 
     /** @var \Gnutix\Library\Model\Release[] */
     protected $releases;
 
-    /** @var int */
-    protected $nbCopiesOwned;
-
-    /** @var int */
-    protected $nbReadings;
+    /**
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->category = $data['category'];
+        $this->series = $data['series'];
+        $this->seriesBookId = $data['seriesBookId'];
+        $this->author = $data['author'];
+        $this->releases = $data['releases'];
+    }
 
     /**
      * @return \Gnutix\Library\Model\Author

@@ -13,6 +13,14 @@ class Book extends BaseBook
     protected $chronologicalMarker;
 
     /**
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->chronologicalMarker = $data['chronologicalMarker'];
+    }
+
+    /**
      * @return \Gnutix\StarWarsLibrary\Model\ChronologicalMarker
      */
     public function getChronologicalMarker()

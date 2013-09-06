@@ -14,6 +14,15 @@ class ChronologicalMarker
     protected $era;
 
     /**
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->date = $data['date'];
+        $this->era = $data['era'];
+    }
+
+    /**
      * @return string
      */
     public function getDate()

@@ -19,6 +19,25 @@ class Release
     /** @var string */
     protected $language;
 
+    /** @var int */
+    protected $nbCopiesOwned;
+
+    /** @var int */
+    protected $nbReadings;
+
+    /**
+     * @param array $data
+     */
+    public function __construct(array $data)
+    {
+        $this->title = $data['title'];
+        $this->editor = $data['editor'];
+        $this->date = (null !== $data['date']) ? new \DateTime($data['date']) : null;
+        $this->language = $data['language'];
+        $this->nbCopiesOwned = $data['nbCopiesOwned'];
+        $this->nbReadings = $data['nbReadings'];
+    }
+
     /**
      * @return \DateTime
      */
