@@ -7,6 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass;
+
 /**
  * Extension
  */
@@ -29,12 +31,8 @@ class Extension implements ExtensionInterface
 
         $container->setAlias('twig', 'twig.environment');
 
-        // -- To be removed once refactoring is over
-        $container->getDefinition('twig.environment')->addMethodCall(
-            'addFunction',
-            array(new \Twig_SimpleFunction('deprecated_display_books_from_xml', 'displayBooksFromXml'))
-        );
-        // -- End to be removed
+        // Add the TwigBundle's compiler passes, so that we can create extensions easily
+        $container->addCompilerPass(new TwigEnvironmentPass());
     }
 
     /**
