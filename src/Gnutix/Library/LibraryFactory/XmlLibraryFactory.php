@@ -61,7 +61,6 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     protected function getLibraryDependencies(\SimpleXMLElement $data)
     {
         return array(
-            'rawData' => $this->rawData,
             'books' => $this->buildBooks($data),
             'categories' => $this->buildClassInstanceFromNodeAttributes(
                 $data,

@@ -9,6 +9,9 @@ use Gnutix\Library\Model\Library as BaseLibrary;
  */
 class Library extends BaseLibrary
 {
+    /** @var mixed */
+    protected $rawData;
+
     /** @var \Gnutix\StarWarsLibrary\Model\Era[] */
     protected $eras;
 
@@ -18,5 +21,13 @@ class Library extends BaseLibrary
     public function getEras()
     {
         return $this->eras;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRawData()
+    {
+        return $this->rawData;
     }
 }

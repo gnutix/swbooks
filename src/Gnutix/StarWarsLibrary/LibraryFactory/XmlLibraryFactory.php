@@ -38,6 +38,7 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
         return array_merge(
             parent::getLibraryDependencies($data),
             array(
+                'rawData' => $data,
                 'eras' => $this->buildClassInstanceFromNodeAttributes($data, '//books/era', 'era'),
             )
         );
