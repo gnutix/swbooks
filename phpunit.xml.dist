@@ -7,7 +7,7 @@
     >
     <testsuites>
         <testsuite name="Gnutix Library Test Suite">
-            <directory>./Gnutix/*/Tests/</directory>
+            <directory>./src/Gnutix/*/Tests/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
