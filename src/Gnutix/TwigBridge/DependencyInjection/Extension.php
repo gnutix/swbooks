@@ -28,6 +28,13 @@ class Extension implements ExtensionInterface
             ->addArgument($config['options']);
 
         $container->setAlias('twig', 'twig.environment');
+
+        // -- To be removed once refactoring is over
+        $container->getDefinition('twig.environment')->addMethodCall(
+            'addFunction',
+            array(new \Twig_SimpleFunction('deprecated_display_books_from_xml', 'displayBooksFromXml'))
+        );
+        // -- End to be removed
     }
 
     /**

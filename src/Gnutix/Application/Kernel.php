@@ -48,12 +48,7 @@ class Kernel implements HttpKernelInterface
      */
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
-        // Add the deprecated function to generate the array
-        $this->container->get('twig')->addFunction(
-            new \Twig_SimpleFunction('deprecated_display_books_from_xml', 'displayBooksFromXml')
-        );
-
-        // Render the template
+        // Generate the web page
         return new Response(
             $this->container->get('twig')->render(
                 'index.html.twig',
