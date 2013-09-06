@@ -7,8 +7,7 @@ gnutix_twig:
     templates_paths:
         - %kernel.root_dir%/web/views
     options:
-        # @todo Activate this once in production
-        # cache: %kernel.root_dir%/cache/twig
+        cache: %kernel.root_dir%/cache/twig
 
 # Library configuration
 gnutix_library:

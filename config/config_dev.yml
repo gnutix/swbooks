@@ -1,0 +1,7 @@
+imports:
+    - { resource: config.yml }
+
+gnutix_twig:
+    options:
+        cache: ~
+
