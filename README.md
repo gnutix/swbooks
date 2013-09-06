@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/gnutix/swbooks.png?branch=dev)](https://travis-ci.org/gnutix/swbooks)
+
 Star Wars Library
 =================
 
