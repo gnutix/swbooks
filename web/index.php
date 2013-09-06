@@ -1,6 +1,13 @@
 <?php
 
-$container = require_once __DIR__.'/../app/bootstrap.php';
+use Gnutix\Application\Kernel;
+
+// Load the PSR-0 autoloader
+$root = __DIR__.'/..';
+require_once $root.'/vendor/autoload.php';
+
+$application = new Kernel();
+$container = $application->createContainerBuilder($root, $root.'/config');
 
 // Add the deprecated function to generate the array
 $container->get('twig')->addFunction(
