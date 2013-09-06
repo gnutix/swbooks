@@ -48,10 +48,17 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
      */
     protected function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
     {
+        $era = $book->xpath('parent::era');
+
         return array_merge(
             parent::getBooksDependencies($data, $book),
             array(
-                'chronologicalMarker' => (string) $book->{'time'},
+                'chronologicalMarker' => new $this->classes['chronologicalMarker'](
+                    array(
+                        'date' => (string) $book->{'time'},
+                        'era' => new $this->classes['era']($this->getSimpleXmlElementAttributesAsArray(reset($era))),
+                    )
+                )
             )
         );
     }
