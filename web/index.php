@@ -7,6 +7,6 @@ use Gnutix\Application\Kernel;
 $root = __DIR__.'/..';
 require_once $root.'/vendor/autoload.php';
 
-$kernel = new Kernel($root, $root.'/config', 'prod');
+$kernel = new Kernel();
 $response = $kernel->handle(Request::createFromGlobals());
 $response->send();
