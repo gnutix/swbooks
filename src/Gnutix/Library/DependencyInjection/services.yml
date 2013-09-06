@@ -20,3 +20,5 @@ services:
 
     gnutix_library.twig.extension:
         class: %gnutix_library.twig.extension.class%
+        tags:
+            - { name: twig.extension }

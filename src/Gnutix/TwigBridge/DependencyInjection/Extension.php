@@ -22,14 +22,12 @@ class Extension implements ExtensionInterface
         $configProcessor = new Processor();
         $config = $configProcessor->processConfiguration(new Configuration(), $config);
 
-        $container->register('twig.loader', 'Twig_Loader_Filesystem')
+        $container->register('twig.loader.filesystem', 'Twig_Loader_Filesystem')
             ->addArgument($config['templates_paths']);
 
-        $container->register('twig.environment', 'Twig_Environment')
-            ->addArgument(new Reference('twig.loader'))
+        $container->register('twig', 'Twig_Environment')
+            ->addArgument(new Reference('twig.loader.filesystem'))
             ->addArgument($config['options']);
-
-        $container->setAlias('twig', 'twig.environment');
 
         // Add the TwigBundle's compiler passes, so that we can create extensions easily
         $container->addCompilerPass(new TwigEnvironmentPass());

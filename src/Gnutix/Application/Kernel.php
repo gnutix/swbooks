@@ -102,5 +102,8 @@ class Kernel implements HttpKernelInterface
             $this->container->getExtension($extension->getAlias())
                 ->load($this->container->getExtensionConfig($extension->getAlias()), $this->container);
         }
+
+        // Execute the compiler passes
+        $this->container->compile();
     }
 }
