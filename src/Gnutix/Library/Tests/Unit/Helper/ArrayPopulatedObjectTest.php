@@ -1,8 +1,8 @@
 <?php
 
-namespace Gnutix\Library\Tests\Helper;
+namespace Gnutix\Library\Tests\Helper\Unit;
 
-use Gnutix\Library\Tests\Helper\Mock\ArrayPopulatedObjectMock;
+use Gnutix\Library\Tests\Unit\Helper\Mock\ArrayPopulatedObjectMock;
 
 /**
  * Tests for the ArrayPopulatedObject class

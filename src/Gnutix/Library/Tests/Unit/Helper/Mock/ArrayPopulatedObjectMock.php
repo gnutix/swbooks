@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\Library\Tests\Helper\Mock;
+namespace Gnutix\Library\Tests\Unit\Helper\Mock;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 

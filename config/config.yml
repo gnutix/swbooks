@@ -5,10 +5,10 @@ imports:
 # Twig configuration
 gnutix_twig:
     templates_paths:
-        - %root_dir%/web/views
+        - %kernel.root_dir%/web/views
     options:
-        cache: %root_dir%/cache/twig
+        cache: %kernel.root_dir%/cache/twig
 
 # Library configuration
 gnutix_library:
-    source_file_path: %root_dir%/data/books.xml
+    source_file_path: %kernel.root_dir%/data/books.xml

@@ -1,0 +1,5 @@
+imports:
+    - { resource: config.yml }
+
+gnutix_library:
+    source_file_path: %kernel.root_dir%/data/mocks/books.xml

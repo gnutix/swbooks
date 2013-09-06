@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<library>
+    <information>
+        <editors>
+            <editor lang="en" code="dr" name="Del Rey" />
+            <editor lang="en" code="dh" name="Dark Horse" />
+
+            <editor lang="fr" code="fn" name="Fleuve Noir" />
+            <editor lang="fr" code="pdlc" name="Presses de la Cité" />
+        </editors>
+
+        <types>
+            <type code="adult" name="Adult novel" />
+            <type code="ebook" name="E-book" />
+            <type code="publish" name="Not published" />
+        </types>
+    </information>
+
+    <books>
+        <era id="oldRepublic" name="Old Republic era">
+            <book type="adult">
+                <time>5 000 BBY - 41 ABY</time>
+                <title>Crosscurrent</title>
+
+                <author>Paul S. Kemp</author>
+                <editor vo="dr" />
+                <publish vo="26.01.2010" />
+            </book>
+
+            <book type="ebook">
+                <time>5 000 BBY</time>
+                <series number="1">Lost Tribe of the Sith</series>
+                <title>Precipice</title>
+
+                <author>John Jackson Miller</author>
+                <editor vo="dr" />
+
+                <vo copies="1" />
+            </book>
+
+            <book type="ebook">
+                <time>5 000 BBY</time>
+                <series number="2">Lost Tribe of the Sith</series>
+                <title>Skyborn</title>
+
+                <author>John Jackson Miller</author>
+                <editor vo="dr" />
+
+                <vo copies="1" />
+            </book>
+
+            <book type="adult">
+                <time>1 003 BBY - 1 000 BBY</time>
+                <series number="1">Darth Bane</series>
+                <title>Path of Destruction</title>
+
+                <author>Drew Karpyshyn</author>
+                <editor vo="dr" vf="fn" />
+
+                <vf copies="1" readings="2" />
+                <vo copies="1" readings="1" />
+            </book>
+        </era>
+
+        <era id="riseEmpire" name="Rise of the Empire era">
+            <book type="adult">
+                <time>1 000 BBY - 990 BBY</time>
+                <series number="2">Darth Bane</series>
+                <title>Rule of Two</title>
+
+                <author>Drew Karpyshyn</author>
+                <editor vo="dr" vf="fn" />
+
+                <vf copies="1" readings="2" />
+                <vo copies="1" readings="1" />
+            </book>
+        </era>
+    </books>
+</library>

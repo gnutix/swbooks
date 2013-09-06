@@ -5,6 +5,9 @@ namespace Gnutix\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 use Gnutix\Library\DependencyInjection\Extension as GnutixLibraryExtension;
 use Gnutix\TwigBridge\DependencyInjection\Extension as GnutixTwigBridgeExtension;
@@ -12,12 +15,59 @@ use Gnutix\TwigBridge\DependencyInjection\Extension as GnutixTwigBridgeExtension
 /**
  * Kernel
  */
-class Kernel
+class Kernel implements HttpKernelInterface
 {
+    /** @var string */
+    protected $environment;
+
+    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
+    protected $container;
+
+    /**
+     * @param string $environment
+     */
+    public function __construct($environment = 'prod')
+    {
+        $this->environment = $environment;
+
+        $this->initializeContainer();
+    }
+
+    /**
+     * Get the root directory of the application
+     *
+     * @return string
+     */
+    public function getRootDir()
+    {
+        return __DIR__.'/../../..';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
+    {
+        // Add the deprecated function to generate the array
+        $this->container->get('twig')->addFunction(
+            new \Twig_SimpleFunction('deprecated_display_books_from_xml', 'displayBooksFromXml')
+        );
+
+        // Render the template
+        return new Response(
+            $this->container->get('twig')->render(
+                'index.html.twig',
+                array(
+                    'library' => $this->container->get('gnutix_library.library_factory')->getLibrary(),
+                )
+            )
+        );
+    }
+
     /**
      * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
      */
-    public function getExtensions()
+    protected function getExtensions()
     {
         return array(
             new GnutixTwigBridgeExtension(),
@@ -26,34 +76,36 @@ class Kernel
     }
 
     /**
-     * @param string $applicationRootPath The application root folder path
-     * @param string $configurationPath   The configuration folder path
-     *
-     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     * Create the container
      */
-    public function createContainerBuilder($applicationRootPath, $configurationPath)
+    protected function initializeContainer()
     {
         // Create the container builder
-        $container = new ContainerBuilder();
+        $this->container = new ContainerBuilder();
 
         // Set the root of the application
-        $container->setParameter('root_dir', $applicationRootPath);
+        $this->container->setParameter('kernel.root_dir', $this->getRootDir());
+        $this->container->setParameter('kernel.environment', $this->environment);
 
         // Register the extensions before loading the configuration
         foreach ($this->getExtensions() as $extension) {
-            $container->registerExtension($extension);
+            $this->container->registerExtension($extension);
         }
 
         // Load the configuration files
-        $loader = new YamlFileLoader($container, new FileLocator($configurationPath));
-        $loader->load('config.yml');
+        $loader = new YamlFileLoader($this->container, new FileLocator($this->getRootDir().'/config'));
+
+        // Load a service file for a specific environment
+        try {
+            $loader->load('config_'.$this->container->getParameter('kernel.environment').'.yml');
+        } catch (\InvalidArgumentException $e) {
+            $loader->load('config.yml');
+        }
 
         // Load the extensions configuration
         foreach ($this->getExtensions() as $extension) {
-            $container->getExtension($extension->getAlias())
-                ->load($container->getExtensionConfig($extension->getAlias()), $container);
+            $this->container->getExtension($extension->getAlias())
+                ->load($this->container->getExtensionConfig($extension->getAlias()), $this->container);
         }
-
-        return $container;
     }
 }
