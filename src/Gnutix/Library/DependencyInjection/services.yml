@@ -1,6 +1,8 @@
 parameters:
     gnutix_library.loader.xml_file_loader.class: Gnutix\Library\Loader\XmlFileLoader
+    gnutix_library.loader.yaml_file_loader.class: Gnutix\Library\Loader\YamlFileLoader
     gnutix_library.library_factory.xml_library_factory.class: Gnutix\Library\LibraryFactory\XmlLibraryFactory
+    gnutix_library.library_factory.yaml_library_factory.class: Gnutix\Library\LibraryFactory\YamlLibraryFactory
     gnutix_library.twig.extension.class: Gnutix\Library\Twig\Extension\GnutixLibraryExtension
 
 services:
@@ -17,6 +19,14 @@ services:
     gnutix_library.library_factory.xml_library_factory:
         class: %gnutix_library.library_factory.xml_library_factory.class%
         arguments: [@gnutix_library.loader.xml_file_loader]
+
+    gnutix_library.loader.yaml_file_loader:
+        class: %gnutix_library.loader.yaml_file_loader.class%
+        arguments: [%gnutix_library.source_file_path%]
+
+    gnutix_library.library_factory.yaml_library_factory:
+        class: %gnutix_library.library_factory.yaml_library_factory.class%
+        arguments: [@gnutix_library.loader.yaml_file_loader]
 
     gnutix_library.twig.extension:
         class: %gnutix_library.twig.extension.class%

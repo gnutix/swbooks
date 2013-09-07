@@ -48,6 +48,14 @@ class Kernel implements HttpKernelInterface
      */
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
+        /** @var \Gnutix\StarWarsLibrary\Model\Library $library */
+        $library = $this->container->get('gnutix_library.library_factory')->getLibrary();
+        $library->setRawData(
+            simplexml_load_file(
+                str_replace('.yml', '.xml', $this->container->getParameter('gnutix_library.source_file_path'))
+            )
+        );
+
         // Generate the web page
         return new Response(
             $this->container->get('twig')->render(

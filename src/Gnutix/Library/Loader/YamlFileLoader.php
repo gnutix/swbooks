@@ -2,23 +2,24 @@
 
 namespace Gnutix\Library\Loader;
 
+use Symfony\Component\Yaml\Yaml;
+
 use Gnutix\Library\LoaderInterface;
 
 /**
- * XML File Loader
+ * YAML File Loader
  */
-class XmlFileLoader implements LoaderInterface
+class YamlFileLoader implements LoaderInterface
 {
     /** @var string */
     protected $filePath;
 
-    /** @var \SimpleXMLElement */
+    /** @var array */
     protected $data;
 
     /**
      * {@inheritDoc}
      * @throws \InvalidArgumentException If the file path does not exists
-     * @throws \UnexpectedValueException If the XML file can't be parsed
      */
     public function __construct($filePath)
     {
@@ -28,13 +29,11 @@ class XmlFileLoader implements LoaderInterface
             throw new \InvalidArgumentException('The file "'.$filePath.'" has not been found.');
         }
 
-        if (false === ($this->data = simplexml_load_file($filePath))) {
-            throw new \UnexpectedValueException('Unable to parse the XML file "'.$filePath.'".');
-        }
+        $this->data = Yaml::parse(file_get_contents($filePath), true, true);
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return array
      */
     public function getData()
     {

@@ -1,0 +1,266 @@
+categories:
+    - &c_adult
+        id: adult
+        name: Adult novel
+    - &c_comic
+        id: comic
+        name: Comic book
+    - &c_ebook
+        id: ebook
+        name: E-book
+    - &c_story
+        id: story
+        name: Short story
+
+formats:
+    - &f_hc
+        id: hc
+        name: Hardcover
+    - &f_tpb
+        id: tpb
+        name: Trade paperback
+    - &f_pb
+        id: pb
+        name: Paperback
+    - &f_nm
+        id: nm
+        name: Numeric
+
+editors:
+    - &e_dr
+        id: dr
+        name: Del Rey
+        preferredLanguage: en
+    - &e_bs
+        id: bs
+        name: Bantam Spectra
+        preferredLanguage: en
+    - &e_sc
+        id: sc
+        name: Scholastic
+        preferredLanguage: en
+    - &e_bv
+        id: bv
+        name: Boulevard
+        preferredLanguage: en
+    - &e_gd
+        id: gd
+        name: Grosset & Dunlap
+        preferredLanguage: en
+    - &e_dh
+        id: dh
+        name: Dark Horse
+        preferredLanguage: en
+    - &e_lb
+        id: lb
+        name: LucasBooks
+        preferredLanguage: en
+    - &e_fn
+        id: fn
+        name: Fleuve Noir
+        preferredLanguage: fr
+    - &e_pdlc
+        id: pdlc
+        name: Presses de la Cité
+        preferredLanguage: fr
+    - &e_pkj
+        id: pkj
+        name: Pocket Jeunesse
+        preferredLanguage: fr
+    - &e_pk
+        id: pk
+        name: Pocket
+        preferredLanguage: fr
+    - &e_dc
+        id: dc
+        name: Delcourt
+        preferredLanguage: fr
+    - &e_dhf
+        id: dhf
+        name: Dark Horse France
+        preferredLanguage: fr
+    - &e_swu
+        id: swu
+        name: Star Wars Universe
+        preferredLanguage: fr
+    - &e_mag
+        id: mag
+        name: Magazines
+    - &e_web
+        id: web
+        name: Internet
+
+eras:
+    - &era_beforeRepublic
+        id: beforeRepublic
+        name: Before the Republic
+    - &era_oldRepublic
+        id: oldRepublic
+        name: Old Republic
+    - &era_riseEmpire
+        id: riseEmpire
+        name: Rise of the Empire
+    - &era_rebellion
+        id: rebellion
+        name: Rebellion
+    - &era_newRepublic
+        id: newRepublic
+        name: New Republic
+    - &era_newJediOrder
+        id: newJediOrder
+        name: New Jedi Order
+    - &era_legacy
+        id: legacy
+        name: Legacy of the Force
+    - &era_other
+        id: other
+        name: Other
+
+authors:
+    - &a_jos
+        id: jos
+        name: John Ostrander
+    - &a_tle
+        id: tle
+        name: Tim Lebbon
+    - &a_dka
+        id: dka
+        name: Drew Karpyshyn
+
+series:
+    - &s_dawn_jedi_en
+        id: dawnJedi
+        title: Dawn of the Jedi
+    - &s_dawn_jedi_fr
+        <<: *s_dawn_jedi_en
+        title: La Genèse des Jedi
+
+#
+# -- Books node structure examples --
+#
+# Full example:
+#
+# books:
+#     -
+#         chronologicalMarker:
+#             start: -25793
+#             end: 140
+#
+#
+#
+#
+#
+
+books:
+    -
+        category: *c_comic
+        author: *a_jos
+        releases:
+            -
+                title: Force Storm
+                language: en
+                editor: *e_dr
+                format: *f_tpb
+                publicationDate: { day: 25, month: 12, year: 2012 }
+                series:
+                    <<: *s_dawn_jedi_en
+                    number: 1-5
+            -
+                title: L'éveil de la Force
+                language: fr
+                editor: *e_dc
+                format: *f_tpb
+                publicationDate: { day: 20, month: 02, year: 2013 }
+                series:
+                    <<: *s_dawn_jedi_fr
+                    number: 1
+                owner:
+                    copies: 1
+        starWars:
+            chronology:
+                era: *era_beforeRepublic
+                time: -25793
+            swuBookId: 861
+    -
+        category: *c_adult
+        author: *a_tle
+        releases:
+            -
+                title: Into the Void
+                language: en
+                editor: *e_lb
+                format: *f_hc
+                publicationDate: { day: 07, month: 05, year: 2013 }
+                series:
+                    <<: *s_dawn_jedi_en
+                    number: 1
+        starWars:
+            chronology:
+                era: *era_beforeRepublic
+                time: -25793
+            swuBookId: 1012
+    -
+        category: *c_comic
+        author: *a_jos
+        releases:
+            -
+                title: Prisoner of Bogan
+                language: en
+                editor: *e_dr
+                format: *f_tpb
+                publicationDate: { day: 24, month: 07, year: 2013 }
+                series:
+                    <<: *s_dawn_jedi_en
+                    number: 6-10
+            -
+                title: Le Prisonnier de Bogan
+                language: fr
+                editor: *e_dc
+                format: *f_tpb
+                publicationDate: { day: 21, month: 08, year: 2013 }
+                series:
+                    <<: *s_dawn_jedi_fr
+                    number: 2
+                owner:
+                    copies: 1
+        starWars:
+            chronology:
+                era: *era_beforeRepublic
+                time: -25793
+            swuBookId: 1036
+
+
+
+    # ...
+
+
+
+    -
+        category: *c_adult
+        author: *a_dka
+        releases:
+            - &englishPaperback
+                title: Revan
+                language: en
+                editor: *e_dr
+                format: *f_pb
+                publicationDate: { day: 01, month: 01, year: 2012 }
+                series:
+                    <<: *s_old_republic
+                    number: 1
+            -
+                <<: *englishPaperback
+                format: *f_hc
+                publicationDate: { day: 25, month: 09, year: 2012 }
+            -
+                <<: *englishPaperback
+                language: fr
+                editor: *e_pk
+                publicationDate: { day: 19, month: 04, year: 2012 }
+        starWars:
+            chronology:
+                era: *era_oldRepublic
+                time:
+                    start: -3954
+                    end: -3950
+            swuBookId: 777

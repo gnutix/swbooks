@@ -103,7 +103,15 @@ p, ul li, ol li, dl dt, dl dd {
 .marginLeftBig { margin-left: 40px; }
 .marginLeftZero { margin-left: 0; }
 
-
+ul.inline-list, ul.inline-list li {
+    display: inline;
+}
+ul.inline-list li:after {
+    content: ", ";
+}
+ul.inline-list li:last-child:after {
+    content: "";
+}
 
 /* -- Wrappers -- */
 
@@ -112,7 +120,6 @@ p, ul li, ol li, dl dt, dl dd {
     margin: 1% auto;
     border: 1px #6699cc solid;
     font-size: 11pt;
-    text-align: justify;
     background-color: #f5f8fc;
 }
 
@@ -178,6 +185,8 @@ p, ul li, ol li, dl dt, dl dd {
     text-decoration: none;
 }
 
+#content ul.shortcuts li.beforeRepublic,
+#content table.books-list tbody tr th.beforeRepublic { background-image: url('../images/eras/before_republic.png'); }
 #content ul.shortcuts li.oldRepublic,
 #content table.books-list tbody tr th.oldRepublic { background-image: url('../images/eras/old_republic.png'); }
 #content ul.shortcuts li.riseEmpire,
@@ -198,11 +207,18 @@ p, ul li, ol li, dl dt, dl dd {
 
 #content table.books-list {
     font-size: 10pt;
-}
-
-#content table.books-list {
     width: 100%;
     border-collapse: collapse;
+}
+
+#content table.books-list td.book-title {
+    line-height: 16px;
+}
+
+#content table.books-list td.book-title img {
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 #content table.books-list thead tr th {

@@ -50,6 +50,8 @@ class XmlLibraryFactory implements LibraryFactoryInterface
             'library' => '\Gnutix\Library\Model\Library',
             'release' => '\Gnutix\Library\Model\Release',
             'series' => '\Gnutix\Library\Model\Series',
+            'format' => '\Gnutix\Library\Model\Format',
+            'owner' => '\Gnutix\Library\Model\Owner',
         );
     }
 
@@ -204,12 +206,29 @@ class XmlLibraryFactory implements LibraryFactoryInterface
                             array('code' => 'id', 'lang' => 'preferredLanguage')
                         )
                     ),
-                    'date' => isset($publishAttributes[$release]) ? $publishAttributes[$release] : null,
-                    'language' => $editorAttributes['lang'],
-                    'nbCopiesOwned' => isset($releaseNode['copies']) ? (int) $releaseNode['copies'] : null,
-                    'nbReadings' => isset($releaseNode['readings']) ? (int) $releaseNode['readings'] : null,
+                    'publicationDate' => isset($publishAttributes[$release]) ? $publishAttributes[$release] : null,
+                    'language' => array('id' => $editorAttributes['lang'], 'name' => $editorAttributes['lang']),
+                    'owner' => new $this->classes['owner'](
+                        array(
+                            'nbCopies' => isset($releaseNode['copies']) ? (int) $releaseNode['copies'] : null,
+                            'nbReadings' => isset($releaseNode['readings']) ? (int) $releaseNode['readings'] : null,
+                        )
+                    ),
+                    'series' => null !== $series
+                        ? new $this->classes['series'](
+                            array(
+                                'title' => (string) $series,
+                                'bookId' => isset($seriesAttributes['number']) ? $seriesAttributes['number'] : null,
+                            )
+                        )
+                        : null,
                 )
             );
+        }
+
+        $authors = array();
+        foreach (explode(',', (string) $book->{'author'}) as $author) {
+            $authors[] = new $this->classes['author'](array('name' => trim($author)));
         }
 
         return array(
@@ -219,15 +238,7 @@ class XmlLibraryFactory implements LibraryFactoryInterface
                     'name' => $categoryAttributes['name'],
                 )
             ),
-            'series' => null !== $series
-                ? new $this->classes['series'](
-                    array(
-                        'name' => (string) $series,
-                        'bookId' => isset($seriesAttributes['number']) ? $seriesAttributes['number'] : null,
-                    )
-                )
-                : null,
-            'author' => new $this->classes['author'](array('name' => (string) $book->{'author'})),
+            'authors' => $authors,
             'releases' => $releases,
         );
     }

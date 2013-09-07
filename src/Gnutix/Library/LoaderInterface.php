@@ -16,4 +16,9 @@ interface LoaderInterface
      * @return mixed
      */
     public function getData();
+
+    /**
+     * @return string
+     */
+    public function getSourceFilePath();
 }

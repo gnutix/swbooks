@@ -12,35 +12,30 @@ class Release extends ArrayPopulatedObject
     /** @var string */
     protected $title;
 
-    /** @var Editor */
-    protected $editor;
-
-    /** @var \DateTime */
-    protected $date;
-
     /** @var string */
     protected $language;
 
-    /** @var int */
-    protected $nbCopiesOwned;
+    /** @var \Gnutix\Library\Model\Editor */
+    protected $editor;
 
-    /** @var int */
-    protected $nbReadings;
+    /** @var \Gnutix\Library\Model\Format */
+    protected $format;
+
+    /** @var \DateTime */
+    protected $publicationDate;
+
+    /** @var \Gnutix\Library\Model\Series */
+    protected $series;
+
+    /** @var \Gnutix\Library\Model\Series */
+    protected $owner;
 
     /**
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getTitle()
     {
-        return null !== $this->date ? new \DateTime($this->date) : null;
-    }
-
-    /**
-     * @return \Gnutix\Library\Model\Editor
-     */
-    public function getEditor()
-    {
-        return $this->editor;
+        return $this->title;
     }
 
     /**
@@ -52,26 +47,72 @@ class Release extends ArrayPopulatedObject
     }
 
     /**
+     * @return \Gnutix\Library\Model\Editor
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * @return \Gnutix\Library\Model\Format
+     */
+    public function getFormat()
+    {
+        return $this->format;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublicationDate()
+    {
+        return $this->publicationDate;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->publicationDate < new \DateTime();
+    }
+
+    /**
+     * @return \Gnutix\Library\Model\Series
+     */
+    public function getSeries()
+    {
+        return $this->series;
+    }
+
+    /**
+     * @return \Gnutix\Library\Model\Series
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
      * @return string
      */
-    public function getTitle()
+    public function getFullTitle()
     {
-        return $this->title;
-    }
+        $title = '';
 
-    /**
-     * @return int
-     */
-    public function getNbCopiesOwned()
-    {
-        return $this->nbCopiesOwned;
-    }
+        if (null !== $this->series->getTitle()) {
+            $title .= $this->series->getTitle();
 
-    /**
-     * @return mixed
-     */
-    public function getNbReadings()
-    {
-        return $this->nbReadings;
+            if (null !== $this->series->getBookId()) {
+                $title .= ' '.$this->series->getBookId();
+            }
+
+            $title .= ': ';
+        }
+
+        $title .= $this->getTitle();
+
+        return $title;
     }
 }

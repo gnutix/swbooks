@@ -9,8 +9,11 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
  */
 class ChronologicalMarker extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $date;
+    /** @var int */
+    protected $timeStart;
+
+    /** @var int */
+    protected $timeEnd;
 
     /** @var \Gnutix\StarWarsLibrary\Model\Era */
     protected $era;
@@ -18,9 +21,17 @@ class ChronologicalMarker extends ArrayPopulatedObject
     /**
      * @return string
      */
-    public function getDate()
+    public function getTimeStart()
     {
-        return $this->date;
+        return $this->timeStart;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimeEnd()
+    {
+        return $this->timeEnd;
     }
 
     /**

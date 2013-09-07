@@ -56,7 +56,7 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
             array(
                 'chronologicalMarker' => new $this->classes['chronologicalMarker'](
                     array(
-                        'date' => (string) $book->{'time'},
+                        'timeStart' => (string) $book->{'time'},
                         'era' => new $this->classes['era']($this->getSimpleXmlElementAttributesAsArray(reset($era))),
                     )
                 )

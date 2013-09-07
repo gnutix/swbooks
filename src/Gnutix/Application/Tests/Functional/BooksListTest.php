@@ -31,13 +31,13 @@ class BooksListTest extends WebTestCase
      */
     public function testEditorsList()
     {
-        $this->assertCount(4, $this->crawler->filter('dl.editors dd'));
+        $this->assertCount(3, $this->crawler->filter('dl.editors dd'));
 
         $this->assertEquals('en', $this->crawler->filter('dl.editors dt abbr')->first()->attr('lang'));
-        $this->assertEquals('Del Rey', $this->crawler->filter('dl.editors dd')->first()->text());
+        $this->assertEquals('English Publisher', $this->crawler->filter('dl.editors dd')->first()->text());
 
-        $this->assertEquals('fr', $this->crawler->filter('dl.editors dt abbr')->last()->attr('lang'));
-        $this->assertContains('Presses', $this->crawler->filter('dl.editors dd')->last()->text());
+        $this->assertEquals('fr', $this->crawler->filter('dl.editors dt abbr')->eq(1)->attr('lang'));
+        $this->assertContains('French Publisher', $this->crawler->filter('dl.editors dd')->eq(1)->text());
     }
 
     /**
@@ -45,7 +45,7 @@ class BooksListTest extends WebTestCase
      */
     public function testCategoriesList()
     {
-        $this->assertCount(3, $this->crawler->filter('ul.legend li'));
+        $this->assertCount(2, $this->crawler->filter('ul.legend li'));
         $this->assertEquals('Adult novel', $this->crawler->filter('ul.legend li.adult')->text());
     }
 
@@ -54,7 +54,7 @@ class BooksListTest extends WebTestCase
      */
     public function testErasList()
     {
-        $this->assertCount(2, $this->crawler->filter('ul.shortcuts li'));
-        $this->assertEquals('Old Republic era', $this->crawler->filter('ul.shortcuts li.oldRepublic')->text());
+        $this->assertCount(3, $this->crawler->filter('ul.shortcuts li'));
+        $this->assertEquals('Old Republic', $this->crawler->filter('ul.shortcuts li.oldRepublic')->text());
     }
 }

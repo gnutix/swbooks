@@ -48,7 +48,7 @@ Here you can find a complete example of book node :
     </information>
 
     <books>
-        <era id="oldRepublic" name="Old Republic era">
+        <era id="oldRepublic" name="Old Republic">
             <!--
             ########################
                 OLD REPUBLIC ERA
@@ -233,7 +233,7 @@ Here you can find a complete example of book node :
             </book>
         </era>
 
-        <era id="riseEmpire" name="Rise of the Empire era">
+        <era id="riseEmpire" name="Rise of the Empire">
             <!--
             ##############################
                 RISE OF THE EMPIRE ERA
@@ -1865,7 +1865,7 @@ Here you can find a complete example of book node :
             </book>
         </era>
 
-        <era id="rebellion" name="Rebellion era">
+        <era id="rebellion" name="Rebellion">
             <!--
             #####################
                 REBELLION ERA
@@ -2485,7 +2485,7 @@ Here you can find a complete example of book node :
             </book>
         </era>
 
-        <era id="newRepublic" name="New Republic era">
+        <era id="newRepublic" name="New Republic">
             <!--
             #########################
                 NEW REPUBLIC ERA
@@ -3299,7 +3299,7 @@ Here you can find a complete example of book node :
             </book>
         </era>
 
-        <era id="newJediOrder" name="New Jedi Order era">
+        <era id="newJediOrder" name="New Jedi Order">
             <!--
             ##########################
                 NEW JEDI ORDER ERA
@@ -3634,7 +3634,7 @@ Here you can find a complete example of book node :
             </book>
         </era>
 
-        <era id="legacy" name="Legacy era">
+        <era id="legacy" name="Legacy of the Force">
             <!--
             ##################
                 LEGACY ERA

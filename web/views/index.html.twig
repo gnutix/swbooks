@@ -4,65 +4,150 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="css/standard.css" rel="stylesheet" type="text/css">
+    <link href="css/standard.css" rel="stylesheet">
 </head>
 <body>
-<div id="global">
-    <div id="content">
-        <h1>Star Wars Books</h1>
-        <p>
-            This is the list of Star Wars books and comics with the main information about each of them.
-            Featuring my possessions and my readings.
-        </p>
+    <div id="global">
+        <div id="content">
+            <h1>Star Wars Books</h1>
+            <p>
+                This is the list of Star Wars books and comics with the main information about each of them.
+                Featuring my possessions and my readings.
+            </p>
 
-        <h2>Books' editors</h2>
-        <dl class="editors">
-            {% for editor in library.editors %}
-                <dt>
-                    <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">{{ editor.id|upper }}</abbr>
-                </dt>
-                <dd>{{ editor.name }}</dd>
-            {% endfor %}
-        </dl>
+            <h2>Books' editors</h2>
+            <dl class="editors">
+                {% for editor in library.editors %}
+                    <dt>
+                        <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">{{ editor.id|upper }}</abbr>
+                    </dt>
+                    <dd>{{ editor.name }}</dd>
+                {% endfor %}
+            </dl>
 
-        <div class="spacer"></div>
+            <div class="spacer"></div>
 
-        <h2>Books' types</h2>
-        <ul class="legend">
-            {% for category in library.categories %}
-                <li class="{{ category.id }}">{{ category.name }}</li>
-            {% endfor %}
-        </ul>
+            <h2>Books' types</h2>
+            <ul class="legend">
+                {% for category in library.categories %}
+                    <li class="{{ category.id }}">{{ category.name }}</li>
+                {% endfor %}
+            </ul>
 
-        <div class="spacer"></div>
+            <div class="spacer"></div>
 
-        <h2>Shortcuts to the eras</h2>
-        <ul class="shortcuts">
-            {% for era in library.eras %}
-                <li class="{{ era.id }}"><a href="#{{ era.id }}">{{ era.name }}</a></li>
-            {% endfor %}
-        </ul>
+            <h2>Shortcuts to the eras</h2>
+            <ul class="shortcuts">
+                {% for era in library.eras %}
+                    <li class="{{ era.id }}"><a href="#{{ era.id }}">{{ era.name }}</a></li>
+                {% endfor %}
+            </ul>
 
-        <h2>Books' list</h2>
-        <table class="books-list">
-            <thead>
-            <tr>
-                <th class="timeline">Timeline</th>
-                <th class="title">Title</th>
-                <th class="author">Author(s)</th>
-                <th class="voe"><abbr title="Original Version editor" lang="fr">VO-E</abbr></th>
-                <th class="vfe"><abbr title="French Version editor" lang="fr">VF-E</abbr></th>
-                <th class="vo"><abbr title="Do I have the Original Version ? How many copies ?" lang="fr">VO</abbr></th>
-                <th class="vor"><abbr title="Did I read the Original Version ? How many times ?" lang="fr">VO-R</abbr></th>
-                <th class="vf"><abbr title="Do I have the French Version ? How many copies ?" lang="fr">VF</abbr></th>
-                <th class="vfr"><abbr title="Did I read the French Version ? How many times ?" lang="fr">VF-R</abbr></th>
-            </tr>
-            </thead>
-            <tbody>
-                {{ deprecated_display_books_from_xml(library.rawData) }}
-            </tbody>
-        </table>
+            <h2>Books' list</h2>
+            <table class="books-list">
+                <thead>
+                    <tr>
+                        <th class="timeline">Timeline</th>
+                        <th class="author">Author(s)</th>
+                        <th class="title">Title</th>
+                        <th>Language</th>
+                        <th>Editor</th>
+                        <th>Format</th>
+                        <th>Copies</th>
+                        <th>Readings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for era in library.eras %}
+                        <tr data-era-heading>
+                            <th class="{{ era.id }}" data-full-colspan>
+                                <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
+                            </th>
+                        </tr>
+
+                        {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
+                            {% for release in book.releases %}
+                                <tr>
+                                    <td>
+                                        {{ book.chronologicalMarker.timeStart|starWarsDate|raw }}
+                                        {% if book.chronologicalMarker.timeEnd is not empty %}
+                                            {{ (' - '~ book.chronologicalMarker.timeEnd|starWarsDate)|raw }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <ul class="inline-list">
+                                            {% for author in book.authors %}
+                                                <li>{{ author.name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td class="book-title {{ book.category.id }}">
+                                        {% if release.series is not empty and release.series.title is not empty %}
+                                            {{ release.series.title -}}
+                                            {% if release.series.bookId is not empty %}
+                                                {{ ' '~ release.series.bookId -}}
+                                            {% endif %}
+                                            {{ ': ' }}
+                                        {% endif %}
+                                        {{ release.title }}
+
+                                        {% if book.swuBookId is not empty %}
+                                            <a href="http://www.starwars-universe.com/livre-{{ book.swuBookId }}-a.html">
+                                                <img src="http://www.starwars-universe.com/favicon.ico" alt="Star Wars Universe website" />
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                    <td><abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr></td>
+                                    <td><abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr></td>
+                                    <td>{% if release.format is not empty %}<abbr title="{{ release.format.name }}">{{ release.format.id|upper }}</abbr>{% endif %}</td>
+
+                                    {% if release.published %}
+                                        <td class="{{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
+                                            {% if release.owner.nbCopies > 1 %}{{ release.owner.nbCopies }}{% endif %}
+                                        </td>
+                                        <td class="{{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
+                                            {% if release.owner.nbReadings > 1 %}{{ release.owner.nbReadings }}{% endif %}
+                                        </td>
+                                    {% else %}
+                                        <td colspan="2" class="publish">
+                                            <abbr title="Expected publication date">
+                                                {{ release.publicationDate|date('Y-m-d') }}
+                                            </abbr>
+                                        </td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {#
+            <h2>Deprecated books' list</h2>
+            <table class="books-list">
+                <thead>
+                <tr>
+                    <th class="timeline">Timeline</th>
+                    <th class="title">Title</th>
+                    <th class="author">Author(s)</th>
+                    <th class="voe"><abbr title="Original Version editor" lang="fr">VO-E</abbr></th>
+                    <th class="vfe"><abbr title="French Version editor" lang="fr">VF-E</abbr></th>
+                    <th class="vo"><abbr title="Do I have the Original Version ? How many copies ?" lang="fr">VO</abbr></th>
+                    <th class="vor"><abbr title="Did I read the Original Version ? How many times ?" lang="fr">VO-R</abbr></th>
+                    <th class="vf"><abbr title="Do I have the French Version ? How many copies ?" lang="fr">VF</abbr></th>
+                    <th class="vfr"><abbr title="Did I read the French Version ? How many times ?" lang="fr">VF-R</abbr></th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{ deprecated_display_books_from_xml(library.rawData) }}
+                </tbody>
+            </table>
+            #}
+        </div>
     </div>
-</div>
+
+    <script src="js/lib/jquery-2.0.3.min.js"></script>
+    <script src="js/lib/jquery.outerhtml.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

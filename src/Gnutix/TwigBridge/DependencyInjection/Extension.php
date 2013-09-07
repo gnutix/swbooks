@@ -17,10 +17,10 @@ class Extension implements ExtensionInterface
     /**
      * {@inheritDoc}
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
         $configProcessor = new Processor();
-        $config = $configProcessor->processConfiguration(new Configuration(), $config);
+        $config = $configProcessor->processConfiguration(new Configuration(), $configs);
 
         $container->register('twig.loader.filesystem', 'Twig_Loader_Filesystem')
             ->addArgument($config['templates_paths']);

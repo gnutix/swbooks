@@ -30,4 +30,12 @@ class Library extends BaseLibrary
     {
         return $this->rawData;
     }
+
+    /**
+     * @param mixed $rawData
+     */
+    public function setRawData($rawData)
+    {
+        $this->rawData = $rawData;
+    }
 }

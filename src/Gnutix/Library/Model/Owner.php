@@ -5,18 +5,18 @@ namespace Gnutix\Library\Model;
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
 /**
- * Book Series
+ * Books Owner
  */
-class Series extends ArrayPopulatedObject
+class Owner extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;
 
-    /** @var string */
-    protected $title;
+    /** @var int */
+    protected $nbCopies;
 
     /** @var int */
-    protected $bookId;
+    protected $nbReadings;
 
     /**
      * @return string
@@ -27,18 +27,18 @@ class Series extends ArrayPopulatedObject
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getTitle()
+    public function getNbCopies()
     {
-        return $this->title;
+        return $this->nbCopies;
     }
 
     /**
      * @return int
      */
-    public function getBookId()
+    public function getNbReadings()
     {
-        return $this->bookId;
+        return $this->nbReadings;
     }
 }

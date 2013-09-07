@@ -3,5 +3,6 @@ imports:
 
 gnutix_twig:
     options:
-        cache: ~
-
+        auto_reload: true
+        debug: true
+        cache: false

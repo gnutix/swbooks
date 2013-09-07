@@ -12,21 +12,18 @@ class Book extends ArrayPopulatedObject
     /** @var \Gnutix\Library\Model\Category */
     protected $category;
 
-    /** @var \Gnutix\Library\Model\Series */
-    protected $series;
-
-    /** @var \Gnutix\Library\Model\Author */
-    protected $author;
+    /** @var \Gnutix\Library\Model\Author[] */
+    protected $authors;
 
     /** @var \Gnutix\Library\Model\Release[] */
     protected $releases;
 
     /**
-     * @return \Gnutix\Library\Model\Author
+     * @return \Gnutix\Library\Model\Author[]
      */
-    public function getAuthor()
+    public function getAuthors()
     {
-        return $this->author;
+        return $this->authors;
     }
 
     /**
@@ -43,13 +40,5 @@ class Book extends ArrayPopulatedObject
     public function getReleases()
     {
         return $this->releases;
-    }
-
-    /**
-     * @return \Gnutix\Library\Model\Series
-     */
-    public function getSeries()
-    {
-        return $this->series;
     }
 }

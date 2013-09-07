@@ -5,9 +5,9 @@ namespace Gnutix\Library\Model;
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
 /**
- * Book's author
+ * Book's language
  */
-class Author extends ArrayPopulatedObject
+class Language extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;

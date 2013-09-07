@@ -18,7 +18,8 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('gnutix_twig');
 
-        $rootNode->append($this->getTemplatePathsNode())
+        $rootNode
+            ->append($this->getTemplatePathsNode())
             ->append($this->getTwigOptionsNode());
 
         return $treeBuilder;
@@ -49,9 +50,29 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $node = $treeBuilder->root('options');
 
-        $node->defaultValue(array());
-        $node->prototype('scalar')->end();
+        $node
+            ->append($this->getTwigOptionNode('debug'))
+            ->append($this->getTwigOptionNode('charset'))
+            ->append($this->getTwigOptionNode('base_template_class'))
+            ->append($this->getTwigOptionNode('cache'))
+            ->append($this->getTwigOptionNode('auto_reload'))
+            ->append($this->getTwigOptionNode('strict_variables'))
+            ->append($this->getTwigOptionNode('autoescape'))
+            ->append($this->getTwigOptionNode('optimizations'))
+        ;
 
         return $node;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return \Symfony\Component\Config\Definition\Builder\ScalarNodeDefinition
+     */
+    protected function getTwigOptionNode($name)
+    {
+        $treeBuilder = new TreeBuilder();
+
+        return $treeBuilder->root($name, 'scalar');
     }
 }
