@@ -17,7 +17,7 @@ Here you can find a complete example of book node :
 </book>
 -->
 <library>
-    <informations>
+    <information>
         <editors>
             <editor lang="en" code="dr" name="Del Rey" />
             <editor lang="en" code="bs" name="Bantam Spectra" />
@@ -44,7 +44,7 @@ Here you can find a complete example of book node :
             <type code="story" name="Short story" />
             <type code="publish" name="Not published" />
         </types>
-    </informations>
+    </information>
 
     <books>
         <era id="oldRepublic" name="Old Republic era">

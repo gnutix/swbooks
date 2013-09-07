@@ -37,7 +37,7 @@ $xml = getXML('data/books.xml');
 
             <dl class="editors">
                 <?php
-                foreach ($xml->informations->editors->editor as $editor) {
+                foreach ($xml->information->editors->editor as $editor) {
                     echo '<dt><acronym title="'.$editor['name'].'" lang="'.$editor['lang'].'">'.strtoupper($editor['code']).'</acronym></dt><dd>'.$editor['name'].'</dd>';
                 }
                 ?>
@@ -49,7 +49,7 @@ $xml = getXML('data/books.xml');
 
             <ul class="legend">
                 <?php
-                foreach ($xml->informations->types->type as $type) {
+                foreach ($xml->information->types->type as $type) {
                     echo '<li class="'.$type['code'].'">'.$type['name'].'</li>';
                 }
                 ?>
