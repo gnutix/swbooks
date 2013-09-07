@@ -25,6 +25,7 @@ Here you can find a complete example of book node :
             <editor lang="en" code="bv" name="Boulevard" />
             <editor lang="en" code="gd" name="Grosset &amp; Dunlap" />
             <editor lang="en" code="dh" name="Dark Horse" />
+            <editor lang="en" code="lb" name="LucasBooks" />
 
             <editor lang="fr" code="fn" name="Fleuve Noir" />
             <editor lang="fr" code="pdlc" name="Presses de la Cité" />
@@ -53,6 +54,30 @@ Here you can find a complete example of book node :
                 OLD REPUBLIC ERA
             ########################
             -->
+
+            <book type="comic">
+                <time>25 793 BY</time>
+
+                <title lang="fr">L'éveil de la Force</title>
+                <series number="1" lang="fr">La Genèse des Jedi</series>
+
+                <title lang="en">Force Storm</title>
+                <series lang="en">Dawn of the Jedi</series>
+
+                <author>John Ostrander</author>
+                <editor vo="dr" vf="dc" />
+                <publish vo="25.12.2012" vf="20.02.2013" />
+            </book>
+
+            <book type="adult">
+                <time>25 793 BBY</time>
+                <series number="1">Dawn of the Jedi</series>
+                <title>Into the Void</title>
+
+                <author>Tim Lebbon</author>
+                <editor vo="lb" />
+                <publish vo="07.05.2013" />
+            </book>
 
             <book type="adult">
                 <time>5 000 BBY - 41 ABY</time>
