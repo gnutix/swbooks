@@ -1,6 +1,6 @@
 bin/
-cache/
-!cache/.gitkeep
+app/cache/
+!app/cache/.gitkeep
 vendor/
 composer.lock
 phpunit.xml
