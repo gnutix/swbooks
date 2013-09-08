@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\TwigBridge\DependencyInjection;
+namespace Gnutix\Twig\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,10 +19,25 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('gnutix_twig');
 
         $rootNode
+            ->append($this->getAssetsDirNode())
             ->append($this->getTemplatePathsNode())
             ->append($this->getTwigOptionsNode());
 
         return $treeBuilder;
+    }
+
+    /**
+     * @return \Symfony\Component\Config\Definition\Builder\ScalarNodeDefinition
+     */
+    protected function getAssetsDirNode()
+    {
+        $treeBuilder = new TreeBuilder();
+        $node = $treeBuilder->root('assets_dir', 'scalar');
+
+        $node->isRequired()
+            ->cannotBeEmpty();
+
+        return $node;
     }
 
     /**
@@ -35,8 +50,8 @@ class Configuration implements ConfigurationInterface
 
         $node
             ->requiresAtLeastOneElement()
-            ->isRequired()
             ->cannotBeEmpty();
+
         $node->prototype('scalar')->end();
 
         return $node;

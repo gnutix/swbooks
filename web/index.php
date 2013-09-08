@@ -1,10 +1,10 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
-use Gnutix\Application\Kernel;
 
-require_once __DIR__.'/../vendor/autoload.php';
+$rootDir = __DIR__.'/..';
+require_once $rootDir.'/vendor/autoload.php';
 
-$kernel = new Kernel();
+$kernel = new AppKernel($rootDir);
 $response = $kernel->handle(Request::createFromGlobals());
 $response->send();

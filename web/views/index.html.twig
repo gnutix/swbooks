@@ -104,7 +104,7 @@
                                     </td>
                                     <td>
                                         <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
-                                        {% set flag = asset('images/flags/'~ release.language.id ~'.png') %}
+                                        {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
                                         {% if flag is not empty %}
                                             <img src="{{ flag }}" alt="{{ release.language.name }}">
                                         {% endif %}

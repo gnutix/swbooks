@@ -3,6 +3,8 @@
 namespace Gnutix\Library\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 
@@ -20,6 +22,9 @@ class Extension implements ExtensionInterface
         $config = $configProcessor->processConfiguration(new Configuration(), $config);
 
         $container->setParameter('gnutix_library.source_file_path', $config['source_file_path']);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
     }
 
     /**

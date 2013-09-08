@@ -1,13 +1,13 @@
 <?php
 
-namespace Gnutix\TwigBridge\Twig\Extension;
+namespace Gnutix\Twig\Extension;
 
 use Symfony\Component\Finder\Finder;
 
 /**
- * Gnutix Twig Bridge Assets Extension
+ * Assets Extension
  */
-class TwigBridgeAssetsExtension extends \Twig_Extension
+class AssetsExtension extends \Twig_Extension
 {
     /** @var string */
     protected $webDir;
@@ -26,7 +26,7 @@ class TwigBridgeAssetsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('asset', array($this, 'getAsset')),
+            new \Twig_SimpleFunction('asset', array($this, 'getAssetPath')),
         );
     }
 
@@ -35,7 +35,7 @@ class TwigBridgeAssetsExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'gnutix_twig_bridge_extension';
+        return 'gnutix_twig_extension';
     }
 
     /**
@@ -45,7 +45,7 @@ class TwigBridgeAssetsExtension extends \Twig_Extension
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function getAsset($asset, $throwException = true)
+    public function getAssetPath($asset, $throwException = true)
     {
         $finder = new Finder();
         $assetPathInfo = pathinfo($asset);
@@ -60,7 +60,7 @@ class TwigBridgeAssetsExtension extends \Twig_Extension
         }
 
         if ($throwException) {
-            throw new \InvalidArgumentException('The asset "'.$asset.'" could not be found.');
+            throw new \InvalidArgumentException('The asset "'.$asset.'" could not be found in "'.$this->webDir.'".');
         }
 
         return '';

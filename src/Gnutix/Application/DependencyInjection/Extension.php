@@ -17,7 +17,10 @@ class Extension implements ExtensionInterface
     public function load(array $config, ContainerBuilder $container)
     {
         $configProcessor = new Processor();
-        $config = $configProcessor->processConfiguration(new Configuration(), $config);
+        $config = $configProcessor->processConfiguration(
+            new Configuration($container->getParameter('app.root_dir')),
+            $config
+        );
 
         $container->setParameter('kernel.web_dir', $config['web_dir']);
     }

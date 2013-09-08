@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\TwigBridge\DependencyInjection;
+namespace Gnutix\Twig\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -29,8 +29,8 @@ class Extension implements ExtensionInterface
             ->addArgument(new Reference('twig.loader.filesystem'))
             ->addArgument($config['options']);
 
-        $container->register('twig.extension.assets', 'Gnutix\TwigBridge\Twig\Extension\TwigBridgeAssetsExtension')
-            ->addArgument($container->getParameter('kernel.web_dir'))
+        $container->register('twig.extension.assets', 'Gnutix\Twig\Extension\AssetsExtension')
+            ->addArgument($config['assets_dir'])
             ->addTag('twig.extension');
 
         // Add the TwigBundle's compiler passes, so that we can create extensions easily
