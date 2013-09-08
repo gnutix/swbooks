@@ -178,7 +178,7 @@ Here you can find a complete example of book node :
 
                 <author>Paul S. Kemp</author>
                 <editor vo="dr" />
-                <publish vo="01.12.2010" />
+                <publish vo="22.03.2011" />
             </book>
 
             <book type="adult">
@@ -259,7 +259,7 @@ Here you can find a complete example of book node :
 
                 <author>Drew Karpyshyn</author>
                 <editor vo="dr" vf="fn" />
-                <publish vo="23.11.2010" vf="01.01.2011" />
+                <publish vo="23.11.2010" vf="25.08.2011" />
 
                 <vo copies="0" readings="1" />
             </book>
@@ -1144,6 +1144,7 @@ Here you can find a complete example of book node :
 
                 <author>Ryder Windham</author>
                 <editor vo="gd" />
+                <publish vo="03.03.2011" />
             </book>
 
             <book type="adult">
@@ -1489,7 +1490,7 @@ Here you can find a complete example of book node :
 
                 <author>Michael Reaves</author>
                 <editor vo="dr" vf="fn" />
-                <publish vf="01.01.2011" />
+                <publish vf="09.02.2012" />
             </book>
 
             <!--
@@ -1550,7 +1551,7 @@ Here you can find a complete example of book node :
 
                 <author>Michael Reaves</author>
                 <editor vo="dr" vf="fn" />
-                <publish vf="01.01.2011" />
+                <publish vf="28.06.2012" />
             </book>
 
             <book type="young">
@@ -1609,13 +1610,12 @@ Here you can find a complete example of book node :
             </book>
 
             <book type="adult">
-                <time>18 BBY</time>
-                <series number="4">Coruscant Nights</series>
-                <title>Jedi Dawn</title>
+                <time>18 BBY - 17 BBY</time>
+                <title>The Last Jedi</title>
 
                 <author>Michael Reaves</author>
                 <editor vo="dr" />
-                <publish vo="01.11.2012" />
+                <publish vo="26.02.2013" />
             </book>
 
             <book type="story">
@@ -3715,7 +3715,7 @@ Here you can find a complete example of book node :
 
                 <author>Aaron Allston</author>
                 <editor vo="dr" vf="fn" />
-                <publish vf="01.07.2010" />
+                <publish vf="26.08.2010" />
             </book>
 
             <book type="adult">
@@ -3725,7 +3725,7 @@ Here you can find a complete example of book node :
 
                 <author>Karen Traviss</author>
                 <editor vo="dr" vf="fn" />
-                <publish vf="01.12.2010" />
+                <publish vf="09.12.2010" />
             </book>
 
             <book type="adult">
@@ -3735,7 +3735,7 @@ Here you can find a complete example of book node :
 
                 <author>Troy Denning</author>
                 <editor vo="dr" vf="fn" />
-                <publish vf="01.01.2011" />
+                <publish vf="28.04.2011" />
             </book>
 
             <book type="adult">
@@ -3832,10 +3832,11 @@ Here you can find a complete example of book node :
             <book type="adult">
                 <time>43.5 ABY</time>
                 <series number="9">Fate of the Jedi</series>
-                <title></title>
+                <title>Apocalypse</title>
 
                 <author>Troy Denning</author>
                 <editor vo="dr" />
+                <publish vo="29.01.2013" />
             </book>
         </era>
 
