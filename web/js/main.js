@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 
     // Once the tagging is done, here comes the real work
-    $('td', booksTable).each(function () {
+    $('tbody tr td', booksTable).each(function () {
         if (1 == $(this).data('remove')) {
             $(this).remove();
         } else if (1 < $(this).data('rowspan')) {

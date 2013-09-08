@@ -19,7 +19,9 @@
             <dl class="editors">
                 {% for editor in library.editors %}
                     <dt>
-                        <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">{{ editor.id|upper }}</abbr>
+                        <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">
+                            {{ editor.id|upper }}
+                        </abbr>
                     </dt>
                     <dd>{{ editor.name }}</dd>
                 {% endfor %}
@@ -94,14 +96,23 @@
                                         {{ release.title }}
 
                                         {% if book.swuBookId is not empty %}
-                                            <a href="http://www.starwars-universe.com/livre-{{ book.swuBookId }}-a.html">
-                                                <img src="http://www.starwars-universe.com/favicon.ico" alt="Star Wars Universe website" />
+                                            {% set swuHost = 'http://www.starwars-universe.com/' %}
+                                            <a href="{{ swuHost }}livre-{{ book.swuBookId }}-a.html">
+                                                <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website" />
                                             </a>
                                         {% endif %}
                                     </td>
-                                    <td><abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr></td>
-                                    <td><abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr></td>
-                                    <td>{% if release.format is not empty %}<abbr title="{{ release.format.name }}">{{ release.format.id|upper }}</abbr>{% endif %}</td>
+                                    <td>
+                                        <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
+                                    </td>
+                                    <td>
+                                        <abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr>
+                                    </td>
+                                    <td>
+                                        {% if release.format is not empty %}
+                                            <abbr title="{{ release.format.name }}">{{ release.format.id|upper }}</abbr>
+                                        {% endif %}
+                                    </td>
 
                                     {% if release.published %}
                                         <td class="{{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
@@ -123,28 +134,6 @@
                     </tbody>
                 {% endfor %}
             </table>
-
-            {#
-            <h2>Deprecated books' list</h2>
-            <table class="books-list">
-                <thead>
-                <tr>
-                    <th class="timeline">Timeline</th>
-                    <th class="title">Title</th>
-                    <th class="author">Author(s)</th>
-                    <th class="voe"><abbr title="Original Version editor" lang="fr">VO-E</abbr></th>
-                    <th class="vfe"><abbr title="French Version editor" lang="fr">VF-E</abbr></th>
-                    <th class="vo"><abbr title="Do I have the Original Version ? How many copies ?" lang="fr">VO</abbr></th>
-                    <th class="vor"><abbr title="Did I read the Original Version ? How many times ?" lang="fr">VO-R</abbr></th>
-                    <th class="vf"><abbr title="Do I have the French Version ? How many copies ?" lang="fr">VF</abbr></th>
-                    <th class="vfr"><abbr title="Did I read the French Version ? How many times ?" lang="fr">VF-R</abbr></th>
-                </tr>
-                </thead>
-                <tbody>
-                    {{ deprecated_display_books_from_xml(library.rawData) }}
-                </tbody>
-            </table>
-            #}
         </div>
     </div>
 

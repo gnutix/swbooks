@@ -2,24 +2,27 @@
 
 namespace Gnutix\StarWarsLibrary\Twig\Extension;
 
-use Gnutix\Library\Twig\Extension\GnutixLibraryExtension;
-
 /**
  * Gnutix Library Twig Extension
  */
-class GnutixStarWarsLibraryExtension extends GnutixLibraryExtension
+class GnutixStarWarsLibraryExtension extends \Twig_Extension
 {
     /**
      * {@inheritDoc}
      */
     public function getFilters()
     {
-        return array_merge(
-            parent::getFilters(),
-            array(
-                new \Twig_SimpleFilter('starWarsDate', array($this, 'starWarsDate')),
-            )
+        return array(
+            new \Twig_SimpleFilter('starWarsDate', array($this, 'starWarsDate')),
         );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getName()
+    {
+        return 'gnutix_library_extension';
     }
 
     /**

@@ -1,0 +1,6 @@
+imports:
+    { resource: config.yml }
+
+gnutix_twig:
+    options:
+        cache: %kernel.root_dir%/cache/twig

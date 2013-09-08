@@ -44,18 +44,21 @@ class Kernel implements HttpKernelInterface
     }
 
     /**
+     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
+     */
+    protected function getExtensions()
+    {
+        return array(
+            new GnutixTwigBridgeExtension(),
+            new GnutixLibraryExtension(),
+        );
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
-        /** @var \Gnutix\StarWarsLibrary\Model\Library $library */
-        $library = $this->container->get('gnutix_library.library_factory')->getLibrary();
-        $library->setRawData(
-            simplexml_load_file(
-                str_replace('.yml', '.xml', $this->container->getParameter('gnutix_library.source_file_path'))
-            )
-        );
-
         // Generate the web page
         return new Response(
             $this->container->get('twig')->render(
@@ -64,17 +67,6 @@ class Kernel implements HttpKernelInterface
                     'library' => $this->container->get('gnutix_library.library_factory')->getLibrary(),
                 )
             )
-        );
-    }
-
-    /**
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
-     */
-    protected function getExtensions()
-    {
-        return array(
-            new GnutixTwigBridgeExtension(),
-            new GnutixLibraryExtension(),
         );
     }
 
@@ -100,7 +92,7 @@ class Kernel implements HttpKernelInterface
 
         // Load a service file for a specific environment
         try {
-            $loader->load('config_'.$this->container->getParameter('kernel.environment').'.yml');
+            $loader->load('config_'.$this->environment.'.yml');
         } catch (\InvalidArgumentException $e) {
             $loader->load('config.yml');
         }

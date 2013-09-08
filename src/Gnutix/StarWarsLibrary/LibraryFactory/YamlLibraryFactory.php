@@ -38,7 +38,6 @@ class YamlLibraryFactory extends BaseYamlLibraryFactory
         return array_merge(
             parent::getLibraryDependencies($data),
             array(
-                'rawData' => $data,
                 'eras' => $this->buildClassInstanceFromArray($data['eras'], 'era'),
             )
         );

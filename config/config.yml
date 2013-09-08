@@ -2,14 +2,11 @@ imports:
     - { resource: ../src/Gnutix/Library/DependencyInjection/services.yml }
     - { resource: ../src/Gnutix/StarWarsLibrary/DependencyInjection/services.yml }
 
-# Twig configuration
 gnutix_twig:
     templates_paths:
         - %kernel.root_dir%/web/views
     options:
         strict_variables: true
-        cache: %kernel.root_dir%/cache/twig
 
-# Library configuration
 gnutix_library:
     source_file_path: %kernel.root_dir%/data/books.xml

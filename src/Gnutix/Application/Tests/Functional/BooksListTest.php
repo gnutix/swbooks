@@ -57,4 +57,17 @@ class BooksListTest extends WebTestCase
         $this->assertCount(3, $this->crawler->filter('ul.shortcuts li'));
         $this->assertEquals('Old Republic', $this->crawler->filter('ul.shortcuts li.oldRepublic')->text());
     }
+
+    /**
+     * Tests the book table
+     *
+     * @todo Complete this test...
+     */
+    public function testBooksTable()
+    {
+        $this->assertCount(1, $this->crawler->filter('table.books-list'));
+        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list thead')->count());
+        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list tbody')->count());
+        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list tbody td')->count());
+    }
 }
