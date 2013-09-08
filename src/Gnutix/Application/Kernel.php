@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
+use Gnutix\Application\DependencyInjection\Extension as GnutixApplicationExtension;
 use Gnutix\Library\DependencyInjection\Extension as GnutixLibraryExtension;
 use Gnutix\TwigBridge\DependencyInjection\Extension as GnutixTwigBridgeExtension;
 
@@ -40,7 +41,7 @@ class Kernel implements HttpKernelInterface
      */
     public function getRootDir()
     {
-        return __DIR__.'/../../..';
+        return realpath(__DIR__.'/../../..');
     }
 
     /**
@@ -49,6 +50,7 @@ class Kernel implements HttpKernelInterface
     protected function getExtensions()
     {
         return array(
+            new GnutixApplicationExtension(),
             new GnutixTwigBridgeExtension(),
             new GnutixLibraryExtension(),
         );

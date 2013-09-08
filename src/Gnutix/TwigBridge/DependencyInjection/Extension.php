@@ -29,6 +29,10 @@ class Extension implements ExtensionInterface
             ->addArgument(new Reference('twig.loader.filesystem'))
             ->addArgument($config['options']);
 
+        $container->register('twig.extension.assets', 'Gnutix\TwigBridge\Twig\Extension\TwigBridgeAssetsExtension')
+            ->addArgument($container->getParameter('kernel.web_dir'))
+            ->addTag('twig.extension');
+
         // Add the TwigBundle's compiler passes, so that we can create extensions easily
         $container->addCompilerPass(new TwigEnvironmentPass());
     }

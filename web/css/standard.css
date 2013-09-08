@@ -215,7 +215,7 @@ ul.inline-list li:last-child:after {
     line-height: 16px;
 }
 
-#content table.books-list td.book-title img {
+#content table.books-list td img {
     margin-left: 5px;
     display: inline-block;
     vertical-align: bottom;

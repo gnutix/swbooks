@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="css/standard.css" rel="stylesheet">
+    <link href="{{ asset('css/standard.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="global">
@@ -98,12 +98,16 @@
                                         {% if book.swuBookId is not empty %}
                                             {% set swuHost = 'http://www.starwars-universe.com/' %}
                                             <a href="{{ swuHost }}livre-{{ book.swuBookId }}-a.html">
-                                                <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website" />
+                                                <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website">
                                             </a>
                                         {% endif %}
                                     </td>
                                     <td>
                                         <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
+                                        {% set flag = asset('images/flags/'~ release.language.id ~'.png') %}
+                                        {% if flag is not empty %}
+                                            <img src="{{ flag }}" alt="{{ release.language.name }}">
+                                        {% endif %}
                                     </td>
                                     <td>
                                         <abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr>

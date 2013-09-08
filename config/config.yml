@@ -2,9 +2,12 @@ imports:
     - { resource: ../src/Gnutix/Library/DependencyInjection/services.yml }
     - { resource: ../src/Gnutix/StarWarsLibrary/DependencyInjection/services.yml }
 
+gnutix_application:
+    web_dir: %kernel.root_dir%/web
+
 gnutix_twig:
     templates_paths:
-        - %kernel.root_dir%/web/views
+        - %kernel.web_dir%/views
     options:
         strict_variables: true
 
