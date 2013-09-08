@@ -2,4 +2,4 @@ imports:
     - { resource: config_dev.yml }
 
 gnutix_library:
-    source_file_path: %app.root_dir%/data/fixtures/library.fixtures.yml
+    source_file_path: %kernel.app_root_dir%/data/fixtures/library.fixtures.yml

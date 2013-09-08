@@ -2,9 +2,8 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
-$rootDir = __DIR__.'/..';
-require_once $rootDir.'/vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
-$kernel = new AppKernel($rootDir, 'test');
+$kernel = new AppKernel('test');
 $response = $kernel->handle(Request::createFromGlobals());
 $response->send();

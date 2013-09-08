@@ -13,7 +13,7 @@ class AppKernel extends Kernel
     /**
      * {@inheritDoc}
      */
-    protected function getThirdPartyExtensions()
+    protected function getExtensions()
     {
         return array(
             new Gnutix\Twig\DependencyInjection\Extension,

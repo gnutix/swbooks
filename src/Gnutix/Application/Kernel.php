@@ -2,13 +2,12 @@
 
 namespace Gnutix\Application;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-
-use Gnutix\Application\DependencyInjection\Extension as GnutixApplicationExtension;
 
 /**
  * Kernel
@@ -16,7 +15,7 @@ use Gnutix\Application\DependencyInjection\Extension as GnutixApplicationExtensi
 abstract class Kernel implements HttpKernelInterface
 {
     /** @var string */
-    protected $applicationRootDir;
+    protected $rootDir;
 
     /** @var string */
     protected $environment;
@@ -25,36 +24,21 @@ abstract class Kernel implements HttpKernelInterface
     protected $container;
 
     /**
-     * @param string $applicationRootDir
      * @param string $environment
      */
-    public function __construct($applicationRootDir, $environment = 'prod')
+    public function __construct($environment = 'prod')
     {
-        $this->applicationRootDir = $applicationRootDir;
         $this->environment = $environment;
 
         $this->initializeContainer();
     }
 
     /**
-     * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
-     */
-    abstract protected function getThirdPartyExtensions();
-
-    /**
      * @return string
      */
-    protected function getRootDir()
+    protected function getApplicationRootDir()
     {
-        return realpath($this->applicationRootDir);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getKernelDir()
-    {
-        return $this->getRootDir().'/app';
+        return realpath($this->getRootDir().'/..');
     }
 
     /**
@@ -62,7 +46,15 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getConfigDir()
     {
-        return $this->getKernelDir().'/config';
+        return $this->getRootDir().'/config';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getCacheDir()
+    {
+        return $this->getRootDir().'/cache/'.$this->environment;
     }
 
     /**
@@ -70,7 +62,7 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getWebDir()
     {
-        return $this->getRootDir().'/web';
+        return $this->getApplicationRootDir().'/web';
     }
 
     /**
@@ -92,37 +84,46 @@ abstract class Kernel implements HttpKernelInterface
     }
 
     /**
+     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
+     *
+     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
+     */
+    protected function setKernelParameters(ContainerBuilder $container)
+    {
+        $container->setParameter('kernel.app_root_dir', $this->getApplicationRootDir());
+        $container->setParameter('kernel.web_dir', $this->getWebDir());
+        $container->setParameter('kernel.cache_dir', $this->getCacheDir());
+        $container->setParameter('kernel.environment', $this->environment);
+
+        return $container;
+    }
+
+    /**
      * Create the container
      */
     protected function initializeContainer()
     {
         // Create the container builder
-        $container = new ContainerBuilder();
+        $container = $this->setKernelParameters(new ContainerBuilder());
 
         // Create a loader for the configuration files
         $configLoader = $this->getConfigFilesLoader($container);
         $configExtension = $this->getConfigFilesExtension();
-
-        // Create useful parameters
-        $container->setParameter('app.root_dir', $this->getRootDir());
-        $container->setParameter('app.web_dir', $this->getWebDir());
-        $container->setParameter('kernel.root_dir', $this->getKernelDir());
-        $container->setParameter('kernel.environment', $this->environment);
 
         // Register the extensions before loading the configuration
         foreach ($this->getExtensions() as $extension) {
             $container->registerExtension($extension);
         }
         
-        // Load the application's configuration files
+        // Load the application's configuration files (so that it can configure the extensions)
         $this->loadConfigurationFile($configLoader, 'config', $configExtension);
 
-        // Load the extensions configuration
+        // Load the extensions configuration and services files
         foreach ($container->getExtensions() as $extension) {
             $extension->load($container->getExtensionConfig($extension->getAlias()), $container);
         }
 
-        // Load the application's configuration files
+        // Load the application's services files (so that it can override the extensions ones)
         $this->loadConfigurationFile($configLoader, 'services', $configExtension, false);
 
         // Compile everything
@@ -167,8 +168,24 @@ abstract class Kernel implements HttpKernelInterface
     /**
      * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
      */
-    private function getExtensions()
+    protected function getExtensions()
     {
-        return array_merge(array(new GnutixApplicationExtension()), $this->getThirdPartyExtensions());
+        return array();
+    }
+
+    /**
+     * @return string
+     *
+     * @see \Symfony\Component\HttpKernel\Kernel::getRootDir()
+     * @author Fabien Potencier <fabien@symfony.com>
+     */
+    protected function getRootDir()
+    {
+        if (null === $this->rootDir) {
+            $r = new \ReflectionObject($this);
+            $this->rootDir = str_replace('\\', '/', dirname($r->getFileName()));
+        }
+
+        return $this->rootDir;
     }
 }

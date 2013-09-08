@@ -3,4 +3,4 @@ imports:
 
 gnutix_twig:
     options:
-        cache: %kernel.root_dir%/cache/twig
+        cache: %kernel.cache_dir%/twig

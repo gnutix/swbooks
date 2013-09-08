@@ -20,7 +20,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->client = new Client(new \AppKernel(__DIR__.'/../../../../..', 'test'));
+        $this->client = new Client(new \AppKernel('test'));
         $this->crawler = $this->client->request('GET', '/');
     }
 }
