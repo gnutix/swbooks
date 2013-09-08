@@ -6,12 +6,11 @@ Star Wars Library
 This single web page application allows me to list my Star Wars books (with some books information), featuring the
 number of readings I've done and copies I own for each books releases.
 
-Development
+Application
 ===========
 
-This application use my Gnutix\Library module (which I may publish sometimes on packagist.org), which allows to create a
-library from various source files (currently the only implementation being an XML file ;)) and provide a POO structure
-to work with.
+This application makes heavy usage of Symfony2's components to create a POO model representing a book's library (loaded
+from an XML or YAML source file).
 
 Project setup
 =============
