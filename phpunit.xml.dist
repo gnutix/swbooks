@@ -12,6 +12,7 @@
     >
     <testsuites>
         <testsuite name="Star Wars Library Test Suite">
+            <directory>./app/Tests/</directory>
             <directory>./src/*/Tests/</directory>
             <directory>./src/*/*/Tests/</directory>
         </testsuite>
@@ -19,6 +20,7 @@
 
     <filter>
         <whitelist>
+            <directory>./app/Tests</directory>
             <directory>./src/</directory>
         </whitelist>
     </filter>

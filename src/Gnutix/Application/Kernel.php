@@ -20,17 +20,46 @@ abstract class Kernel implements HttpKernelInterface
     /** @var string */
     protected $environment;
 
+    /** @var bool */
+    protected $debug;
+
     /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
     protected $container;
 
     /**
      * @param string $environment
+     * @param bool   $debug
      */
-    public function __construct($environment = 'prod')
+    public function __construct($environment = 'prod', $debug = false)
     {
         $this->environment = $environment;
+        $this->debug = $debug;
 
         $this->initializeContainer();
+    }
+
+    /**
+     * @return \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getEnvironment()
+    {
+        return $this->environment;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function getDebug()
+    {
+        return $this->debug;
     }
 
     /**
@@ -54,7 +83,7 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getCacheDir()
     {
-        return $this->getRootDir().'/cache/'.$this->environment;
+        return $this->getRootDir().'/cache/'.$this->getEnvironment();
     }
 
     /**
@@ -63,6 +92,14 @@ abstract class Kernel implements HttpKernelInterface
     protected function getWebDir()
     {
         return $this->getApplicationRootDir().'/web';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getCharset()
+    {
+        return 'utf-8';
     }
 
     /**
@@ -85,17 +122,19 @@ abstract class Kernel implements HttpKernelInterface
 
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
-     * @return \Symfony\Component\DependencyInjection\ContainerBuilder
      */
-    protected function setKernelParameters(ContainerBuilder $container)
+    protected function addKernelParameters(ContainerBuilder $container)
     {
+        // Folder paths
+        $container->setParameter('kernel.root_dir', $this->getRootDir());
         $container->setParameter('kernel.app_root_dir', $this->getApplicationRootDir());
         $container->setParameter('kernel.web_dir', $this->getWebDir());
         $container->setParameter('kernel.cache_dir', $this->getCacheDir());
-        $container->setParameter('kernel.environment', $this->environment);
 
-        return $container;
+        // Configurations
+        $container->setParameter('kernel.environment', $this->getEnvironment());
+        $container->setParameter('kernel.debug', $this->getDebug());
+        $container->setParameter('kernel.charset', $this->getCharset());
     }
 
     /**
@@ -104,7 +143,8 @@ abstract class Kernel implements HttpKernelInterface
     protected function initializeContainer()
     {
         // Create the container builder
-        $container = $this->setKernelParameters(new ContainerBuilder());
+        $container = new ContainerBuilder();
+        $this->addKernelParameters($container);
 
         // Create a loader for the configuration files
         $configLoader = $this->getConfigFilesLoader($container);
@@ -149,7 +189,7 @@ abstract class Kernel implements HttpKernelInterface
     ) {
         // Try to load the environment specific configuration files
         try {
-            $loader->load($fileNamePrefix.'_'.$this->environment.'.'.$fileNameExtension);
+            $loader->load($fileNamePrefix.'_'.$this->getEnvironment().'.'.$fileNameExtension);
         } catch (\InvalidArgumentException $e) {
 
             // Try to load the environment agnostic configuration file

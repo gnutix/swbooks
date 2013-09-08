@@ -1,7 +1,6 @@
 imports:
     - { resource: config.yml }
 
-gnutix_twig:
-    options:
-        auto_reload: true
-        debug: true
+twig:
+    auto_reload: true
+    debug: true

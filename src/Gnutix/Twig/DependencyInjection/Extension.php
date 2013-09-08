@@ -3,11 +3,14 @@
 namespace Gnutix\Twig\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass;
+use Symfony\Bundle\TwigBundle\DependencyInjection\Configuration as SymfonyTwigConfiguration;
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 
 /**
  * Extension
@@ -20,21 +23,45 @@ class Extension implements ExtensionInterface
     public function load(array $configs, ContainerBuilder $container)
     {
         $configProcessor = new Processor();
-        $config = $configProcessor->processConfiguration(new Configuration(), $configs);
+        $config = $configProcessor->processConfiguration(new SymfonyTwigConfiguration(), $configs);
 
-        $container->register('twig.loader.filesystem', 'Twig_Loader_Filesystem')
-            ->addArgument($config['templates_paths']);
+        // Create Twig's filesystem loader definition
+        $twigLoaderDefinition = $container->register('twig.loader.filesystem', 'Twig_Loader_Filesystem');
 
-        $container->register('twig', 'Twig_Environment')
-            ->addArgument(new Reference('twig.loader.filesystem'))
-            ->addArgument($config['options']);
+        // Add the paths from the configuration
+        foreach ($config['paths'] as $path => $namespace) {
+            $twigLoaderDefinition->addMethodCall('addPath', $namespace ? array($path, $namespace) : array($path));
+        }
 
-        $container->register('twig.extension.assets', 'Gnutix\Twig\Extension\AssetsExtension')
-            ->addArgument($config['assets_dir'])
-            ->addTag('twig.extension');
+        // Create Twig's environment definition
+        $twigDefinition = $container->register('twig', 'Twig_Environment')
+            ->addArgument(new Reference('twig.loader.filesystem'));
+
+        // Add the global variables
+        foreach ($config['globals'] as $key => $global) {
+
+            /**
+             * @todo Check if this is useful outside of Symfony2
+             */
+            if (isset($global['type']) && 'service' === $global['type']) {
+                $global['value'] = new Reference($global['id']);
+            }
+            $twigDefinition->addMethodCall('addGlobal', array($key, $global['value']));
+        }
+
+        // Add the Twig's options argument
+        $twigOptions = $config;
+        foreach (array('form', 'globals', 'extensions') as $key) {
+            unset($twigOptions[$key]);
+        }
+        $twigDefinition->addArgument($twigOptions);
+
+        // Load the services
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.yml');
 
         // Add the TwigBundle's compiler passes, so that we can create extensions easily
-        $container->addCompilerPass(new TwigEnvironmentPass());
+        $container->addCompilerPass(new SymfonyTwigEnvironmentPass());
     }
 
     /**
@@ -58,6 +85,6 @@ class Extension implements ExtensionInterface
      */
     public function getAlias()
     {
-        return 'gnutix_twig';
+        return 'twig';
     }
 }

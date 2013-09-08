@@ -23,19 +23,19 @@ class AssetsExtension extends \Twig_Extension
     /**
      * {@inheritDoc}
      */
-    public function getFunctions()
+    public function getName()
     {
-        return array(
-            new \Twig_SimpleFunction('asset', array($this, 'getAssetPath')),
-        );
+        return 'gnutix_twig_assets_extension';
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getName()
+    public function getFunctions()
     {
-        return 'gnutix_twig_extension';
+        return array(
+            new \Twig_SimpleFunction('asset', array($this, 'getAssetPath')),
+        );
     }
 
     /**

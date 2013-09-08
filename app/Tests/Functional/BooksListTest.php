@@ -1,6 +1,8 @@
 <?php
 
-namespace Gnutix\Application\Tests\Functional;
+namespace Tests\Functional;
+
+use Gnutix\Application\Tests\Functional\WebTestCase;
 
 /**
  * Books List Tests
@@ -9,6 +11,17 @@ namespace Gnutix\Application\Tests\Functional;
  */
 class BooksListTest extends WebTestCase
 {
+    /** @var \Symfony\Component\DomCrawler\Crawler */
+    protected $crawler;
+
+    /**
+     * Set up the test client
+     */
+    public function setUp()
+    {
+        $this->crawler = $this->client->request('GET', '/');
+    }
+
     /**
      * Test the page status code
      */

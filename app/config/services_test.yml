@@ -1,3 +1,6 @@
+imports:
+    - { resource: services.yml, ignore_errors: true }
+
 services:
     gnutix_library.loader:
         alias: gnutix_library.loader.yaml_file_loader
