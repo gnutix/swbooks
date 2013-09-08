@@ -93,26 +93,4 @@ class Release extends ArrayPopulatedObject
     {
         return $this->owner;
     }
-
-    /**
-     * @return string
-     */
-    public function getFullTitle()
-    {
-        $title = '';
-
-        if (null !== $this->series->getTitle()) {
-            $title .= $this->series->getTitle();
-
-            if (null !== $this->series->getBookId()) {
-                $title .= ' '.$this->series->getBookId();
-            }
-
-            $title .= ': ';
-        }
-
-        $title .= $this->getTitle();
-
-        return $title;
-    }
 }

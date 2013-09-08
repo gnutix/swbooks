@@ -40,12 +40,11 @@ class Extension implements ExtensionInterface
         // Add the global variables
         foreach ($config['globals'] as $key => $global) {
 
-            /**
-             * @todo Check if this is useful outside of Symfony2
-             */
+            // Allows to reference services
             if (isset($global['type']) && 'service' === $global['type']) {
                 $global['value'] = new Reference($global['id']);
             }
+
             $twigDefinition->addMethodCall('addGlobal', array($key, $global['value']));
         }
 

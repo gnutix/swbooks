@@ -19,7 +19,7 @@ class ChronologicalMarker extends ArrayPopulatedObject
     protected $era;
 
     /**
-     * @return string
+     * @return int
      */
     public function getTimeStart()
     {
@@ -27,7 +27,7 @@ class ChronologicalMarker extends ArrayPopulatedObject
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getTimeEnd()
     {
