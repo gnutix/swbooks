@@ -3,7 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Gnutix\Application\TwigAwareKernel;
+use Gnutix\Kernel\TwigAwareKernel;
 
 /**
  * Application Kernel

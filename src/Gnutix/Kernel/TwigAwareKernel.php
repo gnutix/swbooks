@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\Application;
+namespace Gnutix\Kernel;
 
 use Gnutix\Twig\DependencyInjection\Extension as TwigExtension;
 

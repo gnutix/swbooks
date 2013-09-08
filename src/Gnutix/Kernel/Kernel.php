@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\Application;
+namespace Gnutix\Kernel;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;

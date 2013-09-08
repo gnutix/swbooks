@@ -2,7 +2,7 @@
 
 namespace Tests\Functional;
 
-use Gnutix\Application\Tests\Functional\WebTestCase;
+use Gnutix\Kernel\Tests\Functional\WebTestCase;
 
 /**
  * Books List Tests

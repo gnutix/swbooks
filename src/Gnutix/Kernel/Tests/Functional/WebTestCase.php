@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnutix\Application\Tests\Functional;
+namespace Gnutix\Kernel\Tests\Functional;
 
 use Symfony\Component\HttpKernel\Client;
 
