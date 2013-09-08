@@ -1,9 +1,9 @@
 gnutix_twig:
-    assets_dir: %kernel.web_dir%
+    assets_dir: %app.web_dir%
     templates_paths:
-        - %kernel.web_dir%/views
+        - %app.web_dir%/views
     options:
         strict_variables: true
 
 gnutix_library:
-    source_file_path: %kernel.root_dir%/data/books.xml
+    source_file_path: %app.root_dir%/data/books.xml
