@@ -56,7 +56,7 @@ Here you can find a complete example of book node :
             -->
 
             <book type="comic">
-                <time>25 793 BY</time>
+                <time>25 793 BBY</time>
 
                 <title lang="fr">L'éveil de la Force</title>
                 <series number="1" lang="fr">La Genèse des Jedi</series>

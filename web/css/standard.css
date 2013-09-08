@@ -186,21 +186,21 @@ ul.inline-list li:last-child:after {
 }
 
 #content ul.shortcuts li.beforeRepublic,
-#content table.books-list tbody tr th.beforeRepublic { background-image: url('../images/eras/before_republic.png'); }
+#content table.books-list thead.era-header tr th.beforeRepublic { background-image: url('../images/eras/before_republic.png'); }
 #content ul.shortcuts li.oldRepublic,
-#content table.books-list tbody tr th.oldRepublic { background-image: url('../images/eras/old_republic.png'); }
+#content table.books-list thead.era-header tr th.oldRepublic { background-image: url('../images/eras/old_republic.png'); }
 #content ul.shortcuts li.riseEmpire,
-#content table.books-list tbody tr th.riseEmpire { background-image: url('../images/eras/rise_empire.png'); }
+#content table.books-list thead.era-header tr th.riseEmpire { background-image: url('../images/eras/rise_empire.png'); }
 #content ul.shortcuts li.rebellion,
-#content table.books-list tbody tr th.rebellion { background-image: url('../images/eras/rebellion.png'); }
+#content table.books-list thead.era-header tr th.rebellion { background-image: url('../images/eras/rebellion.png'); }
 #content ul.shortcuts li.newRepublic,
-#content table.books-list tbody tr th.newRepublic { background-image: url('../images/eras/new_republic.png'); }
+#content table.books-list thead.era-header tr th.newRepublic { background-image: url('../images/eras/new_republic.png'); }
 #content ul.shortcuts li.newJediOrder,
-#content table.books-list tbody tr th.newJediOrder { background-image: url('../images/eras/new_jedi_order.png'); }
+#content table.books-list thead.era-header tr th.newJediOrder { background-image: url('../images/eras/new_jedi_order.png'); }
 #content ul.shortcuts li.legacy,
-#content table.books-list tbody tr th.legacy { background-image: url('../images/eras/legacy.png'); }
+#content table.books-list thead.era-header tr th.legacy { background-image: url('../images/eras/legacy.png'); }
 #content ul.shortcuts li.other,
-#content table.books-list tbody tr th.other { background-image: url('../images/eras/other.png'); }
+#content table.books-list thead.era-header tr th.other { background-image: url('../images/eras/other.png'); }
 
 
 /* -- Books List -- */
@@ -221,24 +221,24 @@ ul.inline-list li:last-child:after {
     vertical-align: bottom;
 }
 
-#content table.books-list thead tr th {
+#content table.books-list thead.main-header tr th {
     text-align: center;
     padding-bottom: 10px;
 }
 
 /* -- DON'T TOUCH THIS, IT'S SENSITIVE ! -- */
-#content table.books-list thead tr th.timeline { width: 16%; }
-#content table.books-list thead tr th.title { width: 38%; }
-#content table.books-list thead tr th.author { width: 20%; }
-#content table.books-list thead tr th.voe { width: 5%; }
-#content table.books-list thead tr th.vfe { width: 5%; }
-#content table.books-list thead tr th.vo { width: 4%; }
-#content table.books-list thead tr th.vor { width: 4%; }
-#content table.books-list thead tr th.vf { width: 4%; }
-#content table.books-list thead tr th.vfr { width: 4%; }
+#content table.books-list thead.main-header tr th.timeline { width: 16%; }
+#content table.books-list thead.main-header tr th.title { width: 38%; }
+#content table.books-list thead.main-header tr th.author { width: 20%; }
+#content table.books-list thead.main-header tr th.voe { width: 5%; }
+#content table.books-list thead.main-header tr th.vfe { width: 5%; }
+#content table.books-list thead.main-header tr th.vo { width: 4%; }
+#content table.books-list thead.main-header tr th.vor { width: 4%; }
+#content table.books-list thead.main-header tr th.vf { width: 4%; }
+#content table.books-list thead.main-header tr th.vfr { width: 4%; }
 /* -- END OF WARNING -- */
 
-#content table.books-list tbody tr th {
+#content table.books-list thead.era-header tr th {
     height: 40px;
     border: 1px #6699cc solid;
     font-size: 12pt;
@@ -247,7 +247,7 @@ ul.inline-list li:last-child:after {
     background: #e6e6e6 no-repeat 6px center;
 }
 
-#content table.books-list tbody tr th a {
+#content table.books-list thead.era-header tr th a {
     color: #000000;
     text-decoration: none;
 }
@@ -260,16 +260,4 @@ ul.inline-list li:last-child:after {
 #content table.books-list tbody tr td.little {
     padding: 0;
     text-align: center;
-}
-
-#content table.books-list tbody tr td.separator {
-    border: none;
-    line-height: 1px;
-    text-indent: -10000px;
-}
-
-#content table.books-list tbody tr td ul.authorsList {
-    list-style: none;
-    margin: 0;
-    padding: 0;
 }

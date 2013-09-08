@@ -45,7 +45,7 @@
 
             <h2>Books' list</h2>
             <table class="books-list">
-                <thead>
+                <thead class="main-header">
                     <tr>
                         <th class="timeline">Timeline</th>
                         <th class="author">Author(s)</th>
@@ -57,14 +57,16 @@
                         <th>Readings</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {% for era in library.eras %}
-                        <tr data-era-heading>
-                            <th class="{{ era.id }}" data-full-colspan>
+
+                {% for era in library.eras %}
+                    <thead class="era-header">
+                        <tr>
+                            <th class="{{ era.id }}">
                                 <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
                             </th>
                         </tr>
-
+                    </thead>
+                    <tbody>
                         {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
                             {% for release in book.releases %}
                                 <tr>
@@ -103,10 +105,10 @@
 
                                     {% if release.published %}
                                         <td class="{{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
-                                            {% if release.owner.nbCopies > 1 %}{{ release.owner.nbCopies }}{% endif %}
+                                            {{ (release.owner.nbCopies > 1 ? release.owner.nbCopies : '&nbsp;')|raw }}
                                         </td>
                                         <td class="{{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
-                                            {% if release.owner.nbReadings > 1 %}{{ release.owner.nbReadings }}{% endif %}
+                                            {{ (release.owner.nbReadings > 1 ? release.owner.nbReadings : '&nbsp;')|raw }}
                                         </td>
                                     {% else %}
                                         <td colspan="2" class="publish">
@@ -118,8 +120,8 @@
                                 </tr>
                             {% endfor %}
                         {% endfor %}
-                    {% endfor %}
-                </tbody>
+                    </tbody>
+                {% endfor %}
             </table>
 
             {#
