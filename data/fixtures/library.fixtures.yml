@@ -127,3 +127,24 @@ books:
                 era: *era_oldRepublic
                 time: -3925
             swuBookId: 777
+
+    -
+        category: *c_adult
+        authors:
+            - *a_1
+            - *a_2
+        releases:
+            -
+                title: Revan Returns
+                language: *l_en
+                editor: *e_en
+                format: *f_pb
+                publicationDate: { day: 01, month: 01, year: 2014 }
+                series:
+                    <<: *s_old_republic
+                    number: 2
+        starWars:
+            chronology:
+                era: *era_newJediOrder
+                time: -3925
+            swuBookId: 777
