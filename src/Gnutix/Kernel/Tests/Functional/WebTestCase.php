@@ -20,7 +20,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->kernel = new \AppKernel('test');
+        $this->kernel = new \AppKernel('test', true);
         $this->client = new Client($this->kernel);
     }
 }
