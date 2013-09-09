@@ -15,36 +15,36 @@ var BooksTable = function (inputTable) {
         $('tbody tr', booksTable).each(function () {
             var row = $(this);
 
-            // Loop over the current row's columns
-            $('td', row).each(function (columnIndex) {
+            // Loop over the current row's cells
+            $('td', row).each(function (cellIndex) {
 
-                // If the column has already been flagged, we remove it and go on with the next iteration
+                // If the cell has already been flagged, we remove it and go on with the next iteration
                 if ($(this).data('remove')) {
                     $(this).remove();
                     return true;
                 }
 
-                var column = $(this),
-                    columnHTML = column.outerHTML();
+                var cell = $(this),
+                    cellHTML = cell.outerHTML();
 
                 // Loop over the era's next books rows
                 row.nextAll().each(function () {
 
                     // PS: do not try to mix this children() with the above nextAll() or you will blow up performances
-                    var nextColumn = $(this).children('td:eq(' + columnIndex + ')');
+                    var nextCell = $(this).children('td:eq(' + cellIndex + ')');
 
-                    // If the columns are the same
-                    if (nextColumn.outerHTML() !== columnHTML) {
+                    // If the cells are the same
+                    if (nextCell.outerHTML() !== cellHTML) {
                         return false;
                     }
 
                     // We flag it to be removed
-                    nextColumn.data('remove', true);
+                    nextCell.data('remove', true);
 
-                    // We change the current column rowspan
-                    column.attr(
+                    // We change the current cell's rowspan
+                    cell.attr(
                         'rowspan',
-                        parseInt(undefined !== column.attr('rowspan') ? column.attr('rowspan') : 1) + 1
+                        parseInt(undefined !== cell.attr('rowspan') ? cell.attr('rowspan') : 1) + 1
                     );
                 });
             });
