@@ -15,7 +15,7 @@ var BooksTable = function (inputTable) {
         $('tbody tr', booksTable).each(function () {
             var row = $(this);
 
-            // Then over the columns
+            // Loop over the current row's columns
             $('td', row).each(function (columnIndex) {
 
                 // If the column has already been flagged, we remove it and go on with the next iteration
@@ -27,7 +27,7 @@ var BooksTable = function (inputTable) {
                 var column = $(this),
                     columnHTML = column.outerHTML();
 
-                // Loop over the next rows
+                // Loop over the era's next books rows
                 row.nextAll().each(function () {
 
                     // PS: do not try to mix this children() with the above nextAll() or you will blow up performances
