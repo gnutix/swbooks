@@ -33,8 +33,8 @@ var BooksTable = function (inputTable) {
                     // PS: do not try to mix this children() with the above nextAll() or you will blow up performances
                     var nextCell = $(this).children('td:eq(' + cellIndex + ')');
 
-                    // If the cells are the same
-                    if (nextCell.outerHTML() !== cellHTML) {
+                    // If there's no next cell or the next cell's HTML is not the same as its parent, we stop the loop
+                    if (0 === nextCell.length || nextCell.outerHTML() !== cellHTML) {
                         return false;
                     }
 
