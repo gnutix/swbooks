@@ -86,6 +86,7 @@
                                         </ul>
                                     </td>
                                     <td class="book-title {{ book.category.id }}">
+                                        <span class="hidden">{{ book.category.name }}: </span>
                                         {% if release.series is not empty and release.series.title is not empty %}
                                             {{ release.series.title -}}
                                             {% if release.series.bookId is not empty %}
@@ -120,10 +121,10 @@
 
                                     {% if release.published %}
                                         <td class="{{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbCopies > 1 ? release.owner.nbCopies : '&nbsp;')|raw }}
+                                            {{ (release.owner.nbCopies > 0 ? release.owner.nbCopies : '&nbsp;')|raw }}
                                         </td>
                                         <td class="{{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbReadings > 1 ? release.owner.nbReadings : '&nbsp;')|raw }}
+                                            {{ (release.owner.nbReadings > 0 ? release.owner.nbReadings : '&nbsp;')|raw }}
                                         </td>
                                     {% else %}
                                         <td colspan="2" class="publish">

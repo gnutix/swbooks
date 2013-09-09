@@ -62,6 +62,8 @@ p, ul li, ol li, dl dt, dl dd {
     font-size: 1px;
 }
 
+.hidden { display: none; }
+
 .red { background-color: #ff3333; }
 .green { background-color: #3deb3d; }
 .publish { background-color: #d1d1d1; }

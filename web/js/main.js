@@ -13,34 +13,27 @@ $(document).ready(function () {
         // Then over the columns
         $('td', row).each(function (columnIndex) {
             var column = $(this),
-                columnHTML = column.outerHTML();
-
-            // Set the current rowspan (from the DOM) on the object, or 1 otherwise
-            column.data('rowspan', undefined !== column.attr('rowspan') ? parseInt(column.attr('rowspan')) : 1);
+                columnHTML = column.html(),
+                rowspan = undefined !== column.attr('rowspan') ? parseInt(column.attr('rowspan')) : 1;
 
             // Loop over the next rows
             row.nextAll('tr').each(function () {
                 var nextColumn = $(this).find('td').eq(columnIndex);
 
                 // If the next column is different, there's nothing to do
-                if (nextColumn.outerHTML() !== columnHTML) {
+                if (nextColumn.html() !== columnHTML) {
                     return false;
                 }
 
-                nextColumn.data('remove', true);
-                column.data('rowspan', column.data('rowspan') + 1);
+                rowspan += 1;
+
+                nextColumn.attr('data-remove', true);
+                column.attr('rowspan', rowspan);
 
                 return true;
             });
         });
     });
 
-    // Once the tagging is done, here comes the real work
-    $('tbody tr td', booksTable).each(function () {
-        if ($(this).data('remove')) {
-            $(this).remove();
-        } else if (1 < $(this).data('rowspan')) {
-            $(this).attr('rowspan', $(this).data('rowspan'));
-        }
-    });
+    $('tbody tr td[data-remove]', booksTable).remove();
 });
