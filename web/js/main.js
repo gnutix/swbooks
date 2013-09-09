@@ -13,7 +13,7 @@ $(document).ready(function () {
         // Then over the columns
         $('td', row).each(function (columnIndex) {
             var column = $(this),
-                columnHTML = column.html(),
+                columnHTML = column.outerHTML(),
                 rowspan = undefined !== column.attr('rowspan') ? parseInt(column.attr('rowspan')) : 1;
 
             // Loop over the next rows
@@ -21,19 +21,22 @@ $(document).ready(function () {
                 var nextColumn = $(this).find('td').eq(columnIndex);
 
                 // If the next column is different, there's nothing to do
-                if (nextColumn.html() !== columnHTML) {
+                if (nextColumn.outerHTML() !== columnHTML) {
                     return false;
                 }
 
                 rowspan += 1;
-
-                nextColumn.attr('data-remove', true);
-                column.attr('rowspan', rowspan);
+                nextColumn.data('remove', true);
 
                 return true;
             });
+
+            // If the column has been flagged for either removal or rowspan, we handle it
+            if (column.data('remove')) {
+                column.remove();
+            } else if (rowspan > 1) {
+                column.attr('rowspan', rowspan);
+            }
         });
     });
-
-    $('tbody tr td[data-remove]', booksTable).remove();
 });
