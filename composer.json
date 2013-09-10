@@ -14,9 +14,11 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7",
+        "squizlabs/php_codesniffer": "~1.4",
+        "symfony/console": "~2.3",
+        "symfony/process": "~2.3",
         "symfony/browser-kit": "~2.3",
-        "symfony/css-selector": "~2.3",
-        "squizlabs/php_codesniffer": "~1.4"
+        "symfony/css-selector": "~2.3"
     },
     "config": {
         "bin-dir": "bin"

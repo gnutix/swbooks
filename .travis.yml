@@ -11,4 +11,4 @@ script:
     - $(pwd)/bin/phpunit
 
 after_script:
-    - $(pwd)/bin/phpcs $(pwd)/src --extensions=php --standard=PSR2 -p
+    - $(pwd)/bin/console cs --skip=jshint

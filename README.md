@@ -30,3 +30,9 @@ Execute the tests
 
 1. Follow the "Project setup" chapter
 2. Run `bin/phpunit`
+
+Coding standards
+================
+
+1. Follow the "Project setup" chapter
+2. Run `bin/console cs`
