@@ -15,10 +15,13 @@ from an XML or YAML source file).
 Project setup
 =============
 
-Clone the git repository, install Composer (http://getcomposer.org/) and run `composer.phar install` in the
-project's root folder.
+1. Clone the git repository
+2. Go to the root folder
+3. Install Composer (http://getcomposer.org/) and run `composer.phar install`
+4. Install Bower (http://bower.io/) and run `bower install`
 
-Tests suite
-===========
+Execute the tests
+=================
 
-To execute the tests suite, first setup the project and then simply run `bin/phpunit` in the project's root folder.
+1. Follow the "Project setup" chapter
+2. Run `bin/phpunit`
