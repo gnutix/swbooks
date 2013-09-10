@@ -1,8 +1,6 @@
 $(document).ready(function () {
     'use strict';
 
-    var booksTable = new BooksTable($('table.books-list'));
-
-    booksTable.scaleEraHeaders();
-    booksTable.applyAutoRowspan();
+    var booksTable = new BooksTableManager($('table.books-list'), $('div.languages-container'));
+    booksTable.init();
 });

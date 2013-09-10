@@ -46,6 +46,12 @@
             </ul>
 
             <h2>Books' list</h2>
+
+            <div class="filtering">
+                <h3>Filtering by language</h3>
+                <div class="languages-container"></div>
+            </div>
+
             <table class="books-list">
                 <thead class="main-header">
                     <tr>
@@ -71,7 +77,7 @@
                     <tbody>
                         {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
                             {% for release in book.releases %}
-                                <tr>
+                                <tr lang="{{ release.language.id }}">
                                     <td>
                                         {{ book.chronologicalMarker.timeStart|starWarsDate|raw }}
                                         {% if book.chronologicalMarker.timeEnd is not empty %}
@@ -144,7 +150,8 @@
 
     <script src="js/lib/jquery-2.0.3.min.js"></script>
     <script src="js/lib/jquery.outerhtml.js"></script>
+    <script src="js/lib/jquery-unique-duck-punching.js"></script>
+    <script src="js/books-table-manager.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/books-table.js"></script>
 </body>
 </html>
