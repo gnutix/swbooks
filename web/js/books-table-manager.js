@@ -1,4 +1,3 @@
-/*global ObjectSwapper */
 wrapper('booksTableManager', ['ObjectSwapper'], function() {
     'use strict';
 
@@ -35,7 +34,7 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
                             'data-toggle': 'books-table-language-switcher',
                             'data-language': undefined !== language ? language : 'all'
                         }).html(text)
-                    )
+                    );
                 };
 
             // First, create a link to reset the filters
@@ -116,10 +115,10 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
                     // Loop over the era's next books rows
                     row.nextAll('tr:not(.hidden)').each(function () {
 
-                        // PS: do not try to mix this children() with the above nextAll() or you will blow up performances
+                        // Don't try to mix this children() with the above nextAll() or you will blow up performances
                         var nextCell = $(this).children('td:eq(' + cellIndex + ')');
 
-                        // If there's no next cell or the next cell's HTML is not the same as its parent, we stop the loop
+                        // If the cell and next cells are not identical, we stop the loop
                         if (0 === nextCell.length || nextCell.outerHTML() !== cellHTML) {
                             return false;
                         }
@@ -130,7 +129,7 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
                         // We change the current cell's rowspan
                         cell.attr(
                             'rowspan',
-                            parseInt(undefined !== cell.attr('rowspan') ? cell.attr('rowspan') : 1) + 1
+                            parseInt((undefined !== cell.attr('rowspan') ? cell.attr('rowspan') : 1), 10) + 1
                         );
 
                         return true;
