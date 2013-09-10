@@ -211,16 +211,6 @@ ul.inline-list li:last-child:after {
     border-collapse: collapse;
 }
 
-#content table.books-list td.book-title {
-    line-height: 16px;
-}
-
-#content table.books-list td img {
-    margin-left: 5px;
-    display: inline-block;
-    vertical-align: bottom;
-}
-
 #content table.books-list thead.main-header tr th {
     text-align: center;
     padding-bottom: 10px;
@@ -252,12 +242,21 @@ ul.inline-list li:last-child:after {
     text-decoration: none;
 }
 
-#content table.books-list tbody tr td {
-    padding: 5px;
-    border: 1px #6699cc solid;
+#content table.books-list tbody tr {
+    height: 25px;
 }
 
-#content table.books-list tbody tr td.little {
-    padding: 0;
-    text-align: center;
+#content table.books-list tbody tr td {
+    padding: 3px 5px;
+    border: 1px #6699cc solid;
+    line-height: 16px;
+}
+
+#content table.books-list tbody tr td img {
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+#content table.books-list tbody tr td img.after-text {
+    margin-left: 2px;
 }

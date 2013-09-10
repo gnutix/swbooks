@@ -52,11 +52,11 @@
                         <th class="timeline">Timeline</th>
                         <th class="author">Author(s)</th>
                         <th class="title">Title</th>
-                        <th>Language</th>
+                        <th><abbr title="Language of the release">Lang</abbr></th>
                         <th>Editor</th>
-                        <th>Format</th>
-                        <th>Copies</th>
-                        <th>Readings</th>
+                        <th><abbr title="Format of the release">Format</abbr></th>
+                        <th><abbr title="Number of copies owned">Nb.C</abbr></th>
+                        <th><abbr title="Number of readings done">Nb.R</abbr></th>
                     </tr>
                 </thead>
 
@@ -102,31 +102,32 @@
                                             </a>
                                         {% endif %}
                                     </td>
-                                    <td>
-                                        <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
+                                    <td class="textC">
                                         {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
                                         {% if flag is not empty %}
                                             <img src="{{ flag }}" alt="{{ release.language.name }}">
+                                        {% else %}
+                                            <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
                                         {% endif %}
                                     </td>
-                                    <td>
+                                    <td class="textC">
                                         <abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr>
                                     </td>
-                                    <td>
+                                    <td class="textC">
                                         {% if release.format is not empty %}
                                             <abbr title="{{ release.format.name }}">{{ release.format.id|upper }}</abbr>
                                         {% endif %}
                                     </td>
 
                                     {% if release.published %}
-                                        <td class="{{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbCopies > 1 ? release.owner.nbCopies : '&nbsp;')|raw }}
+                                        <td class="textC {{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
+                                            {{ (release.owner.nbCopies > 1 ? release.owner.nbCopies : '')|raw }}
                                         </td>
-                                        <td class="{{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbReadings > 1 ? release.owner.nbReadings : '&nbsp;')|raw }}
+                                        <td class="textC {{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
+                                            {{ (release.owner.nbReadings > 1 ? release.owner.nbReadings : '')|raw }}
                                         </td>
                                     {% else %}
-                                        <td colspan="2" class="publish">
+                                        <td colspan="2" class="textC publish">
                                             <abbr title="Expected publication date">
                                                 {{ release.publicationDate|date('Y-m-d') }}
                                             </abbr>
