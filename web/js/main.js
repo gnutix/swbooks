@@ -1,3 +1,4 @@
+/*global BooksTableManager*/
 $(document).ready(function () {
     'use strict';
 
