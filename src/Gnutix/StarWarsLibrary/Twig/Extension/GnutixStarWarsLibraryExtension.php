@@ -37,7 +37,7 @@ class GnutixStarWarsLibraryExtension extends \Twig_Extension
     }
 
     /**
-     * @param int $date
+     * @param string|int $date
      *
      * @return string
      */
