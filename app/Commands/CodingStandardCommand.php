@@ -2,6 +2,7 @@
 
 namespace Commands;
 
+use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
@@ -30,7 +31,7 @@ class CodingStandardCommand extends Command
     /**
      * {@inheritDoc}
      */
-    protected function execute()
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $inspectorsCallbacks = $this->getInspectors();
         $skippedInspectors = explode(',', $this->input->getOption('skip'));
