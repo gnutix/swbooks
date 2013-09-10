@@ -2,5 +2,6 @@ bin/
 app/cache/
 !app/cache/.gitkeep
 vendor/
+web/components/
 composer.lock
 phpunit.xml
