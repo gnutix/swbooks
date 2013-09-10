@@ -17,8 +17,8 @@ Project setup
 
 1. Clone the git repository
 2. Go to the root folder
-3. Install Composer (http://getcomposer.org/) and run `composer.phar install`
-4. Install Bower (http://bower.io/) and run `bower install`
+3. Install Composer (http://getcomposer.org/doc/00-intro.md#installation-nix) and run `composer.phar install`
+4. Install Bower (http://bower.io/#installing-bower) and run `bower install`
 
 Execute the tests
 =================
