@@ -3,9 +3,9 @@
 namespace Gnutix\StarWarsLibrary\Twig\Extension;
 
 /**
- * Gnutix Library Twig Extension
+ * Star Wars Twig Extension
  */
-class GnutixStarWarsLibraryExtension extends \Twig_Extension
+class StarWarsExtension extends \Twig_Extension
 {
     /**
      * {@inheritDoc}

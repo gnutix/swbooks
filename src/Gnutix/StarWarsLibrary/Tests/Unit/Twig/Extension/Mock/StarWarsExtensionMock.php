@@ -2,12 +2,12 @@
 
 namespace Gnutix\StarWarsLibrary\Tests\Unit\Twig\Extension\Mock;
 
-use Gnutix\StarWarsLibrary\Twig\Extension\GnutixStarWarsLibraryExtension;
+use Gnutix\StarWarsLibrary\Twig\Extension\StarWarsExtension;
 
 /**
- * Gnutix Library Twig Extension Mock
+ * Star Wars Twig Extension Mock
  */
-class GnutixStarWarsLibraryExtensionMock extends GnutixStarWarsLibraryExtension
+class StarWarsExtensionMock extends StarWarsExtension
 {
     /**
      * {@inheritDoc}

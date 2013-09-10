@@ -4,10 +4,10 @@ namespace Gnutix\StarWarsLibrary\Tests\Unit\Twig\Extension;
 
 use Gnutix\Kernel\Tests\Unit\PhpUnitSimpleTestCase;
 
-use Gnutix\StarWarsLibrary\Tests\Unit\Twig\Extension\Mock\GnutixStarWarsLibraryExtensionMock;
+use Gnutix\StarWarsLibrary\Tests\Unit\Twig\Extension\Mock\StarWarsExtensionMock;
 
 /**
- * Gnutix Library Twig Extension Tests
+ * Star Wars Twig Extension Tests
  */
 class GnutixStarWarsLibraryExtensionTest extends PhpUnitSimpleTestCase
 {
@@ -16,7 +16,7 @@ class GnutixStarWarsLibraryExtensionTest extends PhpUnitSimpleTestCase
      */
     public function setUp()
     {
-        $this->instance = new GnutixStarWarsLibraryExtensionMock;
+        $this->instance = new StarWarsExtensionMock;
     }
 
     /**
