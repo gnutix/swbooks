@@ -12,7 +12,7 @@ class Release extends ArrayPopulatedObject
     /** @var string */
     protected $title;
 
-    /** @var string */
+    /** @var \Gnutix\Library\Model\Language */
     protected $language;
 
     /** @var \Gnutix\Library\Model\Editor */
@@ -39,7 +39,7 @@ class Release extends ArrayPopulatedObject
     }
 
     /**
-     * @return string
+     * @return \Gnutix\Library\Model\Language
      */
     public function getLanguage()
     {
@@ -87,7 +87,7 @@ class Release extends ArrayPopulatedObject
     }
 
     /**
-     * @return \Gnutix\Library\Model\Series
+     * @return \Gnutix\Library\Model\Owner
      */
     public function getOwner()
     {

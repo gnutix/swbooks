@@ -2,6 +2,7 @@
 
 namespace Gnutix\Library\LibraryFactory;
 
+use Gnutix\Library\Dumper\YamlLibraryDumper;
 use Gnutix\Library\Loader\YamlFileLoader;
 use Gnutix\Library\LibraryFactoryInterface;
 
@@ -65,6 +66,14 @@ class YamlLibraryFactory implements LibraryFactoryInterface
             'categories' => $this->buildClassInstanceFromArray($this->get($data, 'categories', array()), 'category'),
             'editors' => $this->buildClassInstanceFromArray($this->get($data, 'editors', array()), 'editor'),
         );
+    }
+
+    /**
+     * @return \Gnutix\Library\Dumper\YamlLibraryDumper
+     */
+    public function getLibraryDumper()
+    {
+        return new YamlLibraryDumper();
     }
 
     /**
@@ -228,7 +237,9 @@ class YamlLibraryFactory implements LibraryFactoryInterface
     public function renameArrayKeys(array $data, array $keys)
     {
         foreach ($keys as $old => $new) {
-            if (!isset($data[$old])) {
+
+            // PS: do not use isset as the value may be null
+            if (!array_key_exists($old, $data)) {
                 continue;
             }
 

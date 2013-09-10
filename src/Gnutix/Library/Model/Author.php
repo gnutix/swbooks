@@ -20,6 +20,12 @@ class Author extends ArrayPopulatedObject
      */
     public function getId()
     {
+        /* Hack to create an ID when there's none. Useful when dumping a library.
+        if (null === $this->id && !empty($this->name)) {
+            return strtolower(str_replace(array(' ', '-', '.'), array('_', '_', ''), $this->name));
+        }
+        */
+
         return $this->id;
     }
 

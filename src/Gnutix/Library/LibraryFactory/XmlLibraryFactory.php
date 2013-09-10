@@ -2,6 +2,7 @@
 
 namespace Gnutix\Library\LibraryFactory;
 
+use Gnutix\Library\Dumper\YamlLibraryDumper;
 use Gnutix\Library\Loader\XmlFileLoader;
 use Gnutix\Library\LibraryFactoryInterface;
 
@@ -43,6 +44,7 @@ class XmlLibraryFactory implements LibraryFactoryInterface
             'book' => '\Gnutix\Library\Model\Book',
             'category' => '\Gnutix\Library\Model\Category',
             'editor' => '\Gnutix\Library\Model\Editor',
+            'language' => '\Gnutix\Library\Model\Language',
             'library' => '\Gnutix\Library\Model\Library',
             'release' => '\Gnutix\Library\Model\Release',
             'series' => '\Gnutix\Library\Model\Series',
@@ -73,6 +75,14 @@ class XmlLibraryFactory implements LibraryFactoryInterface
                 array('code' => 'id', 'lang' => 'preferredLanguage')
             ),
         );
+    }
+
+    /**
+     * @return \Gnutix\Library\Dumper\YamlLibraryDumper
+     */
+    public function getLibraryDumper()
+    {
+        return new YamlLibraryDumper();
     }
 
     /**
@@ -202,22 +212,30 @@ class XmlLibraryFactory implements LibraryFactoryInterface
                             array('code' => 'id', 'lang' => 'preferredLanguage')
                         )
                     ),
-                    'publicationDate' => isset($publishAttributes[$release]) ? $publishAttributes[$release] : null,
-                    'language' => array('id' => $editorAttributes['lang'], 'name' => $editorAttributes['lang']),
+                    'publicationDate' => isset($publishAttributes[$release])
+                        ? $this->transformToDateTime($publishAttributes[$release])
+                        : null,
+                    'language' => new $this->classes['language'](
+                        array(
+                            'id' => $editorAttributes['lang'],
+                            'name' => $editorAttributes['lang'],
+                        )
+                    ),
                     'owner' => new $this->classes['owner'](
                         array(
                             'nbCopies' => isset($releaseNode['copies']) ? (int) $releaseNode['copies'] : null,
                             'nbReadings' => isset($releaseNode['readings']) ? (int) $releaseNode['readings'] : null,
                         )
                     ),
-                    'series' => null !== $series
-                        ? new $this->classes['series'](
-                            array(
+                    'format' => new $this->classes['format'](),
+                    'series' => new $this->classes['series'](
+                        null !== $series
+                            ? array(
                                 'title' => (string) $series,
                                 'bookId' => isset($seriesAttributes['number']) ? $seriesAttributes['number'] : null,
                             )
-                        )
-                        : null,
+                            : array()
+                    ),
                 )
             );
         }
@@ -237,5 +255,18 @@ class XmlLibraryFactory implements LibraryFactoryInterface
             'authors' => $authors,
             'releases' => $releases,
         );
+    }
+
+    /**
+     * @param string $date
+     *
+     * @return \DateTime
+     */
+    protected function transformToDateTime($date)
+    {
+        $explodedDate = explode('.', $date);
+        $dateTime = new \DateTime();
+
+        return $dateTime->setDate($explodedDate[2], $explodedDate[1], $explodedDate[0]);
     }
 }

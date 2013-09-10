@@ -47,10 +47,10 @@ class StarWarsExtension extends \Twig_Extension
         $suffixes = $this->getStarWarsDateSuffixes();
 
         // Replace spaces between numbers by unbreakable spaces
-        $date = preg_replace('#(\d+) (\d+)#', '$1&nbsp;$2', $date);
+        $date = preg_replace('#([0-9.]+) ([0-9.]+)#', '$1&nbsp;$2', $date);
 
         // For dates with a format "140" or "-3590"
-        if (preg_match('#^\-?\d+$#', $date)) {
+        if (preg_match('#^\-?(?:[0-9.]+)$#', $date)) {
             if ('-' === $date{0}) {
                 return substr($date, 1).$suffixes['BBY'];
             }
@@ -62,7 +62,7 @@ class StarWarsExtension extends \Twig_Extension
         if (preg_match('# (?:A|B)BY#', $date)) {
 
             // Replace any minus before a number
-            $date = preg_replace('#\-(\d+)#', '$1', $date);
+            $date = preg_replace('#\-([0-9.]+)#', '$1', $date);
 
             // Replace the suffixes
             return preg_replace_callback(

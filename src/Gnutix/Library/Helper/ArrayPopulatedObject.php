@@ -12,7 +12,7 @@ class ArrayPopulatedObject
      *
      * @throws \InvalidArgumentException
      */
-    public function __construct(array $data)
+    public function __construct(array $data = array())
     {
         foreach ($data as $property => $value) {
             if (!property_exists($this, $property)) {

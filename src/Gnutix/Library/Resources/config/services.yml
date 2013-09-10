@@ -11,10 +11,10 @@ services:
         factory_method: getLibrary
 
     gnutix_library.loader:
-        alias: gnutix_library.loader.xml_file_loader
+        alias: gnutix_library.loader.yaml_file_loader
 
     gnutix_library.library_factory:
-        alias: gnutix_library.library_factory.xml_library_factory
+        alias: gnutix_library.library_factory.yaml_library_factory
 
     gnutix_library.loader.xml_file_loader:
         class: %gnutix_library.loader.xml_file_loader.class%

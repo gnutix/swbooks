@@ -3,6 +3,7 @@
 namespace Gnutix\StarWarsLibrary\LibraryFactory;
 
 use Gnutix\Library\LibraryFactory\YamlLibraryFactory as BaseYamlLibraryFactory;
+use Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper;
 
 /**
  * Library Factory for the XML data
@@ -41,6 +42,14 @@ class YamlLibraryFactory extends BaseYamlLibraryFactory
                 'eras' => $this->buildClassInstanceFromArray($data['eras'], 'era'),
             )
         );
+    }
+
+    /**
+     * @return \Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper
+     */
+    public function getLibraryDumper()
+    {
+        return new YamlLibraryDumper();
     }
 
     /**

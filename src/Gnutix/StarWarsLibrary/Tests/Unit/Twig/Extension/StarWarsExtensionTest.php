@@ -27,7 +27,9 @@ class GnutixStarWarsLibraryExtensionTest extends PhpUnitSimpleTestCase
         return array(
             array('transformToStarWarsDate', '', ''),
             array('transformToStarWarsDate', '42', '42 <ABY>'),
+            array('transformToStarWarsDate', '42.5', '42.5 <ABY>'),
             array('transformToStarWarsDate', '-1337', '1337 <BBY>'),
+            array('transformToStarWarsDate', '-1337.25', '1337.25 <BBY>'),
             array('transformToStarWarsDate', '42 BBY', '42 <BBY>'),
             array('transformToStarWarsDate', '-1337 BBY', '1337 <BBY>'),
             array('transformToStarWarsDate', '1337 BBY - 42 ABY', '1337 <BBY> - 42 <ABY>'),
