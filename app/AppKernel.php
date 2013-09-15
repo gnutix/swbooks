@@ -28,6 +28,13 @@ class AppKernel extends TwigAwareKernel
      */
     public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
     {
-        return new Response($this->container->get('twig')->render('index.html.twig'));
+        return new Response(
+            $this->container->get('twig')->render(
+                'index.html.twig',
+                array(
+                    'showLanguages' => $request->query->get('show-languages'),
+                )
+            )
+        );
     }
 }

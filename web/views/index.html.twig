@@ -4,156 +4,266 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="{{ asset('css/standard.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="global">
-        <div id="content">
+    {% import 'macros.html.twig' as helper %}
+
+    <div class="container">
+        <header class="jumbotron">
             <h1>Star Wars Books</h1>
-            <p>
+            <p class="lead">
                 This is the list of Star Wars books and comics with the main information about each of them.
                 Featuring my possessions and my readings.
             </p>
+        </header>
 
-            <h2>Books' editors</h2>
-            <dl class="editors">
-                {% for editor in library.editors %}
-                    <dt>
-                        <abbr title="{{ editor.name }}" lang="{{ editor.preferredLanguage }}">
-                            {{ editor.id|upper }}
-                        </abbr>
-                    </dt>
-                    <dd>{{ editor.name }}</dd>
-                {% endfor %}
-            </dl>
-
-            <div class="spacer"></div>
-
-            <h2>Books' types</h2>
-            <ul class="legend">
-                {% for category in library.categories %}
-                    <li class="{{ category.id }}">{{ category.name }}</li>
-                {% endfor %}
-            </ul>
-
-            <div class="spacer"></div>
-
-            <h2>Shortcuts to the eras</h2>
-            <ul class="shortcuts">
-                {% for era in library.eras %}
-                    <li class="{{ era.id }}"><a href="#{{ era.id }}">{{ era.name }}</a></li>
-                {% endfor %}
-            </ul>
-
-            <h2>Books' list</h2>
-
-            <div class="filtering">
-                <h3>Filtering by language</h3>
-                <div class="languages-container"></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel-group" data-accordion data-spy="affix" data-offset-top="296">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseEras">
+                                    Eras' shortcuts
+                                </a>
+                                <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseEras" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <ul class="list-group">
+                                    {% for era in library.eras %}
+                                        <li class="list-group-item">
+                                            <a href="#{{ era.id }}">
+                                                <img src="{{ asset('images/eras/'~ era.id ~'.png') }}" alt="{{ era.name }}">
+                                                {{ era.name }}
+                                                <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-down"></span></div>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseEditors">
+                                    Books' editors
+                                </a>
+                                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                            </h2>
+                        </div>
+                        <div id="collapseEditors" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-condensed">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 100px;">Identifier</th>
+                                        <th style="width: 100px;">Language</th>
+                                        <th>Name</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for editor in library.editors %}
+                                        <tr>
+                                            <td><strong>{{ editor.id|upper }}</strong></td>
+                                            <td>
+                                                {% set flag = asset('images/flags/'~ editor.preferredLanguage ~'.png', false) %}
+                                                {% if flag is not empty %}
+                                                    <img src="{{ flag }}" alt="{{ editor.preferredLanguage|upper }}" class="img-circle">
+                                                {% else %}
+                                                    {{ editor.preferredLanguage|upper }}
+                                                {% endif %}
+                                            </td>
+                                            <td>{{ editor.name }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseTypes">
+                                    Books' types
+                                </a>
+                                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseTypes" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    {% for category in library.categories %}
+                                        <li class="{{ category.id }}">{{ category.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <table class="books-list">
-                <thead class="main-header">
-                    <tr>
-                        <th class="timeline">Timeline</th>
-                        <th class="author">Author(s)</th>
-                        <th class="title">Title</th>
-                        <th><abbr title="Language of the release">Lang</abbr></th>
-                        <th>Editor</th>
-                        <th><abbr title="Format of the release">Format</abbr></th>
-                        <th><abbr title="Number of copies owned">Nb.C</abbr></th>
-                        <th><abbr title="Number of readings done">Nb.R</abbr></th>
-                    </tr>
-                </thead>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <form class="form-inline" data-filter-languages-form>
+                            <fieldset>
+                                <legend>Filter by language</legend>
 
-                {% for era in library.eras %}
-                    <thead class="era-header">
-                        <tr>
-                            <th class="{{ era.id }}">
-                                <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
-                            {% for release in book.releases %}
-                                <tr lang="{{ release.language.id }}">
-                                    <td>
-                                        {{ book.chronologicalMarker.timeStart|starWarsDate|raw }}
-                                        {% if book.chronologicalMarker.timeEnd is not empty %}
-                                            {{ (' - '~ book.chronologicalMarker.timeEnd|starWarsDate)|raw }}
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <ul class="inline-list">
-                                            {% for author in book.authors %}
-                                                <li>{{ author.name }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
-                                    <td class="book-title {{ book.category.id }}">
-                                        {% if release.series is not empty and release.series.title is not empty %}
-                                            {{ release.series.title -}}
-                                            {% if release.series.bookId is not empty %}
-                                                {{ ' '~ release.series.bookId -}}
-                                            {% endif %}
-                                            {{ ': ' }}
-                                        {% endif %}
-                                        {{ release.title }}
+                                {# Get the languages list #}
+                                {% set languages = {} %}
+                                {% for book in library.books %}
+                                    {% for release in book.releases %}
+                                        {% set languages = languages|merge({(release.language.id): release.language}) %}
+                                    {% endfor %}
+                                {% endfor %}
 
-                                        {% if book.swuBookId is not empty %}
-                                            {% set swuHost = 'http://www.starwars-universe.com/' %}
-                                            <a href="{{ swuHost }}livre-{{ book.swuBookId }}-a.html">
-                                                <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website">
-                                            </a>
-                                        {% endif %}
-                                    </td>
-                                    <td class="textC">
-                                        {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
-                                        {% if flag is not empty %}
-                                            <img src="{{ flag }}" alt="{{ release.language.name }}">
-                                        {% else %}
-                                            <abbr title="{{ release.language.name }}">{{ release.language.id|upper }}</abbr>
-                                        {% endif %}
-                                    </td>
-                                    <td class="textC">
-                                        <abbr title="{{ release.editor.name }}">{{ release.editor.id|upper }}</abbr>
-                                    </td>
-                                    <td class="textC">
-                                        {% if release.format is not empty %}
-                                            <abbr title="{{ release.format.name }}">{{ release.format.id|upper }}</abbr>
-                                        {% endif %}
-                                    </td>
+                                {% for language in languages %}
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="show-languages[]" value="{{ language.id }}"
+                                            {% if showLanguages is empty or language.id in showLanguages %} checked{% endif %}>
+                                        {{ language.name }}
+                                    </label>
+                                {% endfor %}
 
-                                    {% if release.published %}
-                                        <td class="textC {{ release.owner.nbCopies == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbCopies > 1 ? release.owner.nbCopies : '')|raw }}
-                                        </td>
-                                        <td class="textC {{ release.owner.nbReadings == 0 ? 'red' : 'green' }}">
-                                            {{ (release.owner.nbReadings > 1 ? release.owner.nbReadings : '')|raw }}
-                                        </td>
-                                    {% else %}
-                                        <td colspan="2" class="textC publish">
-                                            <abbr title="Expected publication date">
-                                                {{ release.publicationDate|date('Y-m-d') }}
-                                            </abbr>
-                                        </td>
-                                    {% endif %}
+                                <input type="submit" class="btn btn-primary btn-sm js-hidden" value="Apply">
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed" data-books-list>
+                            <thead class="main-header">
+                                <tr>
+                                    <th>Timeline</th>
+                                    <th>Author(s)</th>
+                                    <th>Title</th>
+                                    <th><abbr title="Language of the release">Lang</abbr></th>
+                                    <th>Editor</th>
+                                    <th><abbr title="Format of the release">Format</abbr></th>
+                                    <th><abbr title="Number of copies owned">Nb.C</abbr></th>
+                                    <th><abbr title="Number of readings done">Nb.R</abbr></th>
                                 </tr>
+                            </thead>
+
+                            {% for era in library.eras %}
+                                <thead class="era-header">
+                                    <tr>
+                                        <th class="{{ era.id }}">
+                                            <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
+                                        {% for release in book.releases %}
+                                            {% set new = release.published and 0 == release.owner.nbCopies and
+                                                         release.publicationDate > 'now'|date_modify('-3 months')
+                                            %}
+                                            <tr lang="{{ release.language.id }}">
+                                                <td>
+                                                    {{ book.chronologicalMarker.timeStart|starWarsDate|raw }}
+                                                    {% if book.chronologicalMarker.timeEnd is not empty %}
+                                                        {{ (' - '~ book.chronologicalMarker.timeEnd|starWarsDate)|raw }}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <ul class="list-inline">
+                                                        {% for author in book.authors %}
+                                                            <li>{{ author.name }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </td>
+                                                <td class="{{ book.category.id }}" data-new="{{ new ? 1 : 0 }}">
+                                                    {% if new %}<span class="label label-info">NEW</span>{% endif %}
+
+                                                    {% if release.series is not empty and release.series.title is not empty %}
+                                                        {{ release.series.title -}}
+                                                        {% if release.series.bookId is not empty %}
+                                                            {{ ' '~ release.series.bookId -}}
+                                                        {% endif %}
+                                                        {{ ': ' }}
+                                                    {% endif %}
+                                                    {{ release.title }}
+
+                                                    {% if book.swuBookId is not empty %}
+                                                        {% set swuHost = 'http://www.starwars-universe.com/' %}
+                                                        <a href="{{ swuHost }}livre-{{ book.swuBookId }}-a.html">
+                                                            <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website">
+                                                        </a>
+                                                    {% endif %}
+                                                </td>
+                                                <td class="text-center">
+                                                    {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
+                                                    {% if flag is not empty %}
+                                                        <img src="{{ flag }}" alt="{{ release.language.name }}" class="img-circle">
+                                                    {% else %}
+                                                        <abbr title="{{ release.language.name }}">
+                                                            {{ release.language.id|upper }}
+                                                        </abbr>
+                                                    {% endif %}
+                                                </td>
+                                                <td class="text-center">
+                                                    <abbr title="{{ release.editor.name }}">
+                                                        {{ release.editor.id|upper }}
+                                                    </abbr>
+                                                </td>
+                                                <td class="text-center">
+                                                    {% if release.format is not empty %}
+                                                        <abbr title="{{ release.format.name }}">
+                                                            {{ release.format.id|upper }}
+                                                        </abbr>
+                                                    {% endif %}
+                                                </td>
+
+                                                {% if release.published %}
+                                                    <td class="text-center {{ 0 == release.owner.nbCopies ? 'danger' : 'success' }}">
+                                                        {{ helper.displayIcons(release.owner.nbCopies) }}
+                                                    </td>
+                                                    <td class="text-center {{ 0 == release.owner.nbReadings ? 'danger' : 'success' }}">
+                                                        {{ helper.displayIcons(release.owner.nbReadings) }}
+                                                    </td>
+                                                {% else %}
+                                                    <td colspan="2" class="text-center active">
+                                                        <abbr title="Expected publication date">
+                                                            {{ release.publicationDate|date('Y-m-d') }}
+                                                        </abbr>
+                                                    </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </tbody>
                             {% endfor %}
-                        {% endfor %}
-                    </tbody>
-                {% endfor %}
-            </table>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <footer class="clearfix">
+            <p>
+                <small>
+                    <span class="glyphicon glyphicon-copyright-mark"></span>
+                    {{ 'now'|date('Y') }}, Dorian Villet
+                </small>
+            </p>
+        </footer>
     </div>
 
-    <script src="components/jquery/jquery.min.js"></script>
-    <script src="components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js"></script>
-    <script src="components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js"></script>
-    <script src="components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js"></script>
-    <script src="js/lib/object-swapper.js"></script>
-    <script src="js/books-table-manager.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js') }}"></script>
+    <script src="{{ asset('components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js') }}"></script>
+    <script src="{{ asset('components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js') }}"></script>
+    <script src="{{ asset('js/lib/object-swapper.js') }}"></script>
+    <script src="{{ asset('js/books-table-manager.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,95 @@
+/* Fix cells vertical alignment */
+table.table td {
+    vertical-align: middle !important;
+}
+
+/* Fix glyphicon colors */
+table.table td.success span.glyphicon-ok {
+    color: #75BD56;
+}
+table.table td.danger span.glyphicon-remove {
+    color: #C05D5D;
+}
+
+/* Fix inline list in table */
+table.table td ul.list-inline {
+    margin-bottom: 0;
+}
+table.table td ul.list-inline li {
+    padding: 0;
+}
+table.table td ul.list-inline li:after {
+    content: ", ";
+}
+table.table td ul.list-inline li:last-child:after {
+    content: "";
+}
+
+/* Fix list group item links */
+ul.list-group li.list-group-item a:hover {
+    text-decoration: none;
+}
+ul.list-group li.list-group-item a span.glyphicon-circle-arrow-down {
+    display: none;
+}
+ul.list-group li.list-group-item a:hover span.glyphicon-circle-arrow-down {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Fix definition list left column */
+dl.dl-horizontal.left-column-xs dt {
+    width: 40px;
+    text-align: left;
+}
+
+dl.dl-horizontal.left-column-xs dd {
+    margin-left: 60px;
+}
+
+/* Fix the accordion width */
+div.col-md-3 div.panel-group {
+    margin-bottom: 48px;
+}
+
+/*
+ * Affix styling
+ */
+
+/* By default it's not affixed in mobile views, so undo that */
+.affix {
+    position: static;
+}
+
+/* Show and affix the side nav when space allows it */
+@media screen and (min-width: 992px) {
+    div.col-md-3 div.panel-group {
+        max-width: 263px;
+    }
+
+    /* Widen the fixed sidebar */
+    .affix,
+    .affix-bottom {
+        width: 213px;
+    }
+    .affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .affix-bottom .bs-sidenav,
+    .affix .bs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .affix-bottom,
+    .affix {
+        width: 263px;
+    }
+}

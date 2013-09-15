@@ -4,65 +4,36 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
     /**
      * Manager for the books HTML table
      */
-    function BooksTableManager(inputBooksTable, inputLanguageSwitcher) {
+    function BooksTableManager(inputBooksTable, inputLanguageFilterForm) {
         this.booksTable = inputBooksTable;
-        this.languageSwitcher = inputLanguageSwitcher;
+        this.languageFilterCheckboxes = $('input[type="checkbox"]', inputLanguageFilterForm);
         this.originalBooksTable = this.booksTable.clone();
         this.hasBeenInitialized = false;
 
         /**
-         * Get the list of publication languages available
-         */
-        this.getAllPublicationLanguages = function () {
-            var languages = [];
-            $('tbody tr', this.booksTable).each(function () {
-                languages.push($(this).attr('lang'));
-            });
-
-            return $.unique(languages);
-        };
-
-        /**
-         * Create the language filter switchers links
-         */
-        this.createLanguageSwitchers = function () {
-            var languageList = $('<ul></ul>'),
-                filterElement = function (text, language) {
-                    return $('<li></li>').html(
-                        $('<a></a>').attr({
-                            'href': '#',
-                            'data-toggle': 'books-table-language-switcher',
-                            'data-language': undefined !== language ? language : 'all'
-                        }).html(text)
-                    );
-                };
-
-            // First, create a link to reset the filters
-            languageList.prepend(filterElement('Reset the filter', undefined));
-
-            // Then loop over the publication languages available to create each language filter link
-            $.each(this.getAllPublicationLanguages(), function (index, language) {
-                languageList.append(filterElement(language, language));
-            });
-
-            // Add the list to the HTML container
-            this.languageSwitcher.html(languageList);
-
-            // Register the click event for the filter links
-            this.registerLanguageSwitcherEvent();
-        };
-
-        /**
          * Register the click event for the language filter links
          */
-        this.registerLanguageSwitcherEvent = function () {
+        this.registerLanguageFilterFormEvent = function () {
             var that = this;
 
-            $('[data-toggle="books-table-language-switcher"]').on('click', function (event) {
-                event.preventDefault();
-
-                that.init($(this).attr('data-language'), true);
+            this.languageFilterCheckboxes.on('change', function () {
+                that.init(true);
             });
+        };
+
+        /**
+         * Get the list of shown languages
+         */
+        this.getShownLanguages = function () {
+            var displayLanguages = [];
+
+            this.languageFilterCheckboxes.each(function () {
+                if ($(this).is(':checked')) {
+                    displayLanguages.push($(this).attr('value'));
+                }
+            });
+
+            return displayLanguages;
         };
 
         /**
@@ -78,16 +49,21 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
         /**
          * Filter the table's rows by publication language
          */
-        this.filterByLanguage = function (language) {
+        this.filterByLanguages = function (languages) {
 
             // Show everything
             $('tbody tr', this.booksTable).removeClass('hidden');
 
-            // If we've specified a language as a filter
-            if (undefined !== language && 'all' !== language) {
+            // If we've specified languages as a filter
+            if (undefined !== languages) {
+                var languageSelector = [];
 
-                // We hide all the rows that are not in the given language
-                $('tbody tr:not([lang=' + language + '])', this.booksTable).addClass('hidden');
+                $.each(languages, function (index, language) {
+                    languageSelector.push('[lang=' + language + ']');
+                });
+
+                // We hide all the rows that are not in the given languages
+                $('tbody tr:not(' + languageSelector.join(',') + ')', this.booksTable).addClass('hidden');
             }
         };
 
@@ -147,12 +123,12 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
         /**
          * Initialization of the object
          */
-        init: function (language, reset) {
+        init: function (reset) {
             if (false === this.hasBeenInitialized) {
                 this.hasBeenInitialized = true;
 
-                // Create the language switcher only at the object's initialization
-                this.createLanguageSwitchers();
+                // Register the click event for the language filter links
+                this.registerLanguageFilterFormEvent();
             }
 
             // Reset the table to its original state (without removed contents, rowspans, etc)
@@ -162,7 +138,7 @@ wrapper('booksTableManager', ['ObjectSwapper'], function() {
 
             // Prepare the table
             this.scaleEraHeaders();
-            this.filterByLanguage(language);
+            this.filterByLanguages(this.getShownLanguages());
             this.applyAutoRowspan();
         }
     };
