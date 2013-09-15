@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Star Wars Books</title>
 
-    <link href="{{ asset('css/standard.css') }}" rel="stylesheet">
+    <link href="{{ asset(request, 'css/standard.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="global">
@@ -109,7 +109,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="textC">
-                                        {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
+                                        {% set flag = asset(request, 'images/flags/'~ release.language.id ~'.png', false) %}
                                         {% if flag is not empty %}
                                             <img src="{{ flag }}" alt="{{ release.language.name }}">
                                         {% else %}
@@ -148,12 +148,12 @@
         </div>
     </div>
 
-    <script src="components/jquery/jquery.min.js"></script>
-    <script src="components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js"></script>
-    <script src="components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js"></script>
-    <script src="components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js"></script>
-    <script src="js/lib/object-swapper.js"></script>
-    <script src="js/books-table-manager.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset(request, 'components/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset(request, 'components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js') }}"></script>
+    <script src="{{ asset(request, 'components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js') }}"></script>
+    <script src="{{ asset(request, 'components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js') }}"></script>
+    <script src="{{ asset(request, 'js/lib/object-swapper.js') }}"></script>
+    <script src="{{ asset(request, 'js/books-table-manager.js') }}"></script>
+    <script src="{{ asset(request, 'js/main.js') }}"></script>
 </body>
 </html>

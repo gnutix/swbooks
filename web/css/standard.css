@@ -155,8 +155,8 @@ ul.inline-list li:last-child:after {
     border-left: none;
 }
 
-#content ul.legend li.adult,
-#content table.books-list tbody tr td.adult { background-color: #b0ddb0; }
+#content ul.legend li.novel,
+#content table.books-list tbody tr td.novel { background-color: #b0ddb0; }
 #content ul.legend li.young,
 #content table.books-list tbody tr td.young { background-color: #ddb0b0; }
 #content ul.legend li.comic,
