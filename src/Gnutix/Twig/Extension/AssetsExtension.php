@@ -56,7 +56,7 @@ class AssetsExtension extends \Twig_Extension
             ->count();
 
         if (0 < $assetFound) {
-            return $asset;
+            return '/'.ltrim($asset, '/');
         }
 
         if ($throwException) {
