@@ -31,6 +31,29 @@ and a local webserver. Then:
 5. Install [Bower](http://bower.io/#installing-bower) and run `bower install`
 6. Access the application via [http://localhost/gnutix/swbooks/web](http://localhost/gnutix/swbooks/web)
 
+Setup a VirtualHost in Apache2
+------------------------------
+
+Create a new file for your virtual host (for example in `/etc/apache2/sites-available/gnutix-swbooks`) with the following content (assuming `/var/www/sites/` is your webserver root folder) :
+
+```
+<VirtualHost *:80>
+    ServerName "swbooks.lo"
+    DocumentRoot "/var/www/sites/gnutix/swbooks/web"
+
+    <Directory "/var/www/sites/gnutix/swbooks/web">
+        DirectoryIndex app_dev.php app.php
+        Options -Indexes FollowSymLinks SymLinksifOwnerMatch
+        AllowOverride All
+        Allow from All
+    </Directory>
+</VirtualHost>
+```
+
+Then, add the following line to your `/etc/hosts` file : `127.0.0.1 swbooks.lo`. Finally, restart Apache (`sudo apachectl -k restart`).
+
+You should be able to access the application with the following URL: [http://swbooks.lo](http://swbooks.lo).
+
 Execute the tests
 -----------------
 

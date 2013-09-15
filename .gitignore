@@ -5,4 +5,5 @@ app/cache/
 vendor/
 web/components/
 composer.lock
+composer.phar
 phpunit.xml
