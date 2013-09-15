@@ -1,7 +1,7 @@
 categories:
-    - &c_adult
-        id: adult
-        name: Adult novel
+    - &c_novel
+        id: novel
+        name: Novel
     - &c_ebook
         id: ebook
         name: E-book
@@ -67,7 +67,7 @@ series:
 
 books:
     -
-        category: *c_adult
+        category: *c_novel
         authors:
             - *a_1
             - *a_2
@@ -77,7 +77,7 @@ books:
                 language: *l_en
                 editor: *e_en
                 format: *f_pb
-                publicationDate: { day: 01, month: 01, year: 2012 }
+                publicationDate: { day: 1, month: 1, year: 2012 }
                 series:
                     <<: *s_old_republic
                     number: 1
@@ -87,7 +87,7 @@ books:
             -
                 <<: *revanEnglishPaperback
                 format: *f_hc
-                publicationDate: { day: 25, month: 09, year: 2012 }
+                publicationDate: { day: 10, month: 9, year: 2013 }
                 owner:
                     copies: 0
                     readings: 1
@@ -95,7 +95,7 @@ books:
                 <<: *revanEnglishPaperback
                 language: *l_fr
                 editor: *e_fr
-                publicationDate: { day: 19, month: 04, year: 2012 }
+                publicationDate: { day: 19, month: 4, year: 2012 }
                 owner:
                     copies: 1
                     readings: 0
@@ -108,7 +108,7 @@ books:
             swuBookId: 777
 
     -
-        category: *c_adult
+        category: *c_novel
         authors:
             - *a_1
             - *a_2
@@ -118,7 +118,7 @@ books:
                 language: *l_en
                 editor: *e_en
                 format: *f_pb
-                publicationDate: { day: 01, month: 01, year: 2014 }
+                publicationDate: { day: 1, month: 1, year: 2014 }
                 series:
                     <<: *s_old_republic
                     number: 2
@@ -129,7 +129,7 @@ books:
             swuBookId: 777
 
     -
-        category: *c_adult
+        category: *c_novel
         authors:
             - *a_1
             - *a_2
@@ -139,7 +139,7 @@ books:
                 language: *l_en
                 editor: *e_en
                 format: *f_pb
-                publicationDate: { day: 01, month: 01, year: 2014 }
+                publicationDate: { day: 1, month: 1, year: 2014 }
                 series:
                     <<: *s_old_republic
                     number: 2

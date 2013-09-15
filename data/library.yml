@@ -23,18 +23,18 @@ eras:
 languages:
     - &l_en
         id: en
-        name: en
+        name: English
     - &l_fr
         id: fr
-        name: fr
+        name: French
 formats:
     - &f_unknown
         id: unknown
         name: Unknown
 categories:
-    - &c_adult
-        id: adult
-        name: Adult novel
+    - &c_novel
+        id: novel
+        name: Novel
     - &c_young
         id: young
         name: Young adult novel
@@ -421,7 +421,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 20
-                    month: 02
+                    month: 2
                     year: 2013
                 editor: *e_dc
                 format: *f_unknown
@@ -442,14 +442,14 @@ books:
             swuBookId: ~
         authors:
             - *a_tim_lebbon
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Into the Void
                 language: *l_en
                 publicationDate:
-                    day: 07
-                    month: 05
+                    day: 7
+                    month: 5
                     year: 2013
                 editor: *e_lb
                 format: *f_unknown
@@ -470,14 +470,14 @@ books:
             swuBookId: ~
         authors:
             - *a_paul_s_kemp
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Crosscurrent
                 language: *l_en
                 publicationDate:
                     day: 26
-                    month: 01
+                    month: 1
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -498,14 +498,14 @@ books:
             swuBookId: ~
         authors:
             - *a_paul_s_kemp
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Crosscurrent 2
                 language: *l_en
                 publicationDate:
                     day: 28
-                    month: 06
+                    month: 6
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -582,8 +582,8 @@ books:
                 title: Paragon
                 language: *l_en
                 publicationDate:
-                    day: 09
-                    month: 02
+                    day: 9
+                    month: 2
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -610,8 +610,8 @@ books:
                 title: Savior
                 language: *l_en
                 publicationDate:
-                    day: 01
-                    month: 04
+                    day: 1
+                    month: 4
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -670,14 +670,14 @@ books:
             swuBookId: ~
         authors:
             - *a_joe_schreiber
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Red Harvest
                 language: *l_en
                 publicationDate:
                     day: 25
-                    month: 01
+                    month: 1
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -698,14 +698,14 @@ books:
             swuBookId: ~
         authors:
             - *a_alex_irvine
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Nomi Sunrider
                 language: *l_en
                 publicationDate:
                     day: 24
-                    month: 05
+                    month: 5
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -726,14 +726,14 @@ books:
             swuBookId: ~
         authors:
             - *a_paul_s_kemp
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Deceived
                 language: *l_en
                 publicationDate:
                     day: 22
-                    month: 03
+                    month: 3
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -754,14 +754,14 @@ books:
             swuBookId: ~
         authors:
             - *a_sean_williams
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Fatal Alliance
                 language: *l_en
                 publicationDate:
                     day: 27
-                    month: 07
+                    month: 7
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -782,14 +782,14 @@ books:
             swuBookId: ~
         authors:
             - *a_john_jackson_miller
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Knight Errant
                 language: *l_en
                 publicationDate:
                     day: 22
-                    month: 02
+                    month: 2
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -810,7 +810,7 @@ books:
             swuBookId: ~
         authors:
             - *a_drew_karpyshyn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Path of Destruction
@@ -924,7 +924,7 @@ books:
             swuBookId: ~
         authors:
             - *a_drew_karpyshyn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rule of Two
@@ -962,7 +962,7 @@ books:
             swuBookId: ~
         authors:
             - *a_drew_karpyshyn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Dynasty of Evil
@@ -985,7 +985,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 25
-                    month: 08
+                    month: 8
                     year: 2011
                 editor: *e_fn
                 format: *f_unknown
@@ -2254,7 +2254,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Cloak of Deception
@@ -2292,7 +2292,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_reaves
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Darth Maul: Shadow Hunter
@@ -2330,7 +2330,7 @@ books:
             swuBookId: ~
         authors:
             - *a_terry_brooks
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Phantom Menace
@@ -2632,7 +2632,7 @@ books:
             swuBookId: ~
         authors:
             - *a_breg_bear
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rogue Planet
@@ -2695,7 +2695,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Outbound Flight
@@ -2983,7 +2983,7 @@ books:
             swuBookId: ~
         authors:
             - *a_alan_dean_foster
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Approaching Storm
@@ -3171,7 +3171,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ra_salvatore
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Attack of the Clones
@@ -3247,7 +3247,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Hard Contact
@@ -3550,7 +3550,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Clone Wars
@@ -3658,7 +3658,7 @@ books:
                 language: *l_en
                 publicationDate:
                     day: 22
-                    month: 07
+                    month: 7
                     year: 2010
                 editor: *e_gd
                 format: *f_unknown
@@ -3685,8 +3685,8 @@ books:
                 title: Duel at Shattered Rock
                 language: *l_en
                 publicationDate:
-                    day: 03
-                    month: 03
+                    day: 3
+                    month: 3
                     year: 2011
                 editor: *e_gd
                 format: *f_unknown
@@ -3707,7 +3707,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_miller
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Wild Space
@@ -3745,7 +3745,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: No Prisoners
@@ -3783,14 +3783,14 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_miller
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Gambit: Stealth
                 language: *l_en
                 publicationDate:
                     day: 23
-                    month: 02
+                    month: 2
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -3806,7 +3806,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 22
-                    month: 04
+                    month: 4
                     year: 2010
                 editor: *e_fn
                 format: *f_unknown
@@ -3827,14 +3827,14 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_miller
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Gambit: Siege
                 language: *l_en
                 publicationDate:
                     day: 25
-                    month: 05
+                    month: 5
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -3849,7 +3849,7 @@ books:
                 title: Gambit: Siege
                 language: *l_fr
                 publicationDate:
-                    day: 01
+                    day: 1
                     month: 10
                     year: 2010
                 editor: *e_fn
@@ -3909,7 +3909,7 @@ books:
             swuBookId: ~
         authors:
             - *a_matthew_stover
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Shatterpoint
@@ -3947,7 +3947,7 @@ books:
             swuBookId: ~
         authors:
             - *a_steven_barnes
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Cestus Deception
@@ -4124,7 +4124,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Triple Zero
@@ -4187,7 +4187,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: True Colors
@@ -4226,7 +4226,7 @@ books:
         authors:
             - *a_michael_reaves
             - *a_steve_perry
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Battle Surgeons
@@ -4291,7 +4291,7 @@ books:
         authors:
             - *a_michael_reaves
             - *a_steve_perry
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Healer
@@ -4368,7 +4368,7 @@ books:
         authors:
             - *a_david_sherman
             - *a_dan_cragg
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Trial
@@ -4406,7 +4406,7 @@ books:
             swuBookId: ~
         authors:
             - *a_sean_stewart
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Yoda: Dark Rendezvous
@@ -4494,7 +4494,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Labyrinth of Evil
@@ -4532,7 +4532,7 @@ books:
             swuBookId: ~
         authors:
             - *a_matthew_stover
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Revenge of the Sith
@@ -4608,14 +4608,14 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Order 66
                 language: *l_en
                 publicationDate:
                     day: 16
-                    month: 09
+                    month: 9
                     year: 2008
                 editor: *e_dr
                 format: *f_unknown
@@ -4631,7 +4631,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 24
-                    month: 06
+                    month: 6
                     year: 2010
                 editor: *e_fn
                 format: *f_unknown
@@ -4652,7 +4652,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Dark Lord: The Rise of Darth Vader
@@ -4690,7 +4690,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: 501st
@@ -4828,7 +4828,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_reaves
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Twilight
@@ -4847,8 +4847,8 @@ books:
                 title: Jedi Twilight
                 language: *l_fr
                 publicationDate:
-                    day: 09
-                    month: 02
+                    day: 9
+                    month: 2
                     year: 2012
                 editor: *e_fn
                 format: *f_unknown
@@ -4994,7 +4994,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_reaves
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Street of Shadows
@@ -5014,7 +5014,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 28
-                    month: 06
+                    month: 6
                     year: 2012
                 editor: *e_fn
                 format: *f_unknown
@@ -5160,7 +5160,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_reaves
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Patterns of Force
@@ -5179,8 +5179,8 @@ books:
                 title: Patterns of Force
                 language: *l_fr
                 publicationDate:
-                    day: 01
-                    month: 01
+                    day: 1
+                    month: 1
                     year: 2011
                 editor: *e_fn
                 format: *f_unknown
@@ -5201,14 +5201,14 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_reaves
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Last Jedi
                 language: *l_en
                 publicationDate:
                     day: 26
-                    month: 02
+                    month: 2
                     year: 2013
                 editor: *e_dr
                 format: *f_unknown
@@ -5254,7 +5254,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ac_crispin
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Paradise Snare
@@ -5292,7 +5292,7 @@ books:
             swuBookId: ~
         authors:
             - *a_l_neil_smith
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Lando Calrissian and the Mindharp of Sharu
@@ -5317,7 +5317,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ac_crispin
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Hutt Gambit
@@ -5355,7 +5355,7 @@ books:
             swuBookId: ~
         authors:
             - *a_l_neil_smith
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Lando Calrissian and the Flamewind of Oseon
@@ -5380,7 +5380,7 @@ books:
             swuBookId: ~
         authors:
             - *a_l_neil_smith
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Lando Calrissian and the Starcave of ThonBoka
@@ -5405,7 +5405,7 @@ books:
             swuBookId: ~
         authors:
             - *a_sean_williams
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Force Unleashed
@@ -5443,7 +5443,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ac_crispin
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rebel Dawn
@@ -5545,7 +5545,7 @@ books:
             swuBookId: ~
         authors:
             - *a_brian_daley
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Han Solo at Stars' End
@@ -5583,7 +5583,7 @@ books:
             swuBookId: ~
         authors:
             - *a_brian_daley
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Han Solo's Revenge
@@ -5621,7 +5621,7 @@ books:
             swuBookId: ~
         authors:
             - *a_brian_daley
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Han Solo and the Lost Legacy
@@ -5660,14 +5660,14 @@ books:
         authors:
             - *a_michael_reaves
             - *a_maya_kaathryn_bohnhoff
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Holostar
                 language: *l_en
                 publicationDate:
                     day: 19
-                    month: 04
+                    month: 4
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -5726,7 +5726,7 @@ books:
             swuBookId: ~
         authors:
             - *a_joe_schreiber
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Death Troopers
@@ -5751,7 +5751,7 @@ books:
             swuBookId: ~
         authors:
             - *a_william_c_dietz
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Soldier for the Empire
@@ -5777,7 +5777,7 @@ books:
         authors:
             - *a_michael_reaves
             - *a_steve_perry
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Death Star
@@ -5815,7 +5815,7 @@ books:
             swuBookId: ~
         authors:
             - *a_alan_dean_foster
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: A New Hope
@@ -6260,8 +6260,8 @@ books:
                 title: Uprising
                 language: *l_en
                 publicationDate:
-                    day: 03
-                    month: 05
+                    day: 3
+                    month: 5
                     year: 2010
                 editor: *e_sc
                 format: *f_unknown
@@ -6759,7 +6759,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Allegiance
@@ -6797,14 +6797,14 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Choices
                 language: *l_en
                 publicationDate:
                     day: 30
-                    month: 08
+                    month: 8
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -7320,7 +7320,7 @@ books:
         authors:
             - *a_voronica_whitney_robinson
             - *a_haden_blackman
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Ruins of Dantooine
@@ -7345,7 +7345,7 @@ books:
             swuBookId: ~
         authors:
             - *a_alan_dean_foster
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Splinter of the Mind's Eye
@@ -7370,7 +7370,7 @@ books:
             swuBookId: ~
         authors:
             - *a_donald_f_glut
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Empire Strikes Back
@@ -7572,7 +7572,7 @@ books:
             swuBookId: ~
         authors:
             - *a_steve_perry
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Shadows of the Empire
@@ -7673,7 +7673,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_kahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Return of the Jedi
@@ -7888,7 +7888,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kw_jeter
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Mandalorian Armor
@@ -7926,7 +7926,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kw_jeter
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Slave Ship
@@ -7964,7 +7964,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kw_jeter
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Hard Mechandise
@@ -8002,7 +8002,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kathy_tyers
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Truce at Bakura
@@ -8299,7 +8299,7 @@ books:
             swuBookId: ~
         authors:
             - *a_william_c_dietz
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rebel Agent
@@ -8324,7 +8324,7 @@ books:
             swuBookId: ~
         authors:
             - *a_william_c_dietz
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Knight
@@ -8349,7 +8349,7 @@ books:
             swuBookId: ~
         authors:
             - *a_matthew_stover
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Luke Skywalker and the Shadows of Mindor
@@ -8437,7 +8437,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rogue Squadron
@@ -8475,7 +8475,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Wedge's Gamble
@@ -8513,7 +8513,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Kryptos Trap
@@ -8551,7 +8551,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Bacta War
@@ -8589,7 +8589,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Wraith Squadron
@@ -8652,7 +8652,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Iron Fist
@@ -8690,7 +8690,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Solo Command
@@ -8728,7 +8728,7 @@ books:
             swuBookId: ~
         authors:
             - *a_dave_wolverton
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Courtship of Princess Leia
@@ -8854,7 +8854,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Tatooine Ghost
@@ -8892,7 +8892,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Heir to the Empire
@@ -8930,7 +8930,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Dark Force Rising
@@ -8968,7 +8968,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Last Command
@@ -9006,7 +9006,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Isard's Revenge
@@ -9044,7 +9044,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kevin_j_anderson
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Search
@@ -9082,7 +9082,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kevin_j_anderson
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Dark Apprentice
@@ -9145,7 +9145,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kevin_j_anderson
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Champions of the Force
@@ -9183,7 +9183,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: I, Jedi
@@ -9221,7 +9221,7 @@ books:
             swuBookId: ~
         authors:
             - *a_barbara_hambly
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Children of the Jedi
@@ -9259,7 +9259,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kevin_j_anderson
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Darksaber
@@ -9297,7 +9297,7 @@ books:
             swuBookId: ~
         authors:
             - *a_barbara_hambly
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Planet of Twilight
@@ -9360,7 +9360,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Starfighters of Adumar
@@ -9398,7 +9398,7 @@ books:
             swuBookId: ~
         authors:
             - *a_vonda_n_mcintyre
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Crystal Star
@@ -9436,7 +9436,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_p_kube_mcdowell
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Before the Storm
@@ -9474,7 +9474,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_p_kube_mcdowell
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Shield of Lies
@@ -9512,7 +9512,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_p_kube_mcdowell
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Tyrant's Test
@@ -9550,7 +9550,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kristine_kathryn_rusch
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The New Rebellion
@@ -9588,7 +9588,7 @@ books:
             swuBookId: ~
         authors:
             - *a_roger_macbride_allen
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Ambush at Corellia
@@ -9626,7 +9626,7 @@ books:
             swuBookId: ~
         authors:
             - *a_roger_macbride_allen
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Assault at Selonia
@@ -9664,7 +9664,7 @@ books:
             swuBookId: ~
         authors:
             - *a_roger_macbride_allen
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Showdown at Centerpoint
@@ -9702,7 +9702,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Specter of the Past
@@ -9740,7 +9740,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Vision of the Future
@@ -10029,7 +10029,7 @@ books:
             swuBookId: ~
         authors:
             - *a_timothy_zahn
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Survivor's Quest
@@ -10676,7 +10676,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ra_salvatore
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Vector Prime
@@ -10714,7 +10714,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Onslaught
@@ -10752,7 +10752,7 @@ books:
             swuBookId: ~
         authors:
             - *a_michael_a_stackpole
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Ruin
@@ -10790,7 +10790,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Hero's Trial
@@ -10828,7 +10828,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi Eclipse
@@ -10866,7 +10866,7 @@ books:
             swuBookId: ~
         authors:
             - *a_kathy_tyers
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Balance Point
@@ -10967,7 +10967,7 @@ books:
             swuBookId: ~
         authors:
             - *a_greg_keyes
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Conquest
@@ -11005,7 +11005,7 @@ books:
             swuBookId: ~
         authors:
             - *a_greg_keyes
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rebirth
@@ -11043,7 +11043,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Star by Star
@@ -11081,7 +11081,7 @@ books:
             swuBookId: ~
         authors:
             - *a_elaine_cunningham
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Dark Journey
@@ -11157,7 +11157,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rebel Dream
@@ -11195,7 +11195,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Rebel Stand
@@ -11233,7 +11233,7 @@ books:
             swuBookId: ~
         authors:
             - *a_matthew_stover
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Traitor
@@ -11271,7 +11271,7 @@ books:
             swuBookId: ~
         authors:
             - *a_walter_jon_williams
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Destiny's Way
@@ -11386,7 +11386,7 @@ books:
         authors:
             - *a_sean_williams
             - *a_shane_dix
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Remnant
@@ -11425,7 +11425,7 @@ books:
         authors:
             - *a_sean_williams
             - *a_shane_dix
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Refugee
@@ -11464,7 +11464,7 @@ books:
         authors:
             - *a_sean_williams
             - *a_shane_dix
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Reunion
@@ -11502,7 +11502,7 @@ books:
             swuBookId: ~
         authors:
             - *a_greg_keyes
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Final Prophecy
@@ -11540,7 +11540,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Unifying Force
@@ -11578,7 +11578,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Joiner King
@@ -11616,7 +11616,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Unseen Queen
@@ -11654,7 +11654,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The Swarm War
@@ -11692,7 +11692,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Betrayal
@@ -11730,7 +11730,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Bloodlines
@@ -11768,7 +11768,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Tempest
@@ -11806,7 +11806,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Exile
@@ -11844,7 +11844,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Sacrifice
@@ -11882,7 +11882,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Inferno
@@ -11902,7 +11902,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 25
-                    month: 03
+                    month: 3
                     year: 2010
                 editor: *e_fn
                 format: *f_unknown
@@ -11923,7 +11923,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Fury
@@ -11943,7 +11943,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 26
-                    month: 08
+                    month: 8
                     year: 2010
                 editor: *e_fn
                 format: *f_unknown
@@ -11964,7 +11964,7 @@ books:
             swuBookId: ~
         authors:
             - *a_karen_traviss
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Revelation
@@ -11983,7 +11983,7 @@ books:
                 title: Revelation
                 language: *l_fr
                 publicationDate:
-                    day: 09
+                    day: 9
                     month: 12
                     year: 2010
                 editor: *e_fn
@@ -12005,7 +12005,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Invincible
@@ -12025,7 +12025,7 @@ books:
                 language: *l_fr
                 publicationDate:
                     day: 28
-                    month: 04
+                    month: 4
                     year: 2011
                 editor: *e_fn
                 format: *f_unknown
@@ -12046,7 +12046,7 @@ books:
             swuBookId: ~
         authors:
             - *a_james_luceno
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Millenium Falcon
@@ -12071,7 +12071,7 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Outcast
@@ -12096,7 +12096,7 @@ books:
             swuBookId: ~
         authors:
             - *a_christie_golden
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Omen
@@ -12121,7 +12121,7 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Abyss
@@ -12146,14 +12146,14 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Backlash
                 language: *l_en
                 publicationDate:
-                    day: 09
-                    month: 03
+                    day: 9
+                    month: 3
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -12174,14 +12174,14 @@ books:
             swuBookId: ~
         authors:
             - *a_christie_golden
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Allies
                 language: *l_en
                 publicationDate:
                     day: 25
-                    month: 05
+                    month: 5
                     year: 2010
                 editor: *e_dr
                 format: *f_unknown
@@ -12202,13 +12202,13 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Vortex
                 language: *l_en
                 publicationDate:
-                    day: 01
+                    day: 1
                     month: 12
                     year: 2010
                 editor: *e_dr
@@ -12230,14 +12230,14 @@ books:
             swuBookId: ~
         authors:
             - *a_aaron_allston
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Conviction
                 language: *l_en
                 publicationDate:
                     day: 19
-                    month: 04
+                    month: 4
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -12258,14 +12258,14 @@ books:
             swuBookId: ~
         authors:
             - *a_christie_golden
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Ascension
                 language: *l_en
                 publicationDate:
                     day: 26
-                    month: 07
+                    month: 7
                     year: 2011
                 editor: *e_dr
                 format: *f_unknown
@@ -12286,14 +12286,14 @@ books:
             swuBookId: ~
         authors:
             - *a_troy_denning
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Apocalypse
                 language: *l_en
                 publicationDate:
                     day: 29
-                    month: 01
+                    month: 1
                     year: 2013
                 editor: *e_dr
                 format: *f_unknown
@@ -12315,7 +12315,7 @@ books:
         authors:
             - *a_daniel_wallace
             - *a_jason_fry
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Essential Atlas
@@ -12340,7 +12340,7 @@ books:
             swuBookId: ~
         authors:
             - *a_ryder_windham
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Jedi vs Sith : The Essential Guide to the Force
@@ -12367,7 +12367,7 @@ books:
             - *a_mark_chiarello
             - *a_tommy_lee_edwards
             - *a_john_van_fleet
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: The New Essential Chronology
@@ -12394,7 +12394,7 @@ books:
             - *a_ann_margaret_lewis
             - *a_helen_keier
             - *a_chris_trevas
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Alien Species
@@ -12419,7 +12419,7 @@ books:
             swuBookId: ~
         authors:
             - *a_daniel_wallace
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Characters
@@ -12445,7 +12445,7 @@ books:
         authors:
             - *a_daniel_wallace
             - *a_ian_fullwood
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Droids
@@ -12472,7 +12472,7 @@ books:
             - *a_w_haden_blackman
             - *a_haden_blackman
             - *a_ian_fullwood
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Vehicules and Vessels
@@ -12498,7 +12498,7 @@ books:
         authors:
             - *a_w_haden_blackman
             - *a_haden_blackman
-        category: *c_adult
+        category: *c_novel
         releases:
             -
                 title: Weapons and Technology : Revised Edition
