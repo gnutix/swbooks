@@ -32,6 +32,7 @@ class AppKernel extends TwigAwareKernel
             $this->container->get('twig')->render(
                 'index.html.twig',
                 array(
+                    'request' => $request,
                     'showLanguages' => $request->query->get('show-languages'),
                 )
             )

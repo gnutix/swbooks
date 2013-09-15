@@ -3,6 +3,7 @@
 namespace Gnutix\Twig\Extension;
 
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Assets Extension
@@ -39,13 +40,14 @@ class AssetsExtension extends \Twig_Extension
     }
 
     /**
-     * @param string $asset
-     * @param bool   $throwException
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param string                                    $asset
+     * @param bool                                      $throwException
      *
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function getAssetPath($asset, $throwException = true)
+    public function getAssetPath(Request $request, $asset, $throwException = true)
     {
         $finder = new Finder();
         $assetPathInfo = pathinfo($asset);
@@ -56,7 +58,7 @@ class AssetsExtension extends \Twig_Extension
             ->count();
 
         if (0 < $assetFound) {
-            return '/'.ltrim($asset, '/');
+            return rtrim($request->getBasePath(), '/').'/'.ltrim($asset, '/');
         }
 
         if ($throwException) {

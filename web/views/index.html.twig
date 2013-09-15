@@ -5,8 +5,8 @@
     <title>Star Wars Books</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset(request, 'components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset(request, 'css/main.css') }}" rel="stylesheet">
 </head>
 <body>
     {% import 'macros.html.twig' as helper %}
@@ -38,7 +38,7 @@
                                     {% for era in library.eras %}
                                         <li class="list-group-item">
                                             <a href="#{{ era.id }}">
-                                                <img src="{{ asset('images/eras/'~ era.id ~'.png') }}" alt="{{ era.name }}">
+                                                <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}" alt="{{ era.name }}">
                                                 {{ era.name }}
                                                 <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-down"></span></div>
                                             </a>
@@ -72,7 +72,7 @@
                                         <tr>
                                             <td><strong>{{ editor.id|upper }}</strong></td>
                                             <td>
-                                                {% set flag = asset('images/flags/'~ editor.preferredLanguage ~'.png', false) %}
+                                                {% set flag = asset(request, 'images/flags/'~ editor.preferredLanguage ~'.png', false) %}
                                                 {% if flag is not empty %}
                                                     <img src="{{ flag }}" alt="{{ editor.preferredLanguage|upper }}" class="img-circle">
                                                 {% else %}
@@ -200,7 +200,7 @@
                                                     {% endif %}
                                                 </td>
                                                 <td class="text-center">
-                                                    {% set flag = asset('images/flags/'~ release.language.id ~'.png', false) %}
+                                                    {% set flag = asset(request, 'images/flags/'~ release.language.id ~'.png', false) %}
                                                     {% if flag is not empty %}
                                                         <img src="{{ flag }}" alt="{{ release.language.name }}" class="img-circle">
                                                     {% else %}
@@ -257,13 +257,13 @@
         </footer>
     </div>
 
-    <script src="{{ asset('components/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js') }}"></script>
-    <script src="{{ asset('components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js') }}"></script>
-    <script src="{{ asset('components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js') }}"></script>
-    <script src="{{ asset('js/lib/object-swapper.js') }}"></script>
-    <script src="{{ asset('js/books-table-manager.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset(request, 'components/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset(request, 'components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset(request, 'components/paul-irish-jquery-unique-duck-punching/jquery-unique-function-duck-punching.js') }}"></script>
+    <script src="{{ asset(request, 'components/brandon-aaron-jquery-outerhtml-function/jquery.outerhtml.js') }}"></script>
+    <script src="{{ asset(request, 'components/edward-hotchkiss-wrapper/dist/wrapper-0.0.3.min.js') }}"></script>
+    <script src="{{ asset(request, 'js/lib/object-swapper.js') }}"></script>
+    <script src="{{ asset(request, 'js/books-table-manager.js') }}"></script>
+    <script src="{{ asset(request, 'js/main.js') }}"></script>
 </body>
 </html>
