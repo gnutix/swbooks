@@ -44,13 +44,25 @@ class BooksListTest extends WebTestCase
      */
     public function testEditorsList()
     {
-        $this->assertCount(3, $this->crawler->filter('dl.editors dd'));
+        $this->assertCount(3, $this->crawler->filter('#collapseEditors tbody tr'));
 
-        $this->assertEquals('en', $this->crawler->filter('dl.editors dt abbr')->first()->attr('lang'));
-        $this->assertEquals('English Publisher', $this->crawler->filter('dl.editors dd')->first()->text());
+        $this->assertEquals(
+            'PEN',
+            $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('td')->first()->text()
+        );
+        $this->assertContains(
+            'English Publisher',
+            $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('td')->last()->text()
+        );
 
-        $this->assertEquals('fr', $this->crawler->filter('dl.editors dt abbr')->eq(1)->attr('lang'));
-        $this->assertContains('French Publisher', $this->crawler->filter('dl.editors dd')->eq(1)->text());
+        $this->assertEquals(
+            'PFR',
+            $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('td')->first()->text()
+        );
+        $this->assertContains(
+            'French Publisher',
+            $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('td')->last()->text()
+        );
     }
 
     /**
@@ -58,8 +70,8 @@ class BooksListTest extends WebTestCase
      */
     public function testCategoriesList()
     {
-        $this->assertCount(2, $this->crawler->filter('ul.legend li'));
-        $this->assertEquals('Novel', $this->crawler->filter('ul.legend li.novel')->text());
+        $this->assertCount(2, $this->crawler->filter('#collapseTypes li'));
+        $this->assertContains('Novel', $this->crawler->filter('#collapseTypes li')->first()->text());
     }
 
     /**
@@ -67,8 +79,8 @@ class BooksListTest extends WebTestCase
      */
     public function testErasList()
     {
-        $this->assertCount(3, $this->crawler->filter('ul.shortcuts li'));
-        $this->assertEquals('Old Republic', $this->crawler->filter('ul.shortcuts li.oldRepublic')->text());
+        $this->assertCount(3, $this->crawler->filter('#collapseEras ul li'));
+        $this->assertContains('Old Republic', $this->crawler->filter('#collapseEras a[href="#oldRepublic"]')->text());
     }
 
     /**
@@ -78,9 +90,9 @@ class BooksListTest extends WebTestCase
      */
     public function testBooksTable()
     {
-        $this->assertCount(1, $this->crawler->filter('table.books-list'));
-        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list thead')->count());
-        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list tbody')->count());
-        $this->assertGreaterThan(1, $this->crawler->filter('table.books-list tbody td')->count());
+        $this->assertCount(1, $this->crawler->filter('table[data-books-list]'));
+        $this->assertGreaterThan(1, $this->crawler->filter('table[data-books-list] thead')->count());
+        $this->assertGreaterThan(1, $this->crawler->filter('table[data-books-list] tbody')->count());
+        $this->assertGreaterThan(1, $this->crawler->filter('table[data-books-list] tbody td')->count());
     }
 }
