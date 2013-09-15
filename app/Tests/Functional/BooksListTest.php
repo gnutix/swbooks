@@ -59,7 +59,7 @@ class BooksListTest extends WebTestCase
     public function testCategoriesList()
     {
         $this->assertCount(2, $this->crawler->filter('ul.legend li'));
-        $this->assertEquals('Adult novel', $this->crawler->filter('ul.legend li.adult')->text());
+        $this->assertEquals('Novel', $this->crawler->filter('ul.legend li.novel')->text());
     }
 
     /**
