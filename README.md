@@ -29,7 +29,7 @@ and a local webserver. Then:
 3. Navigate to the newly created `gnutix/swbooks` folder (`cd gnutix/swbooks`)
 4. Install [Composer](http://getcomposer.org/doc/00-intro.md#installation-nix) and run `composer.phar install`
 5. Install [Bower](http://bower.io/#installing-bower) and run `bower install`
-6. Access the application via [http://localhost/gnutix/swbooks/web](http://localhost/gnutix/swbooks/web)
+6. Access the application via [http://localhost/gnutix/swbooks/web/app_dev.php/](http://localhost/gnutix/swbooks/web/app_dev.php/)
 
 Setup a VirtualHost in Apache2
 ------------------------------
@@ -42,7 +42,7 @@ Create a new file for your virtual host (for example in `/etc/apache2/sites-avai
     DocumentRoot "/var/www/sites/gnutix/swbooks/web"
 
     <Directory "/var/www/sites/gnutix/swbooks/web">
-        DirectoryIndex app_dev.php app.php
+        DirectoryIndex app.php
         Options -Indexes FollowSymLinks SymLinksifOwnerMatch
         AllowOverride All
         Allow from All
@@ -52,7 +52,7 @@ Create a new file for your virtual host (for example in `/etc/apache2/sites-avai
 
 Then, add the following line to your `/etc/hosts` file : `127.0.0.1 swbooks.lo`. Finally, restart Apache (`sudo apachectl -k restart`).
 
-You should be able to access the application with the following URL: [http://swbooks.lo](http://swbooks.lo).
+You should be able to access the application with the following URL: [http://swbooks.lo/app_dev.php/](http://swbooks.lo/app_dev.php/).
 
 Execute the tests
 -----------------
