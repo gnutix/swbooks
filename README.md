@@ -25,11 +25,11 @@ First, ensure you have installed [git](http://git-scm.com/book/en/Getting-Starte
 and a local webserver. Then:
 
 1. Navigate to your local webserver root folder
-2. Clone the repository into a `swbooks` folder (`git clone git@github.com:gnutix/swbooks.git swbooks`)
-3. Navigate to the newly created `swbooks` folder (`cd swbooks`)
+2. Clone the repository into a `gnutix/swbooks` folder (`mkdir -p gnutix && git clone git@github.com:gnutix/swbooks.git gnutix/swbooks`)
+3. Navigate to the newly created `gnutix/swbooks` folder (`cd gnutix/swbooks`)
 4. Install [Composer](http://getcomposer.org/doc/00-intro.md#installation-nix) and run `composer.phar install`
 5. Install [Bower](http://bower.io/#installing-bower) and run `bower install`
-6. Access the application via [http://localhost/swbooks/web](http://localhost/swbooks/web)
+6. Access the application via [http://localhost/gnutix/swbooks/web](http://localhost/gnutix/swbooks/web)
 
 Execute the tests
 -----------------
