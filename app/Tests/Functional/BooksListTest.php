@@ -47,8 +47,8 @@ class BooksListTest extends WebTestCase
         $this->assertCount(3, $this->crawler->filter('#collapseEditors tbody tr'));
 
         $this->assertEquals(
-            'PEN',
-            $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('td')->first()->text()
+            'EN',
+            $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('img')->attr('alt')
         );
         $this->assertContains(
             'English Publisher',
@@ -56,8 +56,8 @@ class BooksListTest extends WebTestCase
         );
 
         $this->assertEquals(
-            'PFR',
-            $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('td')->first()->text()
+            'FR',
+            $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('img')->attr('alt')
         );
         $this->assertContains(
             'French Publisher',
