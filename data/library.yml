@@ -29,7 +29,7 @@ languages:
         name: French
 formats:
     - &f_unknown
-        id: unknown
+        id: ?
         name: Unknown
 categories:
     - &c_novel
@@ -105,7 +105,7 @@ editors:
         preferredLanguage: en
     - &e_swu
         id: swu
-        name: Star Wars Universe's translators
+        name: Star Wars Universe
         preferredLanguage: fr
 authors:
     - &a_john_ostrander

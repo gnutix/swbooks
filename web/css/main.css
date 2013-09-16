@@ -1,3 +1,27 @@
+/* Add colors for each type of book */
+.novel { background-color: #B0F3FF; }
+.young { background-color: #E9FFDC; }
+.comic { background-color: #FFC3BF; }
+.ebook { background-color: #E6BEA8; }
+.story { background-color: #FFF0D6; }
+
+/* Add a large list style */
+ul.large li {
+    padding: 4px 8px;
+}
+
+/* Margins helpers */
+.margin-right-sm { margin-right: 5px; }
+
+/* Fix header cells styling */
+table thead.main-header th {
+    text-align: center;
+    font-size: 150%;
+}
+table thead.main-header th abbr {
+    border-bottom: none;
+}
+
 /* Fix cells vertical alignment */
 table.table td {
     vertical-align: middle !important;

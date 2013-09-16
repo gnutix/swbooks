@@ -22,7 +22,7 @@ class StarWarsExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'gnutix_library_extension';
+        return 'gnutix_star_wars_extension';
     }
 
     /**

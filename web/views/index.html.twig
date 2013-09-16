@@ -38,7 +38,8 @@
                                     {% for era in library.eras %}
                                         <li class="list-group-item">
                                             <a href="#{{ era.id }}">
-                                                <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}" alt="{{ era.name }}">
+                                                <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}"
+                                                     alt="{{ era.name }}" class="margin-right-sm">
                                                 {{ era.name }}
                                                 <div class="pull-right"><span class="glyphicon glyphicon-circle-arrow-down"></span></div>
                                             </a>
@@ -60,26 +61,18 @@
                         <div id="collapseEditors" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <table class="table table-condensed">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 100px;">Identifier</th>
-                                        <th style="width: 100px;">Language</th>
-                                        <th>Name</th>
-                                    </tr>
-                                    </thead>
                                     <tbody>
                                     {% for editor in library.editors %}
                                         <tr>
-                                            <td><strong>{{ editor.id|upper }}</strong></td>
                                             <td>
                                                 {% set flag = asset(request, 'images/flags/'~ editor.preferredLanguage ~'.png', false) %}
                                                 {% if flag is not empty %}
-                                                    <img src="{{ flag }}" alt="{{ editor.preferredLanguage|upper }}" class="img-circle">
-                                                {% else %}
-                                                    {{ editor.preferredLanguage|upper }}
+                                                    <img src="{{ flag }}" alt="{{ editor.preferredLanguage|upper }}"
+                                                         class="img-circle margin-right-sm">
                                                 {% endif %}
+
+                                                {{ editor.name|highlightChars(editor.id) }}
                                             </td>
-                                            <td>{{ editor.name }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -98,7 +91,7 @@
                         </div>
                         <div id="collapseTypes" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <ul>
+                                <ul class="list-unstyled large">
                                     {% for category in library.categories %}
                                         <li class="{{ category.id }}">{{ category.name }}</li>
                                     {% endfor %}
@@ -139,24 +132,57 @@
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-condensed" data-books-list>
-                            <thead class="main-header">
-                                <tr>
-                                    <th>Timeline</th>
-                                    <th>Author(s)</th>
-                                    <th>Title</th>
-                                    <th><abbr title="Language of the release">Lang</abbr></th>
-                                    <th>Editor</th>
-                                    <th><abbr title="Format of the release">Format</abbr></th>
-                                    <th><abbr title="Number of copies owned">Nb.C</abbr></th>
-                                    <th><abbr title="Number of readings done">Nb.R</abbr></th>
-                                </tr>
-                            </thead>
-
                             {% for era in library.eras %}
                                 <thead class="era-header">
                                     <tr>
                                         <th class="{{ era.id }}">
+                                            <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}"
+                                                 alt="{{ era.name }}" class="margin-right-sm">
                                             <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <thead class="main-header">
+                                    <tr>
+                                        <th style="width: 150px;">
+                                            <abbr title="Chronological timeline">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </abbr>
+                                        </th>
+                                        <th>
+                                            <abbr title="Book title">
+                                                <span class="glyphicon glyphicon-tags"></span>
+                                            </abbr>
+                                        </th>
+                                        <th style="width: 190px;">
+                                            <abbr title="Author(s)">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </abbr>
+                                        </th>
+                                        <th>
+                                            <abbr title="Language of the release">
+                                                <span class="glyphicon glyphicon-globe"
+                                            </abbr>
+                                        </th>
+                                        <th>
+                                            <abbr title="Editor / publisher of the release">
+                                                <span class="glyphicon glyphicon-user"></span>
+                                            </abbr>
+                                        </th>
+                                        <th>
+                                            <abbr title="Format of the release">
+                                                <span class="glyphicon glyphicon-book"></span>
+                                            </abbr>
+                                        </th>
+                                        <th style="width: 35px;">
+                                            <abbr title="Number of copies owned">
+                                                <span class="glyphicon glyphicon-list"></span>
+                                            </abbr>
+                                        </th>
+                                        <th style="width: 45px;">
+                                            <abbr title="Number of readings done">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </abbr>
                                         </th>
                                     </tr>
                                 </thead>
@@ -172,13 +198,6 @@
                                                     {% if book.chronologicalMarker.timeEnd is not empty %}
                                                         {{ (' - '~ book.chronologicalMarker.timeEnd|starWarsDate)|raw }}
                                                     {% endif %}
-                                                </td>
-                                                <td>
-                                                    <ul class="list-inline">
-                                                        {% for author in book.authors %}
-                                                            <li>{{ author.name }}</li>
-                                                        {% endfor %}
-                                                    </ul>
                                                 </td>
                                                 <td class="{{ book.category.id }}" data-new="{{ new ? 1 : 0 }}">
                                                     {% if new %}<span class="label label-info">NEW</span>{% endif %}
@@ -198,6 +217,13 @@
                                                             <img src="{{ swuHost }}favicon.ico" alt="Star Wars Universe website">
                                                         </a>
                                                     {% endif %}
+                                                </td>
+                                                <td>
+                                                    <ul class="list-inline">
+                                                        {% for author in book.authors %}
+                                                            <li>{{ author.name }}</li>
+                                                        {% endfor %}
+                                                    </ul>
                                                 </td>
                                                 <td class="text-center">
                                                     {% set flag = asset(request, 'images/flags/'~ release.language.id ~'.png', false) %}

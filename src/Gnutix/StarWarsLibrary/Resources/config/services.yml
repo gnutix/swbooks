@@ -1,10 +1,10 @@
 parameters:
     gnutix_library.library_factory.xml_library_factory.class: Gnutix\StarWarsLibrary\LibraryFactory\XmlLibraryFactory
     gnutix_library.library_factory.yaml_library_factory.class: Gnutix\StarWarsLibrary\LibraryFactory\YamlLibraryFactory
-    gnutix_library.twig.extension.class: Gnutix\StarWarsLibrary\Twig\Extension\StarWarsExtension
+    gnutix_library.twig.star_wars_extension.class: Gnutix\StarWarsLibrary\Twig\Extension\StarWarsExtension
 
 services:
-    gnutix_library.twig.extension:
-        class: %gnutix_library.twig.extension.class%
+    gnutix_library.twig.star_wars_extension:
+        class: %gnutix_library.twig.star_wars_extension.class%
         tags:
             - { name: twig.extension }
