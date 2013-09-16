@@ -1,6 +1,12 @@
 $(document).ready(function () {
     'use strict';
 
+    // Smooth scrolling
+    $('a[data-smooth-scroll]').on('click', function(event) {
+        event.preventDefault();
+        $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top }, 'slow');
+    });
+
     // Fix glyphicon position in accordion (http://jsfiddle.net/zessx/R6EAW/12/)
     function toggleChevron(e) {
         $(e.target)

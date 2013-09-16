@@ -37,7 +37,7 @@
                                 <ul class="list-group">
                                     {% for era in library.eras %}
                                         <li class="list-group-item">
-                                            <a href="#{{ era.id }}">
+                                            <a href="#{{ era.id }}" data-smooth-scroll>
                                                 <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}"
                                                      alt="{{ era.name }}" class="margin-right-sm">
                                                 {{ era.name }}
@@ -133,12 +133,12 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-condensed" data-books-list>
                             {% for era in library.eras %}
-                                <thead class="era-header">
+                                <thead class="era-header" id="{{ era.id }}">
                                     <tr>
                                         <th class="{{ era.id }}">
                                             <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}"
                                                  alt="{{ era.name }}" class="margin-right-sm">
-                                            <a href="#{{ era.id }}" id="{{ era.id }}">{{ era.name }} era</a>
+                                            <a href="#{{ era.id }}" data-smooth-scroll>{{ era.name }} era</a>
                                         </th>
                                     </tr>
                                 </thead>
