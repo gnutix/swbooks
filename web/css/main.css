@@ -76,6 +76,14 @@ div.col-md-3 div.panel-group {
     margin-bottom: 48px;
 }
 
+/* Fix padding after the filtering form */
+div.panel-heading fieldset {
+    padding-bottom: 10px;
+}
+div.panel-heading fieldset input.btn {
+    margin-left: 10px;
+}
+
 /*
  * Affix styling
  */
