@@ -53,13 +53,6 @@ table.table td ul.list-inline li:last-child:after {
 ul.list-group li.list-group-item a:hover {
     text-decoration: none;
 }
-ul.list-group li.list-group-item a span.glyphicon-circle-arrow-down {
-    display: none;
-}
-ul.list-group li.list-group-item a:hover span.glyphicon-circle-arrow-down {
-    display: inline-block;
-    vertical-align: middle;
-}
 
 /* Fix definition list left column */
 dl.dl-horizontal.left-column-xs dt {
