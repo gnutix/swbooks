@@ -27,7 +27,7 @@ abstract class PhpUnitSimpleTestCase extends \PHPUnit_Framework_TestCase
         $this->setUpBeforeSimpleMethodsTests();
 
         if ($this->instance instanceof \PHPUnit_Framework_MockObject_MockObject) {
-            $this->createResult();
+            $result = $this->createResult();
 
         } else {
 
