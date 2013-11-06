@@ -4,12 +4,19 @@ php:
     - 5.4
     - 5.3
 
+install:
+    - npm install jshint
+    - npm install bower
+
+after_install:
+    - composer self-update
+
 before_script:
-    - composer self-update && composer install
-    - npm install -g bower && bower install
+    - composer install
+    - bower install
 
 script:
     - $(pwd)/bin/phpunit
 
 after_script:
-    - $(pwd)/bin/console cs --skip=jshint
+    - $(pwd)/bin/console cs
