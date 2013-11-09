@@ -1,4 +1,6 @@
 {
+    "name": "Star Wars Library",
+    "description": "This single web page application allows me to list my Star Wars books.",
     "autoload": {
         "psr-0": { "": ["src/", "app/"] }
     },
