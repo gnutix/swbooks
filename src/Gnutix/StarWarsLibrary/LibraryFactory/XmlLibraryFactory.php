@@ -14,10 +14,10 @@ class XmlLibraryFactory extends BaseXmlLibraryFactory
     /**
      * {@inheritDoc}
      */
-    protected function getClassesNames()
+    protected function getClassesMap()
     {
         return array_merge(
-            parent::getClassesNames(),
+            parent::getClassesMap(),
             array(
                 // Override the parent's classes names
                 'book' => '\Gnutix\StarWarsLibrary\Model\Book',

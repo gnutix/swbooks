@@ -22,7 +22,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
      */
     public function __construct(YamlFileLoader $loader)
     {
-        $this->classes = $this->getClassesNames();
+        $this->classes = $this->getClassesMap();
         $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
     }
 
@@ -36,9 +36,8 @@ class YamlLibraryFactory implements LibraryFactoryInterface
 
     /**
      * @return array
-     * @todo Use a service of some kind to store this class mapping
      */
-    protected function getClassesNames()
+    protected function getClassesMap()
     {
         return array(
             'author' => '\Gnutix\Library\Model\Author',
