@@ -1,5 +1,5 @@
 {
-    "name": "Star Wars Library",
+    "name": "gnutix/swbooks",
     "description": "This single web page application allows me to list my Star Wars books.",
     "license": "MIT",
     "autoload": {
