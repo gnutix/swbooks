@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/gnutix/swbooks.png?branch=dev)](https://travis-ci.org/gnutix/swbooks)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/e275cb12-5729-4490-baad-a3898fd71ff9/mini.png)](https://insight.sensiolabs.com/projects/e275cb12-5729-4490-baad-a3898fd71ff9)
 
 Star Wars Library
 =================
