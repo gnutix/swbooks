@@ -4,7 +4,7 @@ namespace Gnutix\StarWarsLibrary\Dumper;
 
 use Gnutix\Library\Dumper\YamlLibraryDumper as BaseYamlLibraryDumper;
 
-use Gnutix\Library\Model\Book;
+use Gnutix\StarWarsLibrary\Model\Book;
 use Gnutix\StarWarsLibrary\Model\ChronologicalMarker;
 use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
 
