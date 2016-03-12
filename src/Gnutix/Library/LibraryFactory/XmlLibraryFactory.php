@@ -19,10 +19,11 @@ class XmlLibraryFactory implements LibraryFactoryInterface
 
     /**
      * @param \Gnutix\Library\Loader\XmlFileLoader $loader
+     * @param array                                $classes
      */
-    public function __construct(XmlFileLoader $loader)
+    public function __construct(XmlFileLoader $loader, $classes)
     {
-        $this->classes = $this->getClassesMap();
+        $this->classes = $classes;
         $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
     }
 
@@ -32,25 +33,6 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     public function getLibrary()
     {
         return $this->library;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getClassesMap()
-    {
-        return array(
-            'author' => '\Gnutix\Library\Model\Author',
-            'book' => '\Gnutix\Library\Model\Book',
-            'category' => '\Gnutix\Library\Model\Category',
-            'editor' => '\Gnutix\Library\Model\Editor',
-            'language' => '\Gnutix\Library\Model\Language',
-            'library' => '\Gnutix\Library\Model\Library',
-            'release' => '\Gnutix\Library\Model\Release',
-            'series' => '\Gnutix\Library\Model\Series',
-            'format' => '\Gnutix\Library\Model\Format',
-            'owner' => '\Gnutix\Library\Model\Owner',
-        );
     }
 
     /**

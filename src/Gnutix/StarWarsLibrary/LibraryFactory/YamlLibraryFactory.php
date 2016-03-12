@@ -16,25 +16,6 @@ class YamlLibraryFactory extends BaseYamlLibraryFactory
     /**
      * {@inheritDoc}
      */
-    protected function getClassesMap()
-    {
-        return array_merge(
-            parent::getClassesMap(),
-            array(
-                // Override the parent's classes names
-                'book' => '\Gnutix\StarWarsLibrary\Model\Book',
-                'library' => '\Gnutix\StarWarsLibrary\Model\Library',
-
-                // Add new ones
-                'chronologicalMarker' => '\Gnutix\StarWarsLibrary\Model\ChronologicalMarker',
-                'era' => '\Gnutix\StarWarsLibrary\Model\Era',
-            )
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     protected function getLibraryDependencies(array $data)
     {
         return array_merge(

@@ -1,4 +1,15 @@
 parameters:
+    gnutix_library.classes_map:
+        author: Gnutix\Library\Model\Author
+        book: Gnutix\Library\Model\Book
+        category: Gnutix\Library\Model\Category
+        editor: Gnutix\Library\Model\Editor
+        language: Gnutix\Library\Model\Language
+        library: Gnutix\Library\Model\Library
+        release: Gnutix\Library\Model\Release
+        series: Gnutix\Library\Model\Series
+        format: Gnutix\Library\Model\Format
+        owner: Gnutix\Library\Model\Owner
     gnutix_library.loader.xml_file_loader.class: Gnutix\Library\Loader\XmlFileLoader
     gnutix_library.loader.yaml_file_loader.class: Gnutix\Library\Loader\YamlFileLoader
     gnutix_library.library_factory.xml_library_factory.class: Gnutix\Library\LibraryFactory\XmlLibraryFactory
@@ -22,7 +33,7 @@ services:
 
     gnutix_library.library_factory.xml_library_factory:
         class: "%gnutix_library.library_factory.xml_library_factory.class%"
-        arguments: ["@gnutix_library.loader.xml_file_loader"]
+        arguments: ["@gnutix_library.loader.xml_file_loader", "%gnutix_library.classes_map%"]
 
     gnutix_library.loader.yaml_file_loader:
         class: "%gnutix_library.loader.yaml_file_loader.class%"
@@ -30,7 +41,7 @@ services:
 
     gnutix_library.library_factory.yaml_library_factory:
         class: "%gnutix_library.library_factory.yaml_library_factory.class%"
-        arguments: ["@gnutix_library.loader.yaml_file_loader"]
+        arguments: ["@gnutix_library.loader.yaml_file_loader", "%gnutix_library.classes_map%"]
 
     gnutix_library.twig.library_extension:
         class: "%gnutix_library.twig.library_extension.class%"

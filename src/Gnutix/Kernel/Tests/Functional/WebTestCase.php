@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Client;
  */
 class WebTestCase extends \PHPUnit_Framework_TestCase
 {
-    /** @var \Symfony\Component\HttpKernel\KernelInterface */
+    /** @var \Symfony\Component\HttpKernel\HttpKernelInterface */
     protected $kernel;
 
     /** @var \Symfony\Component\HttpKernel\Client */
