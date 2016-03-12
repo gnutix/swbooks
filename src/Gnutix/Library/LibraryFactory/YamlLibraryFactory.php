@@ -19,7 +19,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
 
     /**
      * @param \Gnutix\Library\Loader\YamlFileLoader $loader
-     * @param array                                $classes
+     * @param array                                 $classes
      */
     public function __construct(YamlFileLoader $loader, $classes)
     {

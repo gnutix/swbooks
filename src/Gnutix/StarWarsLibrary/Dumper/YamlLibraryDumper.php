@@ -3,10 +3,10 @@
 namespace Gnutix\StarWarsLibrary\Dumper;
 
 use Gnutix\Library\Dumper\YamlLibraryDumper as BaseYamlLibraryDumper;
-use Gnutix\Library\LibraryInterface;
 
 use Gnutix\Library\Model\Book;
 use Gnutix\StarWarsLibrary\Model\ChronologicalMarker;
+use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
 
 /**
  * YAML Library Dumper
@@ -15,9 +15,9 @@ class YamlLibraryDumper extends BaseYamlLibraryDumper
 {
     /**
      * {@inheritDoc}
-     * @param \Gnutix\StarWarsLibrary\Model\Library $library
+     * @param \Gnutix\StarWarsLibrary\StarWarsLibraryInterface $library
      */
-    protected function buildArray(LibraryInterface $library)
+    protected function buildArray(StarWarsLibraryInterface $library)
     {
         $eras = array();
 

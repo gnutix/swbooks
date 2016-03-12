@@ -29,7 +29,7 @@ class YamlFileLoader implements LoaderInterface
             throw new \InvalidArgumentException('The file "'.$filePath.'" has not been found.');
         }
 
-        $this->data = Yaml::parse(file_get_contents($filePath), true, true);
+        $this->data = (array) Yaml::parse(file_get_contents($filePath), true, true);
     }
 
     /**

@@ -21,12 +21,6 @@ services:
         class: Gnutix\Library\LibraryInterface
         factory: ["@gnutix_library.library_factory", getLibrary]
 
-    gnutix_library.loader:
-        alias: gnutix_library.loader.yaml_file_loader
-
-    gnutix_library.library_factory:
-        alias: gnutix_library.library_factory.yaml_library_factory
-
     gnutix_library.loader.xml_file_loader:
         class: "%gnutix_library.loader.xml_file_loader.class%"
         arguments: ["%gnutix_library.source_file_path%"]

@@ -25,6 +25,27 @@ class Extension implements ExtensionInterface
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        $container->setAliases($this->getLibraryAliases($config['source_file_path']));
+    }
+
+    /**
+     * @param string $sourceFilePath
+     *
+     * @return array
+     */
+    protected function getLibraryAliases($sourceFilePath)
+    {
+        $libraryType = strtolower(pathinfo($sourceFilePath, PATHINFO_EXTENSION));
+
+        if ('yml' === $libraryType) {
+            $libraryType = 'yaml';
+        }
+
+        return array(
+            'gnutix_library.loader' => 'gnutix_library.loader.'.$libraryType.'_file_loader',
+            'gnutix_library.library_factory' => 'gnutix_library.library_factory.'.$libraryType.'_library_factory',
+        );
     }
 
     /**
