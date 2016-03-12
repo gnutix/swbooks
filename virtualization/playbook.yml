@@ -19,9 +19,16 @@
     - { role: nodejs }
 
   tasks:
-    - name: install project dev tools
-      shell: cd {{ project_directory }} && composer.phar --quiet install
-
     - name: Install JSHint globally
       npm: name=jshint global=yes
       sudo: yes
+
+    - name: Install Bower globally
+      npm: name=bower global=yes
+      sudo: yes
+
+    - name: install backend vendors
+      shell: cd {{ project_directory }} && composer.phar --quiet install
+
+    - name: install frontend vendors
+      shell: cd {{ project_directory }} && bower install
