@@ -4,11 +4,12 @@ namespace Gnutix\StarWarsLibrary\LibraryFactory;
 
 use Gnutix\Library\LibraryFactory\YamlLibraryFactory as BaseYamlLibraryFactory;
 use Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper;
+use Gnutix\StarWarsLibrary\Model\Library;
 
 /**
  * Library Factory for the XML data
  *
- * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()   This allows the auto-completion to work correctly
+ * @method Library getLibrary()    This allows the auto-completion to work correctly
  */
 class YamlLibraryFactory extends BaseYamlLibraryFactory
 {
