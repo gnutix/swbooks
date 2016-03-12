@@ -1,0 +1,23 @@
+<form class="form-inline" data-filter-languages-form>
+    <fieldset>
+        <legend>Filter by language</legend>
+
+        {# Get the languages list #}
+        {% set languages = {} %}
+        {% for book in library.books %}
+            {% for release in book.releases %}
+                {% set languages = languages|merge({(release.language.id): release.language}) %}
+            {% endfor %}
+        {% endfor %}
+
+        {% for language in languages %}
+            <label class="checkbox-inline">
+                <input type="checkbox" name="show-languages[]" value="{{ language.id }}"
+                        {% if showLanguages is empty or language.id in showLanguages %} checked{% endif %}>
+                {{ language.name }}
+            </label>
+        {% endfor %}
+
+        <input type="submit" class="btn btn-primary btn-sm js-hidden" value="Apply">
+    </fieldset>
+</form>

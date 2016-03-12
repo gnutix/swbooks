@@ -1,0 +1,77 @@
+<div class="panel-group" data-accordion data-spy="affix" data-offset-top="296">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseEras">
+                    Eras' shortcuts
+                </a>
+                <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i>
+            </h4>
+        </div>
+        <div id="collapseEras" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul class="list-group">
+                    {% for era in library.eras %}
+                        <li class="list-group-item">
+                            <a href="#{{ era.id }}" data-smooth-scroll>
+                                <img src="{{ asset(request, 'images/eras/'~ era.id ~'.png') }}"
+                                     alt="{{ era.name }}" class="margin-right-sm">
+                                {{ era.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseEditors">
+                    Books' editors
+                </a>
+                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </h2>
+        </div>
+        <div id="collapseEditors" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                    {% for editor in library.editors %}
+                        <tr>
+                            <td>
+                                {% set flag = asset(request, 'images/flags/'~ editor.preferredLanguage ~'.png', false) %}
+                                {% if flag is not empty %}
+                                    <img src="{{ flag }}" alt="{{ editor.preferredLanguage|upper }}"
+                                         class="img-circle margin-right-sm">
+                                {% endif %}
+
+                                {{ editor.name|highlightChars(editor.id) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="[data-accordion]" href="#collapseTypes">
+                    Books' types
+                </a>
+                <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+            </h4>
+        </div>
+        <div id="collapseTypes" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul class="list-unstyled large">
+                    {% for category in library.categories %}
+                        <li class="{{ category.id }}">{{ category.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
