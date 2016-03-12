@@ -1,0 +1,11 @@
+{
+  "name": "swbooks",
+  "private": true,
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "paul-irish-jquery-unique-duck-punching": "*",
+    "brandon-aaron-jquery-outerhtml-function": "*",
+    "edward-hotchkiss-wrapper": "~0.0.3"
+  }
+}

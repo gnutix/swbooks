@@ -1,0 +1,5 @@
+imports:
+    - { resource: config.yml }
+
+twig:
+    cache: %kernel.cache_dir%/twig

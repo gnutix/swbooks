@@ -1,0 +1,22 @@
+language: php
+php:
+    - 5.6
+    - 5.5
+    - 5.4
+    - 5.3
+
+before_install:
+    - composer self-update
+
+install:
+    - npm install -g bower jshint
+
+before_script:
+    - composer install
+    - bower install
+
+script:
+    - $(pwd)/bin/phpunit
+
+after_script:
+    - $(pwd)/bin/console cs

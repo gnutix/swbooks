@@ -1,0 +1,150 @@
+categories:
+    - &c_novel
+        id: novel
+        name: Novel
+    - &c_ebook
+        id: ebook
+        name: E-book
+
+languages:
+    - &l_fr
+        id: fr
+        name: French
+    - &l_en
+        id: en
+        name: English
+
+formats:
+    - &f_pb
+        id: pb
+        name: Paperback
+    - &f_hc
+        id: hc
+        name: Hardcover
+    - &f_nm
+        id: numeric
+        name: Numeric
+
+editors:
+    - &e_en
+        id: pen
+        name: English Publisher
+        preferredLanguage: en
+    - &e_fr
+        id: pfr
+        name: French Publisher
+        preferredLanguage: fr
+    - &e_nolang
+        id: web
+        name: Publisher without language
+
+eras:
+    - &era_oldRepublic
+        id: oldRepublic
+        name: Old Republic
+    - &era_newJediOrder
+        id: newJediOrder
+        name: New Jedi Order
+    - &era_other
+        id: other
+        name: Other
+
+authors:
+    - &a_1
+        id: 1
+        name: Timothy Zahn
+    - &a_2
+        id: 2
+        name: Drew Karpyshyn
+    - &a_3
+        id: 3
+        name: Karen Traviss
+
+series:
+    - &s_old_republic
+        id: theOldRepublic
+        title: The Old Republic
+
+books:
+    -
+        category: *c_novel
+        authors:
+            - *a_1
+            - *a_2
+        releases:
+            - &revanEnglishPaperback
+                title: Revan
+                language: *l_en
+                editor: *e_en
+                format: *f_pb
+                publicationDate: { day: 1, month: 1, year: 2012 }
+                series:
+                    <<: *s_old_republic
+                    number: 1
+                owner:
+                    copies: 1
+                    readings: 2
+            -
+                <<: *revanEnglishPaperback
+                format: *f_hc
+                publicationDate: { day: 10, month: 9, year: 2013 }
+                owner:
+                    copies: 0
+                    readings: 1
+            -
+                <<: *revanEnglishPaperback
+                language: *l_fr
+                editor: *e_fr
+                publicationDate: { day: 19, month: 4, year: 2012 }
+                owner:
+                    copies: 1
+                    readings: 0
+        starWars:
+            chronology:
+                era: *era_oldRepublic
+                time:
+                    start: -3954
+                    end: -3950
+            swuBookId: 777
+
+    -
+        category: *c_novel
+        authors:
+            - *a_1
+            - *a_2
+        releases:
+            -
+                title: Revan Returns
+                language: *l_en
+                editor: *e_en
+                format: *f_pb
+                publicationDate: { day: 1, month: 1, year: 2014 }
+                series:
+                    <<: *s_old_republic
+                    number: 2
+        starWars:
+            chronology:
+                era: *era_oldRepublic
+                time: -3925
+            swuBookId: 777
+
+    -
+        category: *c_novel
+        authors:
+            - *a_1
+            - *a_2
+        releases:
+            -
+                title: Revan Returns
+                language: *l_en
+                editor: *e_en
+                format: *f_pb
+                publicationDate: { day: 1, month: 1, year: 2014 }
+                series:
+                    <<: *s_old_republic
+                    number: 2
+        starWars:
+            chronology:
+                era: *era_newJediOrder
+                time: -3925
+            swuBookId: 777

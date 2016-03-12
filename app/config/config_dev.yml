@@ -1,0 +1,6 @@
+imports:
+    - { resource: config.yml }
+
+twig:
+    auto_reload: true
+    debug: true

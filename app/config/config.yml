@@ -1,0 +1,10 @@
+twig:
+    strict_variables: true
+    cache: false
+    paths:
+        - %kernel.web_dir%/views
+    globals:
+        library: @gnutix_library.library
+
+gnutix_library:
+    source_file_path: %kernel.app_root_dir%/data/library.yml
