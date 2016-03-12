@@ -1,8 +1,10 @@
 <?php
 
+namespace Application;
+
 use Symfony\Component\Console\Application;
 
-use Commands\CodingStandardCommand;
+use Application\Commands\CodingStandardCommand;
 
 /**
  * Application Console

@@ -1932,7 +1932,7 @@ books:
         category: *c_ebook
         releases:
             -
-                title: Darth Maul: Saboteur
+                title: 'Darth Maul: Saboteur'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -2295,7 +2295,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Darth Maul: Shadow Hunter
+                title: 'Darth Maul: Shadow Hunter'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -2308,7 +2308,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: Darth Maul: Shadow Hunter
+                title: 'Darth Maul: Shadow Hunter'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_fn
@@ -3439,7 +3439,7 @@ books:
         category: *c_story
         releases:
             -
-                title: Omega Squad: Targets
+                title: 'Omega Squad: Targets'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_mag
@@ -3452,7 +3452,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: Omega Squad: Targets
+                title: 'Omega Squad: Targets'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_swu
@@ -3786,7 +3786,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Gambit: Stealth
+                title: 'Gambit: Stealth'
                 language: *l_en
                 publicationDate:
                     day: 23
@@ -3802,7 +3802,7 @@ books:
                     title: The Clone Wars
                     number: 4
             -
-                title: Gambit: Stealth
+                title: 'Gambit: Stealth'
                 language: *l_fr
                 publicationDate:
                     day: 22
@@ -3830,7 +3830,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Gambit: Siege
+                title: 'Gambit: Siege'
                 language: *l_en
                 publicationDate:
                     day: 25
@@ -3846,7 +3846,7 @@ books:
                     title: The Clone Wars
                     number: 5
             -
-                title: Gambit: Siege
+                title: 'Gambit: Siege'
                 language: *l_fr
                 publicationDate:
                     day: 1
@@ -4051,7 +4051,7 @@ books:
         category: *c_story
         releases:
             -
-                title: The Clone Wars: The Pengalan Tradeoff
+                title: 'The Clone Wars: The Pengalan Tradeoff'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_mag
@@ -4064,7 +4064,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: The Clone Wars: The Pengalan Tradeoff
+                title: 'The Clone Wars: The Pengalan Tradeoff'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_swu
@@ -4268,7 +4268,7 @@ books:
         category: *c_story
         releases:
             -
-                title: Medstar: Intermezzo
+                title: 'Medstar: Intermezzo'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_mag
@@ -4409,7 +4409,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Yoda: Dark Rendezvous
+                title: 'Yoda: Dark Rendezvous'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -4422,7 +4422,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: Yoda: Dark Rendezvous
+                title: 'Yoda: Dark Rendezvous'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_fn
@@ -4655,7 +4655,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Dark Lord: The Rise of Darth Vader
+                title: 'Dark Lord: The Rise of Darth Vader'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -4668,7 +4668,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: Dark Lord: The Rise of Darth Vader
+                title: 'Dark Lord: The Rise of Darth Vader'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_fn
@@ -4718,7 +4718,7 @@ books:
         category: *c_young
         releases:
             -
-                title: A New Hope: The Life of Luke Skywalker
+                title: 'A New Hope: The Life of Luke Skywalker'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_sc
@@ -5944,7 +5944,7 @@ books:
         category: *c_story
         releases:
             -
-                title: Priority: X
+                title: 'Priority: X'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_mag
@@ -7828,7 +7828,7 @@ books:
         category: *c_story
         releases:
             -
-                title: Lumiya: Dark Star of the Empire
+                title: 'Lumiya: Dark Star of the Empire'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_mag
@@ -7841,7 +7841,7 @@ books:
                     title: ~
                     number: ~
             -
-                title: Lumiya: Dark Star of the Empire
+                title: 'Lumiya: Dark Star of the Empire'
                 language: *l_fr
                 publicationDate: ~
                 editor: *e_swu
@@ -10654,7 +10654,7 @@ books:
         category: *c_ebook
         releases:
             -
-                title: Boba Fett: A Practical Man
+                title: 'Boba Fett: A Practical Man'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -12343,7 +12343,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Jedi vs Sith : The Essential Guide to the Force
+                title: 'Jedi vs Sith: The Essential Guide to the Force'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr
@@ -12501,7 +12501,7 @@ books:
         category: *c_novel
         releases:
             -
-                title: Weapons and Technology : Revised Edition
+                title: 'Weapons and Technology: Revised Edition'
                 language: *l_en
                 publicationDate: ~
                 editor: *e_dr

@@ -1,5 +1,9 @@
 <?php
 
+namespace Application;
+
+use Gnutix\StarWarsLibrary\DependencyInjection\Extension as StarWarsLibraryExtension;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,7 +22,7 @@ class AppKernel extends TwigAwareKernel
         return array_merge(
             parent::getExtensions(),
             array(
-                new Gnutix\StarWarsLibrary\DependencyInjection\Extension
+                new StarWarsLibraryExtension
             )
         );
     }

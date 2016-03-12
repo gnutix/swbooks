@@ -1,6 +1,6 @@
 <?php
 
-namespace Commands;
+namespace Application\Commands;
 
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Process\Process;
 /**
  * Base Command
  *
- * @method \AppConsole getApplication()
+ * @method \Application\AppConsole getApplication()
  */
 abstract class Command extends BaseCommand
 {

@@ -2,6 +2,7 @@
 
 namespace Gnutix\Kernel\Tests\Functional;
 
+use Application\AppKernel;
 use Symfony\Component\HttpKernel\Client;
 
 /**
@@ -20,7 +21,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->kernel = new \AppKernel('test', true);
+        $this->kernel = new AppKernel('test', true);
         $this->client = new Client($this->kernel);
     }
 }
