@@ -1,3 +1,4 @@
+.vagrant/
 bin/
 !bin/console
 app/cache/
