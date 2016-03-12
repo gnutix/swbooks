@@ -19,3 +19,4 @@ root_directory: "/vagrant/web/"
 # For a PHP project, you might want to set the following
 # Default reporting level of PHP errors
 php_error_reporting: "E_ALL & ~E_NOTICE"
+php_version: "7.0"

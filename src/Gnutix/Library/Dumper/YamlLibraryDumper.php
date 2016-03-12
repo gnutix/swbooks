@@ -3,10 +3,8 @@
 namespace Gnutix\Library\Dumper;
 
 use Symfony\Component\Yaml\Dumper;
-
 use Gnutix\Library\LibraryDumperInterface;
 use Gnutix\Library\LibraryInterface;
-
 use Gnutix\Library\Model\Book;
 
 /**

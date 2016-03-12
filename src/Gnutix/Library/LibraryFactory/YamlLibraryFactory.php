@@ -164,7 +164,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                 $release,
                 'publicationDate',
                 null,
-                function ($data) use ($that) {
+                function($data) use ($that) {
                     return $that->transformToDateTime($data);
                 }
             ),
@@ -173,7 +173,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                     $release,
                     'series',
                     array(),
-                    function ($data) use ($that) {
+                    function($data) use ($that) {
                         return $that->renameArrayKeys($data, array('number' => 'bookId'));
                     }
                 )
@@ -183,7 +183,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                     $release,
                     'owner',
                     array(),
-                    function ($data) use ($that) {
+                    function($data) use ($that) {
                         return $that->renameArrayKeys($data, array('copies' => 'nbCopies', 'readings' => 'nbReadings'));
                     }
                 )

@@ -67,7 +67,7 @@ class StarWarsExtension extends \Twig_Extension
             // Replace the suffixes
             return preg_replace_callback(
                 '# ((?:A|B)BY)#',
-                function ($matches) use ($suffixes) {
+                function($matches) use ($suffixes) {
                     return $suffixes[$matches[1]];
                 },
                 $date
