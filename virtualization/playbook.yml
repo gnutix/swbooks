@@ -16,7 +16,12 @@
     - { role: base }
     - { role: php-fpm, nginx_site_template: 'symfony2-site.j2' }
     - { role: composer }
+    - { role: nodejs }
 
   tasks:
     - name: install project dev tools
-      shell: cd {{ root_directory }} && composer.phar --quiet install
+      shell: cd {{ project_directory }} && composer.phar --quiet install
+
+    - name: Install JSHint globally
+      npm: name=jshint global=yes
+      sudo: yes
