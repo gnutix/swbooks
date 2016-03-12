@@ -21,11 +21,9 @@ Project setup
 Execute the tests
 -----------------
 
-1. Follow the "Project setup" chapter
-2. Run `bin/phpunit`
+`vagrant ssh -c '/vagrant/bin/phpunit'`
 
 Coding standards
 ----------------
 
-1. Follow the "Project setup" chapter
-2. Run `bin/console cs`
+`vagrant ssh -c '/vagrant/bin/console cs'`
