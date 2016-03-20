@@ -2,8 +2,6 @@
 
 namespace Application\Commands;
 
-use Application\AppConsole;
-
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,7 +10,7 @@ use Symfony\Component\Process\Process;
 /**
  * Base Command
  *
- * @method AppConsole getApplication()    This allows the auto-completion to work correctly
+ * @method \Application\AppConsole getApplication()    This allows the auto-completion to work correctly
  */
 abstract class Command extends BaseCommand
 {
