@@ -3,13 +3,14 @@
 namespace Gnutix\Library\Tests\Helper\Unit;
 
 use Gnutix\Library\Tests\Unit\Helper\Mock\ArrayPopulatedObjectMock;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the ArrayPopulatedObject class
  *
  * @group unit
  */
-class ArrayPopulatedObjectTest extends \PHPUnit_Framework_TestCase
+class ArrayPopulatedObjectTest extends TestCase
 {
     /**
      * @param array $data
@@ -65,12 +66,11 @@ class ArrayPopulatedObjectTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The property "unknownProperty" does not exists on object
-     */
     public function testSetUnknownProperty()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The property "unknownProperty" does not exists on object');
+
         new ArrayPopulatedObjectMock(
             array(
                 'property1' => 'test',

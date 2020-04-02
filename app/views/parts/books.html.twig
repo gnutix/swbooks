@@ -1,3 +1,21 @@
+{#
+ # Display the right number of icons for the number of books owned / read
+ #}
+{% macro displayIcons(nb) %}
+    {% if 0 == nb %}
+        <small>
+            <span class="glyphicon glyphicon-remove"></span>
+        </small>
+    {% else %}
+        {% set loop = 1..(nb) %}
+        {% for i in loop %}<small>{% endfor %}
+        {% for i in loop %}
+            <span class="glyphicon glyphicon-ok"></span>
+        {% endfor %}
+        {% for i in loop %}</small>{% endfor %}
+    {% endif %}
+{% endmacro %}
+
 <div class="panel panel-default">
     <div class="panel-heading">
         {% include 'parts/filter_form.html.twig' %}
@@ -60,7 +78,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for book in library.books if book.chronologicalMarker.era.id == era.id %}
+                {% for book in library.booksByEra(era.id) %}
                     {% for release in book.releases %}
                         {% set new = release.published and 0 == release.owner.nbCopies and
                         release.publicationDate > 'now'|date_modify('-3 months')
@@ -123,10 +141,10 @@
 
                             {% if release.published %}
                                 <td class="text-center {{ 0 == release.owner.nbCopies ? 'danger' : 'success' }}">
-                                    {{ helper.displayIcons(release.owner.nbCopies) }}
+                                    {{ _self.displayIcons(release.owner.nbCopies) }}
                                 </td>
                                 <td class="text-center {{ 0 == release.owner.nbReadings ? 'danger' : 'success' }}">
-                                    {{ helper.displayIcons(release.owner.nbReadings) }}
+                                    {{ _self.displayIcons(release.owner.nbReadings) }}
                                 </td>
                             {% else %}
                                 <td colspan="2" class="text-center active">

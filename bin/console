@@ -1,9 +1,0 @@
-#!/usr/bin/env php
-<?php
-
-use Application\AppConsole;
-
-require_once __DIR__.'/../vendor/autoload.php';
-
-$application = new AppConsole();
-$application->run();

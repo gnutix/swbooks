@@ -15,8 +15,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('gnutix_library');
+        $treeBuilder = new TreeBuilder('gnutix_library');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode->append($this->getSourceFilePathNode());
 
@@ -28,8 +28,8 @@ class Configuration implements ConfigurationInterface
      */
     protected function getSourceFilePathNode()
     {
-        $treeBuilder = new TreeBuilder();
-        $node = $treeBuilder->root('source_file_path', 'scalar');
+        $treeBuilder = new TreeBuilder('source_file_path', 'scalar');
+        $node = $treeBuilder->getRootNode();
 
         $node->isRequired()->cannotBeEmpty();
 

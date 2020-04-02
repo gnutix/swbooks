@@ -4,11 +4,13 @@ namespace Gnutix\Twig\Extension;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Assets Extension
  */
-class AssetsExtension extends \Twig_Extension
+class AssetsExtension extends AbstractExtension
 {
     /** @var string */
     protected $webDir;
@@ -35,7 +37,7 @@ class AssetsExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('asset', array($this, 'getAssetPath')),
+            new TwigFunction('asset', array($this, 'getAssetPath')),
         );
     }
 

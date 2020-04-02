@@ -6,7 +6,7 @@ use Gnutix\Library\LibraryFactory\YamlLibraryFactory as BaseYamlLibraryFactory;
 use Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper;
 
 /**
- * Library Factory for the XML data
+ * Library Factory for the YAML data
  *
  * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()    This allows the auto-completion to work correctly
  */

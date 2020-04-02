@@ -9,25 +9,30 @@
         }
     },
     "require": {
-        "php": ">=5.6",
-        "twig/twig": "~1",
-        "symfony/http-kernel": "~3.0",
-        "symfony/yaml": "~3.0",
-        "symfony/config": "~3.0",
-        "symfony/dependency-injection": "~3.0",
-        "symfony/twig-bundle": "~3.0",
-        "symfony/finder": "~3.0"
+        "php": ">=7.4",
+        "twig/twig": "~3.0",
+        "symfony/http-kernel": "~5.0",
+        "symfony/yaml": "~5.0",
+        "symfony/config": "~5.0",
+        "symfony/dependency-injection": "~5.0",
+        "symfony/twig-bundle": "~5.0",
+        "symfony/finder": "~5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.0",
+        "phpunit/phpunit": "~9.0",
         "squizlabs/php_codesniffer": "~2.0",
-        "symfony/console": "~3.0",
-        "symfony/process": "~3.0",
-        "symfony/browser-kit": "~3.0",
-        "symfony/css-selector": "~3.0"
+        "symfony/console": "~5.0",
+        "symfony/process": "~5.0",
+        "symfony/browser-kit": "~5.0",
+        "symfony/css-selector": "~5.0"
     },
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "cs": "php ecs.phar check --ansi",
+        "cs-fix": "php ecs.phar check --ansi --fix",
+        "tests": "bin/phpunit"
+    }
 }

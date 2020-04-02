@@ -20,4 +20,11 @@ class Library extends BaseLibrary implements StarWarsLibraryInterface
     {
         return $this->eras;
     }
+
+    public function getBooksByEra(string $eraId)
+    {
+        return array_filter($this->getBooks(), static function (Book $book) use ($eraId): bool {
+            return $book->getChronologicalMarker()->getEra()->getId() === $eraId;
+        });
+    }
 }

@@ -2,10 +2,13 @@
 
 namespace Gnutix\Library\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
  * Library Twig Extension
  */
-class LibraryExtension extends \Twig_Extension
+class LibraryExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
@@ -13,7 +16,7 @@ class LibraryExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('highlightChars', array($this, 'highlightChars'), array('is_safe' => array('html'))),
+            new TwigFilter('highlightChars', array($this, 'highlightChars'), array('is_safe' => array('html'))),
         );
     }
 

@@ -3,25 +3,26 @@
 namespace Gnutix\Kernel\Tests\Functional;
 
 use Application\AppKernel;
-use Symfony\Component\HttpKernel\Client;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpKernel\HttpKernelBrowser;
 
 /**
  * Web Test Case
  */
-class WebTestCase extends \PHPUnit_Framework_TestCase
+class WebTestCase extends TestCase
 {
     /** @var \Application\AppKernel */
     protected $kernel;
 
-    /** @var \Symfony\Component\HttpKernel\Client */
-    protected $client;
+    /** @var \Symfony\Component\HttpKernel\HttpKernelBrowser */
+    protected $httpKernelBrowser;
 
     /**
      * Create the application kernel for the functional tests
      */
-    public function __construct()
+    public function setUp(): void
     {
         $this->kernel = new AppKernel('test', true);
-        $this->client = new Client($this->kernel);
+        $this->httpKernelBrowser = new HttpKernelBrowser($this->kernel);
     }
 }

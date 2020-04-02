@@ -18,6 +18,6 @@ parameters:
 
 services:
     gnutix_library.twig.star_wars_extension:
-        class: %gnutix_library.twig.star_wars_extension.class%
+        class: '%gnutix_library.twig.star_wars_extension.class%'
         tags:
             - { name: twig.extension }

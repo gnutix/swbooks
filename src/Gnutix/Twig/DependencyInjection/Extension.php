@@ -11,6 +11,8 @@ use Symfony\Component\DependencyInjection\Reference;
 
 use Symfony\Bundle\TwigBundle\DependencyInjection\Configuration as SymfonyTwigConfiguration;
 use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 /**
  * Extension
@@ -26,7 +28,7 @@ class Extension implements ExtensionInterface
         $config = $configProcessor->processConfiguration(new SymfonyTwigConfiguration(), $configs);
 
         // Create Twig's filesystem loader definition
-        $twigLoaderDefinition = $container->register('twig.loader.filesystem', 'Twig_Loader_Filesystem');
+        $twigLoaderDefinition = $container->register('twig.loader.filesystem', FilesystemLoader::class);
 
         // Add the paths from the configuration
         foreach ($config['paths'] as $path => $namespace) {
@@ -34,7 +36,8 @@ class Extension implements ExtensionInterface
         }
 
         // Create Twig's environment definition
-        $twigDefinition = $container->register('twig', 'Twig_Environment')
+        $twigDefinition = $container->register('twig', Environment::class)
+            ->setPublic(true)
             ->addArgument(new Reference('twig.loader.filesystem'));
 
         // Add the global variables
@@ -60,7 +63,7 @@ class Extension implements ExtensionInterface
         $loader->load('services.yml');
 
         // Add the TwigBundle's compiler passes, so that we can create extensions easily
-        $container->addCompilerPass(new SymfonyTwigEnvironmentPass());
+        //$container->addCompilerPass(new SymfonyTwigEnvironmentPass());
     }
 
     /**

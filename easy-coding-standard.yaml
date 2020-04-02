@@ -1,0 +1,37 @@
+services:
+    PhpCsFixer\Fixer\ClassNotation\FinalClassFixer: ~
+    Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer: ~
+
+parameters:
+    paths:
+        - app/
+        - src/
+        - web/
+
+    sets:
+        - 'common'
+        - 'clean-code'
+        - 'php'
+        - 'symfony'
+        - 'symfony-risky'
+        - 'psr'
+
+    cache_directory: 'var/cache/ecs'
+
+    skip:
+        # Conflicting rule, we must choose one over the other. PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer over:
+        PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer: ~
+
+        # Good for Symfony, less for us
+        PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer: ~
+        PhpCsFixer\Fixer\Phpdoc\PhpdocSeparationFixer: ~
+        PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer: ~
+
+        PhpCsFixer\Fixer\ClassNotation\FinalClassFixer:
+            - 'src/Gnutix/Library/DependencyInjection/Extension.php'
+            - 'src/Gnutix/Library/LibraryFactory/YamlLibraryFactory.php'
+            - 'src/Gnutix/Library/Model/Library.php'
+            - 'src/Gnutix/Library/Model/Book.php'
+
+        PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer:
+            - 'src/Gnutix/Library/Tests/Unit/Helper/ArrayPopulatedObjectTest.php'

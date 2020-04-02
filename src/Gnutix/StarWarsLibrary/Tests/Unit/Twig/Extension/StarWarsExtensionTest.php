@@ -14,7 +14,7 @@ class GnutixStarWarsLibraryExtensionTest extends PhpUnitSimpleTestCase
     /**
      * Set up the instance
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->instance = new StarWarsExtensionMock;
     }

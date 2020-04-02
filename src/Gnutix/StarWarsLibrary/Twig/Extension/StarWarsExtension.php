@@ -2,10 +2,13 @@
 
 namespace Gnutix\StarWarsLibrary\Twig\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
  * Star Wars Twig Extension
  */
-class StarWarsExtension extends \Twig_Extension
+class StarWarsExtension extends AbstractExtension
 {
     /**
      * {@inheritDoc}
@@ -13,7 +16,7 @@ class StarWarsExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('starWarsDate', array($this, 'transformToStarWarsDate')),
+            new TwigFilter('starWarsDate', array($this, 'transformToStarWarsDate')),
         );
     }
 
@@ -51,7 +54,7 @@ class StarWarsExtension extends \Twig_Extension
 
         // For dates with a format "140" or "-3590"
         if (preg_match('#^\-?(?:[0-9.]+)$#', $date)) {
-            if ('-' === $date{0}) {
+            if (0 === strpos($date, '-')) {
                 return substr($date, 1).$suffixes['BBY'];
             }
 

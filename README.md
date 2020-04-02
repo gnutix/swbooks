@@ -13,14 +13,18 @@ from an XML or YAML source file).
 Project setup
 -------------
 
-`vagrant up` and access the application at `http://swbooks.lo/app_dev.php/`.
+* `composer install`
+* `bower install` (maybe `sudo snap install bower` first - PS: this is *not* BowerPHP)
+* `php -S localhost:8000 -t web/`
+
+Access the application at `http://localhost:8000/`.
 
 Execute the tests
 -----------------
 
-`vagrant ssh -c '/vagrant/bin/phpunit'`
+`composer tests`
 
 Coding standards
 ----------------
 
-`vagrant ssh -c '/vagrant/bin/console cs'`
+`composer cs`

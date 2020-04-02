@@ -17,9 +17,11 @@ class BooksListTest extends WebTestCase
     /**
      * Set up the test client
      */
-    public function setUp()
+    public function setUp(): void
     {
-        $this->crawler = $this->client->request('GET', '/');
+        parent::setUp();
+
+        $this->crawler = $this->httpKernelBrowser->request('GET', '/');
     }
 
     /**
@@ -27,7 +29,7 @@ class BooksListTest extends WebTestCase
      */
     public function testPageStatusCode()
     {
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals(200, $this->httpKernelBrowser->getResponse()->getStatusCode());
     }
 
     /**
@@ -35,8 +37,8 @@ class BooksListTest extends WebTestCase
      */
     public function testPageHeader()
     {
-        $this->assertContains('Star Wars', $this->crawler->filter('h1')->text());
-        $this->assertContains('list of Star Wars books', $this->crawler->filter('p')->text());
+        $this->assertStringContainsString('Star Wars', $this->crawler->filter('h1')->text());
+        $this->assertStringContainsString('list of Star Wars books', $this->crawler->filter('p')->text());
     }
 
     /**
@@ -50,7 +52,7 @@ class BooksListTest extends WebTestCase
             'EN',
             $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('img')->attr('alt')
         );
-        $this->assertContains(
+        $this->assertStringContainsString(
             'English Publisher',
             $this->crawler->filter('#collapseEditors tbody tr')->first()->filter('td')->last()->text()
         );
@@ -59,7 +61,7 @@ class BooksListTest extends WebTestCase
             'FR',
             $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('img')->attr('alt')
         );
-        $this->assertContains(
+        $this->assertStringContainsString(
             'French Publisher',
             $this->crawler->filter('#collapseEditors tbody tr')->eq(1)->filter('td')->last()->text()
         );
@@ -71,7 +73,7 @@ class BooksListTest extends WebTestCase
     public function testCategoriesList()
     {
         $this->assertCount(2, $this->crawler->filter('#collapseTypes li'));
-        $this->assertContains('Novel', $this->crawler->filter('#collapseTypes li')->first()->text());
+        $this->assertStringContainsString('Novel', $this->crawler->filter('#collapseTypes li')->first()->text());
     }
 
     /**
@@ -80,7 +82,7 @@ class BooksListTest extends WebTestCase
     public function testErasList()
     {
         $this->assertCount(3, $this->crawler->filter('#collapseEras ul li'));
-        $this->assertContains('Old Republic', $this->crawler->filter('#collapseEras a[href="#oldRepublic"]')->text());
+        $this->assertStringContainsString('Old Republic', $this->crawler->filter('#collapseEras a[href="#oldRepublic"]')->text());
     }
 
     /**

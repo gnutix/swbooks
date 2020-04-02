@@ -164,8 +164,8 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                 $release,
                 'publicationDate',
                 null,
-                function($data) use ($that) {
-                    return $that->transformToDateTime($data);
+                function($data) {
+                    return $this->transformToDateTime($data);
                 }
             ),
             'series' => new $this->classes['series'](
@@ -173,8 +173,8 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                     $release,
                     'series',
                     array(),
-                    function($data) use ($that) {
-                        return $that->renameArrayKeys($data, array('number' => 'bookId'));
+                    function($data) {
+                        return $this->renameArrayKeys($data, array('number' => 'bookId'));
                     }
                 )
             ),
@@ -183,20 +183,15 @@ class YamlLibraryFactory implements LibraryFactoryInterface
                     $release,
                     'owner',
                     array(),
-                    function($data) use ($that) {
-                        return $that->renameArrayKeys($data, array('copies' => 'nbCopies', 'readings' => 'nbReadings'));
+                    function($data) {
+                        return $this->renameArrayKeys($data, array('copies' => 'nbCopies', 'readings' => 'nbReadings'));
                     }
                 )
             ),
         );
     }
 
-    /**
-     * @param array $date
-     *
-     * @return \DateTime
-     */
-    public function transformToDateTime(array $date)
+    private function transformToDateTime(array $date): \DateTime
     {
         foreach (array('day', 'month', 'year') as $key) {
             if (!isset($date[$key])) {
@@ -209,13 +204,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         return $dateTime->setDate($date['year'], $date['month'], $date['day']);
     }
 
-    /**
-     * @param array $data
-     * @param array $keys
-     *
-     * @return array
-     */
-    public function renameArrayKeys(array $data, array $keys)
+    private function renameArrayKeys(array $data, array $keys): array
     {
         foreach ($keys as $old => $new) {
 
@@ -235,13 +224,13 @@ class YamlLibraryFactory implements LibraryFactoryInterface
      * @param array    $data
      * @param string   $index
      * @param mixed    $default
-     * @param \Closure $callback
+     * @param callable|null $callback
      * @param bool     $throwException
      *
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    protected function get(array $data, $index, $default = null, \Closure $callback = null, $throwException = false)
+    protected function get(array $data, $index, $default = null, ?callable $callback = null, $throwException = false)
     {
         if (isset($data[$index])) {
             if (is_callable($callback)) {

@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
+
 /**
  * Kernel
  */
@@ -82,7 +84,7 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getCacheDir()
     {
-        return $this->getRootDir().'/cache/'.$this->getEnvironment();
+        return $this->getApplicationRootDir().'/var/cache/'.$this->getEnvironment();
     }
 
     /**
@@ -125,6 +127,7 @@ abstract class Kernel implements HttpKernelInterface
     protected function addKernelParameters(ContainerBuilder $container)
     {
         // Folder paths
+        $container->setParameter('kernel.project_dir', $this->getApplicationRootDir());
         $container->setParameter('kernel.root_dir', $this->getRootDir());
         $container->setParameter('kernel.app_root_dir', $this->getApplicationRootDir());
         $container->setParameter('kernel.web_dir', $this->getWebDir());
@@ -161,6 +164,8 @@ abstract class Kernel implements HttpKernelInterface
         foreach ($container->getExtensions() as $extension) {
             $extension->load($container->getExtensionConfig($extension->getAlias()), $container);
         }
+
+        $container->addCompilerPass(new SymfonyTwigEnvironmentPass());
 
         // Load the application's services files (so that it can override the extensions ones)
         $this->loadConfigurationFile($configLoader, 'services', $configExtension, false);

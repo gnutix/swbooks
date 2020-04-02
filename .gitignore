@@ -1,8 +1,8 @@
 .vagrant/
 bin/
 !bin/console
-app/cache/
-!app/cache/.gitkeep
+var/
+!var/.gitkeep
 vendor/
 web/components/
 composer.phar

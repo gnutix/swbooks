@@ -2,10 +2,12 @@
 
 namespace Gnutix\Kernel\Tests\Unit;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * PhpUnit Simple TestCase
  */
-abstract class PhpUnitSimpleTestCase extends \PHPUnit_Framework_TestCase
+abstract class PhpUnitSimpleTestCase extends TestCase
 {
     /** @var object|\PHPUnit_Framework_MockObject_MockObject */
     protected $instance;
