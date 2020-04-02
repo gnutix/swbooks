@@ -1,0 +1,20 @@
+{
+  "name": "paul-irish-jquery-unique-function-duck-punching",
+  "version": "1.0.0",
+  "authors": [
+    "Paul Irish <holler@paulirish.com>"
+  ],
+  "description": "Paul Irish's \"duck punching\" for jQuery unique() function.",
+  "main": "jquery-unique-function-duck-punching.js",
+  "keywords": [
+    "jquery",
+    "unique",
+    "function",
+    "duck",
+    "punching",
+    "paul",
+    "irish"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.paulirish.com/2010/duck-punching-with-jquery/"
+}

@@ -2,23 +2,21 @@
 
 namespace Gnutix\Library\Loader;
 
-use Symfony\Component\Yaml\Yaml;
-
 use Gnutix\Library\LoaderInterface;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * YAML File Loader
  */
-class YamlFileLoader implements LoaderInterface
+final class YamlFileLoader implements LoaderInterface
 {
     /** @var string */
-    protected $filePath;
+    private $filePath;
 
     /** @var array */
-    protected $data;
+    private $data;
 
     /**
-     * {@inheritDoc}
      * @throws \InvalidArgumentException If the file path does not exists
      */
     public function __construct($filePath)

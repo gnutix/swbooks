@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Array Populated Object Mock
  */
-class ArrayPopulatedObjectMock extends ArrayPopulatedObject
+final class ArrayPopulatedObjectMock extends ArrayPopulatedObject
 {
     public $property1;
     public $untouchedProperty;

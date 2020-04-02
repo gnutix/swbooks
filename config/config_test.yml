@@ -1,0 +1,5 @@
+imports:
+    - { resource: config_dev.yml }
+
+gnutix_library:
+    source_file_path: '%kernel.project_dir%/data/fixtures/library.fixtures.yml'

@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Chronological Marker
  */
-class ChronologicalMarker extends ArrayPopulatedObject
+final class ChronologicalMarker extends ArrayPopulatedObject
 {
     /** @var int */
     protected $timeStart;

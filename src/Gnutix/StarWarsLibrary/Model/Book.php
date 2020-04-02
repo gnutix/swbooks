@@ -7,7 +7,7 @@ use Gnutix\Library\Model\Book as BaseBook;
 /**
  * Book
  */
-class Book extends BaseBook
+final class Book extends BaseBook
 {
     /** @var \Gnutix\StarWarsLibrary\Model\ChronologicalMarker */
     protected $chronologicalMarker;

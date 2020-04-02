@@ -2,8 +2,8 @@
 
 namespace Gnutix\Library\Model;
 
-use Gnutix\Library\LibraryInterface;
 use Gnutix\Library\Helper\ArrayPopulatedObject;
+use Gnutix\Library\LibraryInterface;
 
 /**
  * Library manager
@@ -19,9 +19,6 @@ class Library extends ArrayPopulatedObject implements LibraryInterface
     /** @var \Gnutix\Library\Model\Editor[] */
     protected $editors;
 
-    /**
-     * {@inheritDoc}
-     */
     public function getBooks()
     {
         return $this->books;

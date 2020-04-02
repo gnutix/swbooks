@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Books Editor
  */
-class Editor extends ArrayPopulatedObject
+final class Editor extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;
@@ -34,9 +34,6 @@ class Editor extends ArrayPopulatedObject
         return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
     public function getPreferredLanguage()
     {
         return $this->preferredLanguage;

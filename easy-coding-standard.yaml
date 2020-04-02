@@ -4,9 +4,8 @@ services:
 
 parameters:
     paths:
-        - app/
+        - public/
         - src/
-        - web/
 
     sets:
         - 'common'

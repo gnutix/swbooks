@@ -8,21 +8,15 @@ use Twig\TwigFilter;
 /**
  * Library Twig Extension
  */
-class LibraryExtension extends AbstractExtension
+final class LibraryExtension extends AbstractExtension
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getFilters()
     {
-        return array(
-            new TwigFilter('highlightChars', array($this, 'highlightChars'), array('is_safe' => array('html'))),
-        );
+        return [
+            new TwigFilter('highlightChars', [$this, 'highlightChars'], ['is_safe' => ['html']]),
+        ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
         return 'gnutix_library_extension';
@@ -46,6 +40,7 @@ class LibraryExtension extends AbstractExtension
             if (in_array($character, $search, true)) {
                 $string .= '<strong>'.$originalCharacter.'</strong>';
                 unset($search[array_search($character, $search, true)]);
+
                 continue;
             }
             $string .= $originalCharacter;

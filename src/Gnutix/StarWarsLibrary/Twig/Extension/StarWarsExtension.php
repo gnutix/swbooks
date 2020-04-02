@@ -8,35 +8,16 @@ use Twig\TwigFilter;
 /**
  * Star Wars Twig Extension
  */
-class StarWarsExtension extends AbstractExtension
+final class StarWarsExtension extends AbstractExtension
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getFilters()
     {
-        return array(
-            new TwigFilter('starWarsDate', array($this, 'transformToStarWarsDate')),
-        );
+        return [new TwigFilter('starWarsDate', [$this, 'transformToStarWarsDate'])];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
         return 'gnutix_star_wars_extension';
-    }
-
-    /**
-     * @return array
-     */
-    protected function getStarWarsDateSuffixes()
-    {
-        return array(
-            'BBY' => '&nbsp;<abbr title="Before the Battle of Yavin IV">BBY</abbr>',
-            'ABY' => '&nbsp;<abbr title="After the Battle of Yavin IV">ABY</abbr>',
-        );
     }
 
     /**
@@ -63,14 +44,13 @@ class StarWarsExtension extends AbstractExtension
 
         // For dates already having BBY/ABY
         if (preg_match('# (?:A|B)BY#', $date)) {
-
             // Replace any minus before a number
             $date = preg_replace('#\-([0-9.]+)#', '$1', $date);
 
             // Replace the suffixes
             return preg_replace_callback(
                 '# ((?:A|B)BY)#',
-                function($matches) use ($suffixes) {
+                function ($matches) use ($suffixes) {
                     return $suffixes[$matches[1]];
                 },
                 $date
@@ -78,5 +58,16 @@ class StarWarsExtension extends AbstractExtension
         }
 
         return $date;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getStarWarsDateSuffixes()
+    {
+        return [
+            'BBY' => '&nbsp;<abbr title="Before the Battle of Yavin IV">BBY</abbr>',
+            'ABY' => '&nbsp;<abbr title="After the Battle of Yavin IV">ABY</abbr>',
+        ];
     }
 }

@@ -10,39 +10,30 @@ use Twig\TwigFunction;
 /**
  * Assets Extension
  */
-class AssetsExtension extends AbstractExtension
+final class AssetsExtension extends AbstractExtension
 {
     /** @var string */
-    protected $webDir;
+    protected $publicDir;
 
     /**
-     * @param string $webDir
+     * @param string $publicDir
      */
-    public function __construct($webDir)
+    public function __construct($publicDir)
     {
-        $this->webDir = $webDir;
+        $this->publicDir = $publicDir;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getName()
     {
         return 'gnutix_twig_assets_extension';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getFunctions()
     {
-        return array(
-            new TwigFunction('asset', array($this, 'getAssetPath')),
-        );
+        return [new TwigFunction('asset', [$this, 'getAssetPath'])];
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
      * @param string                                    $asset
      * @param bool                                      $throwException
      *
@@ -54,7 +45,7 @@ class AssetsExtension extends AbstractExtension
         $finder = new Finder();
         $assetPathInfo = pathinfo($asset);
 
-        $assetFound = $finder->in(rtrim($this->webDir, '/').'/'.ltrim($assetPathInfo['dirname'], '/'))
+        $assetFound = $finder->in(rtrim($this->publicDir, '/').'/'.ltrim($assetPathInfo['dirname'], '/'))
             ->files()
             ->name($assetPathInfo['filename'].'.'.$assetPathInfo['extension'])
             ->count();
@@ -64,7 +55,7 @@ class AssetsExtension extends AbstractExtension
         }
 
         if ($throwException) {
-            throw new \InvalidArgumentException('The asset "'.$asset.'" could not be found in "'.$this->webDir.'".');
+            throw new \InvalidArgumentException('The asset "'.$asset.'" could not be found in "'.$this->publicDir.'".');
         }
 
         return '';

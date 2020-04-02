@@ -2,13 +2,13 @@
 
 namespace Gnutix\StarWarsLibrary\Model;
 
-use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
 use Gnutix\Library\Model\Library as BaseLibrary;
+use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
 
 /**
  * Star Wars Library
  */
-class Library extends BaseLibrary implements StarWarsLibraryInterface
+final class Library extends BaseLibrary implements StarWarsLibraryInterface
 {
     /** @var \Gnutix\StarWarsLibrary\Model\Era[] */
     protected $eras;

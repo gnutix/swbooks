@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Book's category
  */
-class Category extends ArrayPopulatedObject
+final class Category extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;

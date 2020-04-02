@@ -4,19 +4,13 @@ namespace Gnutix\Library\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * Extension
- */
 class Extension implements ExtensionInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container): void
     {
         $configProcessor = new Processor();
         $config = $configProcessor->processConfiguration(new Configuration(), $config);
@@ -29,12 +23,27 @@ class Extension implements ExtensionInterface
         $container->setAliases($this->getLibraryAliases($config['source_file_path']));
     }
 
+    public function getNamespace()
+    {
+        return '';
+    }
+
+    public function getXsdValidationBasePath()
+    {
+        return '';
+    }
+
+    public function getAlias()
+    {
+        return 'gnutix_library';
+    }
+
     /**
      * @param string $sourceFilePath
      *
      * @return array
      */
-    protected function getLibraryAliases($sourceFilePath)
+    private function getLibraryAliases($sourceFilePath)
     {
         $libraryType = strtolower(pathinfo($sourceFilePath, PATHINFO_EXTENSION));
 
@@ -42,33 +51,9 @@ class Extension implements ExtensionInterface
             $libraryType = 'yaml';
         }
 
-        return array(
+        return [
             'gnutix_library.loader' => 'gnutix_library.loader.'.$libraryType.'_file_loader',
             'gnutix_library.library_factory' => 'gnutix_library.library_factory.'.$libraryType.'_library_factory',
-        );
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNamespace()
-    {
-        return '';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getXsdValidationBasePath()
-    {
-        return '';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAlias()
-    {
-        return 'gnutix_library';
+        ];
     }
 }

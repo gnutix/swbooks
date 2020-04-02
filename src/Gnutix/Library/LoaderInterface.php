@@ -12,9 +12,6 @@ interface LoaderInterface
      */
     public function __construct($fileName);
 
-    /**
-     * @return mixed
-     */
     public function getData();
 
     /**

@@ -3,22 +3,21 @@
 namespace Gnutix\Library\LibraryFactory;
 
 use Gnutix\Library\Dumper\YamlLibraryDumper;
-use Gnutix\Library\Loader\XmlFileLoader;
 use Gnutix\Library\LibraryFactoryInterface;
+use Gnutix\Library\Loader\XmlFileLoader;
 
 /**
  * Library Factory for the XML data
  */
-class XmlLibraryFactory implements LibraryFactoryInterface
+final class XmlLibraryFactory implements LibraryFactoryInterface
 {
     /** @var array */
-    protected $classes;
+    private $classes;
 
     /** @var \Gnutix\Library\LibraryInterface */
-    protected $library;
+    private $library;
 
     /**
-     * @param \Gnutix\Library\Loader\XmlFileLoader $loader
      * @param array                                $classes
      */
     public function __construct(XmlFileLoader $loader, $classes)
@@ -27,36 +26,9 @@ class XmlLibraryFactory implements LibraryFactoryInterface
         $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getLibrary()
     {
         return $this->library;
-    }
-
-    /**
-     * @param \SimpleXMLElement $data
-     *
-     * @return array
-     */
-    protected function getLibraryDependencies(\SimpleXMLElement $data)
-    {
-        return array(
-            'books' => $this->buildBooks($data),
-            'categories' => $this->buildClassInstanceFromNodeAttributes(
-                $data,
-                '//information/types/type',
-                'category',
-                array('code' => 'id')
-            ),
-            'editors' => $this->buildClassInstanceFromNodeAttributes(
-                $data,
-                '//information/editors/editor',
-                'editor',
-                array('code' => 'id', 'lang' => 'preferredLanguage')
-            ),
-        );
     }
 
     /**
@@ -68,12 +40,31 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     }
 
     /**
-     * @param array $data
-     * @param array $keys
-     *
      * @return array
      */
-    protected function renameArrayKeys(array $data, array $keys)
+    private function getLibraryDependencies(\SimpleXMLElement $data)
+    {
+        return [
+            'books' => $this->buildBooks($data),
+            'categories' => $this->buildClassInstanceFromNodeAttributes(
+                $data,
+                '//information/types/type',
+                'category',
+                ['code' => 'id']
+            ),
+            'editors' => $this->buildClassInstanceFromNodeAttributes(
+                $data,
+                '//information/editors/editor',
+                'editor',
+                ['code' => 'id', 'lang' => 'preferredLanguage']
+            ),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function renameArrayKeys(array $data, array $keys)
     {
         foreach ($keys as $old => $new) {
             if (!isset($data[$old])) {
@@ -95,13 +86,13 @@ class XmlLibraryFactory implements LibraryFactoryInterface
      *
      * @return array
      */
-    protected function buildClassInstanceFromNodeAttributes(
+    private function buildClassInstanceFromNodeAttributes(
         \SimpleXMLElement $data,
         $xpathSelector,
         $targetClass,
-        array $renameKeys = array()
+        array $renameKeys = []
     ) {
-        $editors = array();
+        $editors = [];
         $className = $this->classes[$targetClass];
 
         foreach ($data->xpath($xpathSelector) as $element) {
@@ -118,29 +109,25 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     }
 
     /**
-     * @param \SimpleXMLElement|null $xmlElement
-     *
      * @return array
      */
-    protected function getSimpleXmlElementAttributesAsArray(\SimpleXMLElement $xmlElement = null)
+    private function getSimpleXmlElementAttributesAsArray(?\SimpleXMLElement $xmlElement = null)
     {
         if (null === $xmlElement) {
-            return array();
+            return [];
         }
 
         $attributes = (array) $xmlElement->attributes();
 
-        return isset($attributes['@attributes']) ? $attributes['@attributes'] : array();
+        return isset($attributes['@attributes']) ? $attributes['@attributes'] : [];
     }
 
     /**
-     * @param \SimpleXMLElement $data
-     *
      * @return array
      */
-    protected function buildBooks(\SimpleXMLElement $data)
+    private function buildBooks(\SimpleXMLElement $data)
     {
-        $books = array();
+        $books = [];
 
         foreach ($data->xpath('//books/era/book') as $book) {
             $books[] = new $this->classes['book']($this->getBooksDependencies($data, $book));
@@ -150,12 +137,9 @@ class XmlLibraryFactory implements LibraryFactoryInterface
     }
 
     /**
-     * @param \SimpleXMLElement $data
-     * @param \SimpleXMLElement $book
-     *
      * @return array
      */
-    protected function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
+    private function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
     {
         // Book attributes
         $bookAttributes = $this->getSimpleXmlElementAttributesAsArray($book);
@@ -177,66 +161,63 @@ class XmlLibraryFactory implements LibraryFactoryInterface
         $categoryAttributes = $this->getSimpleXmlElementAttributesAsArray(reset($categories));
 
         // Releases data
-        $releases = array();
+        $releases = [];
         foreach (array_keys($releaseEditorAttributes) as $release) {
-            $releaseNode = $book->$release;
+            $releaseNode = $book->{$release};
 
             // Categories data
             $editor = $data->xpath('//information/editors/editor[@code="'.$releaseEditorAttributes[$release].'"]');
             $editorAttributes = $this->getSimpleXmlElementAttributesAsArray(reset($editor));
 
             $releases[] = new $this->classes['release'](
-                array(
+                [
                     'title' => (string) $book->{'title'},
                     'editor' => new $this->classes['editor'](
-                        $this->renameArrayKeys(
-                            $editorAttributes,
-                            array('code' => 'id', 'lang' => 'preferredLanguage')
-                        )
+                        $this->renameArrayKeys($editorAttributes, ['code' => 'id', 'lang' => 'preferredLanguage'])
                     ),
                     'publicationDate' => isset($publishAttributes[$release])
                         ? $this->transformToDateTime($publishAttributes[$release])
                         : null,
                     'language' => new $this->classes['language'](
-                        array(
+                        [
                             'id' => $editorAttributes['lang'],
                             'name' => $editorAttributes['lang'],
-                        )
+                        ]
                     ),
                     'owner' => new $this->classes['owner'](
-                        array(
+                        [
                             'nbCopies' => isset($releaseNode['copies']) ? (int) $releaseNode['copies'] : null,
                             'nbReadings' => isset($releaseNode['readings']) ? (int) $releaseNode['readings'] : null,
-                        )
+                        ]
                     ),
                     'format' => new $this->classes['format'](),
                     'series' => new $this->classes['series'](
                         null !== $series
-                            ? array(
+                            ? [
                                 'title' => (string) $series,
                                 'bookId' => isset($seriesAttributes['number']) ? $seriesAttributes['number'] : null,
-                            )
-                            : array()
+                            ]
+                            : []
                     ),
-                )
+                ]
             );
         }
 
-        $authors = array();
+        $authors = [];
         foreach (explode(',', (string) $book->{'author'}) as $author) {
-            $authors[] = new $this->classes['author'](array('name' => trim($author)));
+            $authors[] = new $this->classes['author'](['name' => trim($author)]);
         }
 
-        return array(
+        return [
             'category' => new $this->classes['category'](
-                array(
+                [
                     'id' => $bookAttributes['type'],
                     'name' => $categoryAttributes['name'],
-                )
+                ]
             ),
             'authors' => $authors,
             'releases' => $releases,
-        );
+        ];
     }
 
     /**
@@ -244,7 +225,7 @@ class XmlLibraryFactory implements LibraryFactoryInterface
      *
      * @return \DateTime
      */
-    protected function transformToDateTime($date)
+    private function transformToDateTime($date)
     {
         $explodedDate = explode('.', $date);
         $dateTime = new \DateTime();

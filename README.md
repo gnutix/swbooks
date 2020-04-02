@@ -15,16 +15,12 @@ Project setup
 
 * `composer install`
 * `bower install` (maybe `sudo snap install bower` first - PS: this is *not* BowerPHP)
-* `php -S localhost:8000 -t web/`
+* `php -S localhost:8000 -t public/`
 
 Access the application at `http://localhost:8000/`.
 
-Execute the tests
------------------
+Useful commands
+---------------
 
-`composer tests`
-
-Coding standards
-----------------
-
-`composer cs`
+* `composer tests`
+* `composer cs`

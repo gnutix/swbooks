@@ -10,21 +10,8 @@ use Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper;
  *
  * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()    This allows the auto-completion to work correctly
  */
-class YamlLibraryFactory extends BaseYamlLibraryFactory
+final class YamlLibraryFactory extends BaseYamlLibraryFactory
 {
-    /**
-     * {@inheritDoc}
-     */
-    protected function getLibraryDependencies(array $data)
-    {
-        return array_merge(
-            parent::getLibraryDependencies($data),
-            array(
-                'eras' => $this->buildClassInstanceFromArray($data['eras'], 'era'),
-            )
-        );
-    }
-
     /**
      * @return \Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper
      */
@@ -33,29 +20,32 @@ class YamlLibraryFactory extends BaseYamlLibraryFactory
         return new YamlLibraryDumper();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    protected function getLibraryDependencies(array $data)
+    {
+        return array_merge(
+            parent::getLibraryDependencies($data),
+            [
+                'eras' => $this->buildClassInstanceFromArray($data['eras'], 'era'),
+            ]
+        );
+    }
+
     protected function getBookDependencies(array $book)
     {
-        $starWarsNode = $this->get($book, 'starWars', array());
+        $starWarsNode = $this->get($book, 'starWars', []);
 
         return array_merge(
             parent::getBookDependencies($book),
-            array(
+            [
                 'chronologicalMarker' => new $this->classes['chronologicalMarker'](
-                    $this->buildChronologicalMarkerDependencies(
-                        $this->get($starWarsNode, 'chronology', array())
-                    )
+                    $this->buildChronologicalMarkerDependencies($this->get($starWarsNode, 'chronology', []))
                 ),
                 'swuBookId' => $this->get($starWarsNode, 'swuBookId'),
-            )
+            ]
         );
     }
 
     /**
-     * @param array $chronologicalMarker
-     *
      * @return array
      */
     protected function buildChronologicalMarkerDependencies(array $chronologicalMarker)
@@ -67,10 +57,10 @@ class YamlLibraryFactory extends BaseYamlLibraryFactory
             $timeEnd = $this->get($time, 'end');
         }
 
-        return array(
+        return [
             'timeStart' => $timeStart,
             'timeEnd' => $timeEnd,
-            'era' => new $this->classes['era']($this->get($chronologicalMarker, 'era', array())),
-        );
+            'era' => new $this->classes['era']($this->get($chronologicalMarker, 'era', [])),
+        ];
     }
 }

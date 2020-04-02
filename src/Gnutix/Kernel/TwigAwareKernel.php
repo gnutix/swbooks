@@ -9,16 +9,8 @@ use Gnutix\Twig\DependencyInjection\Extension as TwigExtension;
  */
 abstract class TwigAwareKernel extends Kernel
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function getExtensions()
     {
-        return array_merge(
-            parent::getExtensions(),
-            array(
-                new TwigExtension,
-            )
-        );
+        return array_merge(parent::getExtensions(), [new TwigExtension()]);
     }
 }

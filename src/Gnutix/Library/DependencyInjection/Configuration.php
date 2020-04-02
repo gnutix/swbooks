@@ -8,11 +8,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * Configuration
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritDoc}
-     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('gnutix_library');
@@ -26,7 +23,7 @@ class Configuration implements ConfigurationInterface
     /**
      * @return \Symfony\Component\Config\Definition\Builder\ScalarNodeDefinition
      */
-    protected function getSourceFilePathNode()
+    private function getSourceFilePathNode()
     {
         $treeBuilder = new TreeBuilder('source_file_path', 'scalar');
         $node = $treeBuilder->getRootNode();

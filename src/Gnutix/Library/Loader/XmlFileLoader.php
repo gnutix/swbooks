@@ -7,16 +7,15 @@ use Gnutix\Library\LoaderInterface;
 /**
  * XML File Loader
  */
-class XmlFileLoader implements LoaderInterface
+final class XmlFileLoader implements LoaderInterface
 {
     /** @var string */
-    protected $filePath;
+    private $filePath;
 
     /** @var \SimpleXMLElement */
-    protected $data;
+    private $data;
 
     /**
-     * {@inheritDoc}
      * @throws \InvalidArgumentException If the file path does not exists
      * @throws \UnexpectedValueException If the XML file can't be parsed
      */

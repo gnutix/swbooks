@@ -5,23 +5,21 @@ namespace Gnutix\Library\Helper;
 /**
  * Array populated object
  */
-class ArrayPopulatedObject
+abstract class ArrayPopulatedObject
 {
     /**
-     * @param array $data
-     *
      * @throws \InvalidArgumentException
      */
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
         foreach ($data as $property => $value) {
             if (!property_exists($this, $property)) {
                 throw new \InvalidArgumentException(
-                    'The property "'.$property.'" does not exists on object "'.get_called_class().'".'
+                    'The property "'.$property.'" does not exists on object "'.static::class.'".'
                 );
             }
 
-            $this->$property = $value;
+            $this->{$property} = $value;
         }
     }
 }

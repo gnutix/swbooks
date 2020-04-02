@@ -2,27 +2,23 @@
 
 namespace Gnutix\Twig\DependencyInjection;
 
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
+use Symfony\Bundle\TwigBundle\DependencyInjection\Configuration as SymfonyTwigConfiguration;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
+use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
-
-use Symfony\Bundle\TwigBundle\DependencyInjection\Configuration as SymfonyTwigConfiguration;
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 /**
  * Extension
  */
-class Extension implements ExtensionInterface
+final class Extension implements ExtensionInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configProcessor = new Processor();
         $config = $configProcessor->processConfiguration(new SymfonyTwigConfiguration(), $configs);
@@ -32,7 +28,7 @@ class Extension implements ExtensionInterface
 
         // Add the paths from the configuration
         foreach ($config['paths'] as $path => $namespace) {
-            $twigLoaderDefinition->addMethodCall('addPath', $namespace ? array($path, $namespace) : array($path));
+            $twigLoaderDefinition->addMethodCall('addPath', $namespace ? [$path, $namespace] : [$path]);
         }
 
         // Create Twig's environment definition
@@ -42,18 +38,17 @@ class Extension implements ExtensionInterface
 
         // Add the global variables
         foreach ($config['globals'] as $key => $global) {
-
             // Allows to reference services
             if (isset($global['type']) && 'service' === $global['type']) {
                 $global['value'] = new Reference($global['id']);
             }
 
-            $twigDefinition->addMethodCall('addGlobal', array($key, $global['value']));
+            $twigDefinition->addMethodCall('addGlobal', [$key, $global['value']]);
         }
 
         // Add the Twig's options argument
         $twigOptions = $config;
-        foreach (array('form', 'globals', 'extensions') as $key) {
+        foreach (['form', 'globals', 'extensions'] as $key) {
             unset($twigOptions[$key]);
         }
         $twigDefinition->addArgument($twigOptions);
@@ -66,25 +61,16 @@ class Extension implements ExtensionInterface
         //$container->addCompilerPass(new SymfonyTwigEnvironmentPass());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getNamespace()
     {
         return '';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getXsdValidationBasePath()
     {
         return '';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getAlias()
     {
         return 'twig';

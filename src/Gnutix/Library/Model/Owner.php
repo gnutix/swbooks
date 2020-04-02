@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Books Owner
  */
-class Owner extends ArrayPopulatedObject
+final class Owner extends ArrayPopulatedObject
 {
     /** @var string */
     protected $id;

@@ -2,13 +2,12 @@
 
 namespace Gnutix\Kernel;
 
+use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 
 /**
  * Kernel
@@ -16,7 +15,7 @@ use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass a
 abstract class Kernel implements HttpKernelInterface
 {
     /** @var string */
-    protected $rootDir;
+    protected $projectDir;
 
     /** @var string */
     protected $environment;
@@ -68,7 +67,27 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getApplicationRootDir()
     {
-        return realpath($this->getRootDir().'/..');
+        if (null === $this->projectDir) {
+            $r = new \ReflectionObject($this);
+
+            if (!file_exists($dir = $r->getFileName())) {
+                throw new \LogicException(sprintf(
+                    'Cannot auto-detect project dir for kernel of class "%s".',
+                    $r->name
+                ));
+            }
+
+            $dir = $rootDir = \dirname($dir);
+            while (!file_exists($dir.'/composer.json')) {
+                if ($dir === \dirname($dir)) {
+                    return $this->projectDir = $rootDir;
+                }
+                $dir = \dirname($dir);
+            }
+            $this->projectDir = $dir;
+        }
+
+        return $this->projectDir;
     }
 
     /**
@@ -76,7 +95,7 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getConfigDir()
     {
-        return $this->getRootDir().'/config';
+        return $this->getApplicationRootDir().'/config';
     }
 
     /**
@@ -90,9 +109,9 @@ abstract class Kernel implements HttpKernelInterface
     /**
      * @return string
      */
-    protected function getWebDir()
+    protected function getPublicDir()
     {
-        return $this->getApplicationRootDir().'/web';
+        return $this->getApplicationRootDir().'/public';
     }
 
     /**
@@ -112,8 +131,6 @@ abstract class Kernel implements HttpKernelInterface
     }
 
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
      * @return \Symfony\Component\Config\Loader\LoaderInterface
      */
     protected function getConfigFilesLoader(ContainerBuilder $container)
@@ -121,16 +138,11 @@ abstract class Kernel implements HttpKernelInterface
         return new YamlFileLoader($container, new FileLocator($this->getConfigDir()));
     }
 
-    /**
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     */
-    protected function addKernelParameters(ContainerBuilder $container)
+    protected function addKernelParameters(ContainerBuilder $container): void
     {
         // Folder paths
         $container->setParameter('kernel.project_dir', $this->getApplicationRootDir());
-        $container->setParameter('kernel.root_dir', $this->getRootDir());
-        $container->setParameter('kernel.app_root_dir', $this->getApplicationRootDir());
-        $container->setParameter('kernel.web_dir', $this->getWebDir());
+        $container->setParameter('kernel.public_dir', $this->getPublicDir());
         $container->setParameter('kernel.cache_dir', $this->getCacheDir());
 
         // Configurations
@@ -142,7 +154,7 @@ abstract class Kernel implements HttpKernelInterface
     /**
      * Create the container
      */
-    protected function initializeContainer()
+    protected function initializeContainer(): void
     {
         // Create the container builder
         $container = new ContainerBuilder();
@@ -156,7 +168,7 @@ abstract class Kernel implements HttpKernelInterface
         foreach ($this->getExtensions() as $extension) {
             $container->registerExtension($extension);
         }
-        
+
         // Load the application's configuration files (so that it can configure the extensions)
         $this->loadConfigurationFile($configLoader, 'config', $configExtension);
 
@@ -172,13 +184,12 @@ abstract class Kernel implements HttpKernelInterface
 
         // Compile everything
         $container->compile();
-        
+
         // Store the container
         $this->container = $container;
     }
 
     /**
-     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
      * @param string                                           $fileNamePrefix
      * @param string                                           $fileNameExtension
      * @param bool                                             $throwException
@@ -190,17 +201,15 @@ abstract class Kernel implements HttpKernelInterface
         $fileNamePrefix,
         $fileNameExtension,
         $throwException = true
-    ) {
+    ): void {
         // Try to load the environment specific configuration files
         try {
             $loader->load($fileNamePrefix.'_'.$this->getEnvironment().'.'.$fileNameExtension);
         } catch (\InvalidArgumentException $e) {
-
             // Try to load the environment agnostic configuration file
             try {
                 $loader->load($fileNamePrefix.'.'.$fileNameExtension);
             } catch (\InvalidArgumentException $e) {
-
                 // If the application can't work without this file, we throw the exception
                 if ($throwException) {
                     throw $e;
@@ -214,22 +223,6 @@ abstract class Kernel implements HttpKernelInterface
      */
     protected function getExtensions()
     {
-        return array();
-    }
-
-    /**
-     * @return string
-     *
-     * @see \Symfony\Component\HttpKernel\Kernel::getRootDir()
-     * @author Fabien Potencier <fabien@symfony.com>
-     */
-    protected function getRootDir()
-    {
-        if (null === $this->rootDir) {
-            $r = new \ReflectionObject($this);
-            $this->rootDir = str_replace('\\', '/', dirname($r->getFileName()));
-        }
-
-        return $this->rootDir;
+        return [];
     }
 }

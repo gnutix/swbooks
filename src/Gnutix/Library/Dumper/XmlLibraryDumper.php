@@ -8,13 +8,10 @@ use Gnutix\Library\LibraryInterface;
 /**
  * XML Library Dumper
  */
-class XmlLibraryDumper implements LibraryDumperInterface
+final class XmlLibraryDumper implements LibraryDumperInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function dump(LibraryInterface $library)
+    public function dump(LibraryInterface $library): void
     {
-        throw new \RuntimeException('The dumper "'.__CLASS__.'" is not yet implemented.');
+        throw new \RuntimeException('The dumper "'.self::class.'" is not yet implemented.');
     }
 }

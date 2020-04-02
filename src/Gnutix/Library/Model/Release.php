@@ -7,7 +7,7 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
 /**
  * Release
  */
-class Release extends ArrayPopulatedObject
+final class Release extends ArrayPopulatedObject
 {
     /** @var string */
     protected $title;

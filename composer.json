@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Application\\": "app",
+            "Application\\": "src/Application",
             "Gnutix\\": "src/Gnutix"
         }
     },
@@ -31,6 +31,10 @@
     },
     "minimum-stability": "stable",
     "scripts": {
+        "ci": [
+            "@tests",
+            "@cs"
+        ],
         "cs": "php ecs.phar check --ansi",
         "cs-fix": "php ecs.phar check --ansi --fix",
         "tests": "bin/phpunit"

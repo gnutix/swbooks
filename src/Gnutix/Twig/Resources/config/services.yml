@@ -1,6 +1,6 @@
 services:
     twig.extension.assets:
         class: Gnutix\Twig\Extension\AssetsExtension
-        arguments: ['%kernel.web_dir%']
+        arguments: ['%kernel.public_dir%']
         tags:
             - { name: twig.extension }

@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\HttpKernelBrowser;
 /**
  * Web Test Case
  */
-class WebTestCase extends TestCase
+abstract class WebTestCase extends TestCase
 {
     /** @var \Application\AppKernel */
     protected $kernel;
@@ -20,7 +20,7 @@ class WebTestCase extends TestCase
     /**
      * Create the application kernel for the functional tests
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->kernel = new AppKernel('test', true);
         $this->httpKernelBrowser = new HttpKernelBrowser($this->kernel);

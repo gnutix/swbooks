@@ -2,21 +2,17 @@
 
 namespace Gnutix\StarWarsLibrary\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\Loader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Gnutix\Library\DependencyInjection\Extension as LibraryExtension;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader;
 
 /**
  * Extension
  */
-class Extension extends LibraryExtension
+final class Extension extends LibraryExtension
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container): void
     {
         parent::load($config, $container);
 

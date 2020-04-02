@@ -20,7 +20,7 @@ abstract class PhpUnitSimpleTestCase extends TestCase
      * @dataProvider getSimpleMethodsData
      * @throws \UnexpectedValueException
      */
-    public function testSimpleMethods($method, $arguments, $expected)
+    public function testSimpleMethods($method, $arguments, $expected): void
     {
         if (!is_object($this->instance)) {
             throw new \UnexpectedValueException('You must populate the $instance property before using '.__METHOD__);
@@ -30,24 +30,22 @@ abstract class PhpUnitSimpleTestCase extends TestCase
 
         if ($this->instance instanceof \PHPUnit_Framework_MockObject_MockObject) {
             $result = $this->createResult();
-
         } else {
-
             // Have a condition for performance as call_user_func_array is slow
             if (is_array($arguments)) {
-                $result = call_user_func_array(array($this->instance, $method), $arguments);
+                $result = call_user_func_array([$this->instance, $method], $arguments);
             } else {
-                $result = $this->instance->$method($arguments);
+                $result = $this->instance->{$method}($arguments);
             }
         }
 
-        $this->assertEquals($expected, $result);
+        $this->assertSame($expected, $result);
     }
 
     /**
      * Hook to be able to execute some code before the execution of the test
      */
-    public function setUpBeforeSimpleMethodsTests()
+    public function setUpBeforeSimpleMethodsTests(): void
     {
     }
 
