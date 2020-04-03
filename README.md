@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gnutix/swbooks.png?branch=master)](https://travis-ci.org/gnutix/swbooks)
+[![Build Status](https://github.com/gnutix/swbooks/workflows/Code_Checks/badge.svg)](https://github.com/gnutix/swbooks/actions?query=workflow%3ACode_Checks)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gnutix/swbooks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gnutix/swbooks/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/e275cb12-5729-4490-baad-a3898fd71ff9/mini.png)](https://insight.sensiolabs.com/projects/e275cb12-5729-4490-baad-a3898fd71ff9)
 
