@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
@@ -23,27 +25,22 @@ class Extension implements ExtensionInterface
         $container->setAliases($this->getLibraryAliases($config['source_file_path']));
     }
 
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return '';
     }
 
-    public function getXsdValidationBasePath()
+    public function getXsdValidationBasePath(): string
     {
         return '';
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'gnutix_library';
     }
 
-    /**
-     * @param string $sourceFilePath
-     *
-     * @return array
-     */
-    private function getLibraryAliases($sourceFilePath)
+    private function getLibraryAliases(string $sourceFilePath): array
     {
         $libraryType = strtolower(pathinfo($sourceFilePath, PATHINFO_EXTENSION));
 

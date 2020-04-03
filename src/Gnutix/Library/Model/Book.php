@@ -1,43 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Book
- */
 class Book extends ArrayPopulatedObject
 {
-    /** @var \Gnutix\Library\Model\Category */
-    protected $category;
+    protected Category $category;
 
-    /** @var \Gnutix\Library\Model\Author[] */
-    protected $authors;
+    /** @var Author[] */
+    protected array $authors;
 
-    /** @var \Gnutix\Library\Model\Release[] */
-    protected $releases;
+    /** @var Release[] */
+    protected array $releases;
 
     /**
-     * @return \Gnutix\Library\Model\Author[]
+     * @return Author[]
      */
-    public function getAuthors()
+    public function getAuthors(): array
     {
         return $this->authors;
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Category
-     */
-    public function getCategory()
+    public function getCategory(): Category
     {
         return $this->category;
     }
 
     /**
-     * @return \Gnutix\Library\Model\Release[]
+     * @return Release[]
      */
-    public function getReleases()
+    public function getReleases(): array
     {
         return $this->releases;
     }

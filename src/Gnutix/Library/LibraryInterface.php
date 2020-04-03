@@ -1,30 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library;
 
-/**
- * Library Interface
- */
+use Gnutix\Library\Model\Book;
+use Gnutix\Library\Model\Category;
+use Gnutix\Library\Model\Editor;
+
 interface LibraryInterface
 {
     /**
-     * Returns the books of the library
-     *
-     * @return \Gnutix\Library\Model\Book[]
+     * @return Book[]
      */
-    public function getBooks();
+    public function getBooks(): array;
 
     /**
-     * Returns the books editors of the library
-     *
-     * @return \Gnutix\Library\Model\Editor[]
+     * @return Editor[]
      */
-    public function getEditors();
+    public function getEditors(): array;
 
     /**
-     * Returns the books categories of the library
-     *
-     * @return \Gnutix\Library\Model\Category[]
+     * @return Category[]
      */
-    public function getCategories();
+    public function getCategories(): array;
 }

@@ -1,32 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Model;
 
 use Gnutix\Library\Model\Book as BaseBook;
 
-/**
- * Book
- */
 final class Book extends BaseBook
 {
-    /** @var \Gnutix\StarWarsLibrary\Model\ChronologicalMarker */
-    protected $chronologicalMarker;
+    protected ChronologicalMarker $chronologicalMarker;
+    protected ?int $swuBookId;
 
-    /** @var int */
-    protected $swuBookId;
-
-    /**
-     * @return \Gnutix\StarWarsLibrary\Model\ChronologicalMarker
-     */
-    public function getChronologicalMarker()
+    public function getChronologicalMarker(): ChronologicalMarker
     {
         return $this->chronologicalMarker;
     }
 
-    /**
-     * @return int
-     */
-    public function getSwuBookId()
+    public function getSwuBookId(): ?int
     {
         return $this->swuBookId;
     }

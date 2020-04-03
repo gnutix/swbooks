@@ -1,95 +1,58 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
+use DateTime;
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Release
- */
 final class Release extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $title;
+    protected string $title;
+    protected Language $language;
+    protected Editor $editor;
+    protected Format $format;
+    protected ?DateTime $publicationDate;
+    protected Series $series;
+    protected Owner $owner;
 
-    /** @var \Gnutix\Library\Model\Language */
-    protected $language;
-
-    /** @var \Gnutix\Library\Model\Editor */
-    protected $editor;
-
-    /** @var \Gnutix\Library\Model\Format */
-    protected $format;
-
-    /** @var \DateTime */
-    protected $publicationDate;
-
-    /** @var \Gnutix\Library\Model\Series */
-    protected $series;
-
-    /** @var \Gnutix\Library\Model\Series */
-    protected $owner;
-
-    /**
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Language
-     */
-    public function getLanguage()
+    public function getLanguage(): Language
     {
         return $this->language;
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Editor
-     */
-    public function getEditor()
+    public function getEditor(): Editor
     {
         return $this->editor;
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Format
-     */
-    public function getFormat()
+    public function getFormat(): Format
     {
         return $this->format;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getPublicationDate()
+    public function getPublicationDate(): ?DateTime
     {
         return $this->publicationDate;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPublished()
+    public function isPublished(): bool
     {
-        return $this->publicationDate < new \DateTime();
+        return $this->publicationDate < new DateTime();
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Series
-     */
-    public function getSeries()
+    public function getSeries(): Series
     {
         return $this->series;
     }
 
-    /**
-     * @return \Gnutix\Library\Model\Owner
-     */
-    public function getOwner()
+    public function getOwner(): Owner
     {
         return $this->owner;
     }

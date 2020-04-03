@@ -1,49 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Loader;
 
 use Gnutix\Library\LoaderInterface;
+use SimpleXMLElement;
+use Webmozart\Assert\Assert;
 
-/**
- * XML File Loader
- */
 final class XmlFileLoader implements LoaderInterface
 {
-    /** @var string */
-    private $filePath;
+    private string $filePath;
+    private SimpleXMLElement $data;
 
-    /** @var \SimpleXMLElement */
-    private $data;
-
-    /**
-     * @throws \InvalidArgumentException If the file path does not exists
-     * @throws \UnexpectedValueException If the XML file can't be parsed
-     */
-    public function __construct($filePath)
+    public function __construct(string $filePath)
     {
+        Assert::fileExists($filePath);
         $this->filePath = $filePath;
 
-        if (!file_exists($filePath)) {
-            throw new \InvalidArgumentException('The file "'.$filePath.'" has not been found.');
-        }
+        $fileContent = file_get_contents($filePath);
+        Assert::string($fileContent);
 
-        if (false === ($this->data = simplexml_load_file($filePath))) {
-            throw new \UnexpectedValueException('Unable to parse the XML file "'.$filePath.'".');
-        }
+        $simpleXmlElement = simplexml_load_string($fileContent);
+        Assert::isInstanceOf($simpleXmlElement, SimpleXMLElement::class);
+
+        $this->data = $simpleXmlElement;
     }
 
-    /**
-     * @return \SimpleXMLElement
-     */
-    public function getData()
+    public function getData(): SimpleXMLElement
     {
         return $this->data;
     }
 
-    /**
-     * @return string
-     */
-    public function getSourceFilePath()
+    public function getSourceFilePath(): string
     {
         return $this->filePath;
     }

@@ -1,43 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Book Series
- */
 final class Series extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $id;
+    protected ?string $id;
+    protected ?string $title;
+    protected ?int $bookId;
 
-    /** @var string */
-    protected $title;
-
-    /** @var int */
-    protected $bookId;
-
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getTitle()
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @return int
-     */
-    public function getBookId()
+    public function getBookId(): ?int
     {
         return $this->bookId;
     }

@@ -1,41 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 use Gnutix\Library\LibraryInterface;
 
-/**
- * Library manager
- */
 class Library extends ArrayPopulatedObject implements LibraryInterface
 {
-    /** @var \Gnutix\Library\Model\Book[] */
-    protected $books;
+    /** @var Book[] */
+    protected array $books;
 
-    /** @var \Gnutix\Library\Model\Category[] */
-    protected $categories;
+    /** @var Category[] */
+    protected array $categories;
 
-    /** @var \Gnutix\Library\Model\Editor[] */
-    protected $editors;
+    /** @var Editor[] */
+    protected array $editors;
 
-    public function getBooks()
+    /**
+     * @return Book[]
+     */
+    public function getBooks(): array
     {
         return $this->books;
     }
 
     /**
-     * @return \Gnutix\Library\Model\Editor[]
+     * @return Editor[]
      */
-    public function getEditors()
+    public function getEditors(): array
     {
         return $this->editors;
     }
 
     /**
-     * @return \Gnutix\Library\Model\Category[]
+     * @return Category[]
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }

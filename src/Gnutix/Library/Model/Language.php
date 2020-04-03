@@ -1,32 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Book's language
- */
 final class Language extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $id;
+    protected string $id;
+    protected string $name;
 
-    /** @var string */
-    protected $name;
-
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

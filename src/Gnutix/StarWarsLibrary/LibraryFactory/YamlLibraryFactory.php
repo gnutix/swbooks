@@ -1,26 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\LibraryFactory;
 
 use Gnutix\Library\LibraryFactory\YamlLibraryFactory as BaseYamlLibraryFactory;
 use Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper;
+use Gnutix\StarWarsLibrary\Model\Library;
 
 /**
- * Library Factory for the YAML data
- *
- * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()    This allows the auto-completion to work correctly
+ * @method Library getLibrary()
  */
 final class YamlLibraryFactory extends BaseYamlLibraryFactory
 {
-    /**
-     * @return \Gnutix\StarWarsLibrary\Dumper\YamlLibraryDumper
-     */
-    public function getLibraryDumper()
+    public function getLibraryDumper(): YamlLibraryDumper
     {
         return new YamlLibraryDumper();
     }
 
-    protected function getLibraryDependencies(array $data)
+    protected function getLibraryDependencies(array $data): array
     {
         return array_merge(
             parent::getLibraryDependencies($data),
@@ -30,7 +28,7 @@ final class YamlLibraryFactory extends BaseYamlLibraryFactory
         );
     }
 
-    protected function getBookDependencies(array $book)
+    protected function getBookDependencies(array $book): array
     {
         $starWarsNode = $this->get($book, 'starWars', []);
 
@@ -45,10 +43,7 @@ final class YamlLibraryFactory extends BaseYamlLibraryFactory
         );
     }
 
-    /**
-     * @return array
-     */
-    protected function buildChronologicalMarkerDependencies(array $chronologicalMarker)
+    protected function buildChronologicalMarkerDependencies(array $chronologicalMarker): array
     {
         $timeEnd = null;
         $timeStart = $time = $this->get($chronologicalMarker, 'time');

@@ -1,11 +1,17 @@
 services:
+    PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer: ~
     PhpCsFixer\Fixer\ClassNotation\FinalClassFixer: ~
     Symplify\CodingStandard\Fixer\LineLength\LineLengthFixer: ~
+
+    # This needs some configuration to play nicely with PhpStan
+    PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer:
+        allow_mixed: true
 
 parameters:
     paths:
         - public/
         - src/
+        - tests/
 
     sets:
         - 'common'
@@ -29,8 +35,10 @@ parameters:
         PhpCsFixer\Fixer\ClassNotation\FinalClassFixer:
             - 'src/Gnutix/Library/DependencyInjection/Extension.php'
             - 'src/Gnutix/Library/LibraryFactory/YamlLibraryFactory.php'
+            - 'src/Gnutix/Library/LibraryFactory/XmlLibraryFactory.php'
+            - 'src/Gnutix/Library/Dumper/YamlLibraryDumper.php'
             - 'src/Gnutix/Library/Model/Library.php'
             - 'src/Gnutix/Library/Model/Book.php'
 
         PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer:
-            - 'src/Gnutix/Library/Tests/Unit/Helper/ArrayPopulatedObjectTest.php'
+            - 'tests/Unit/Library/Helper/ArrayPopulatedObjectTest.php'

@@ -1,29 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Dumper;
 
 use Gnutix\Library\Dumper\YamlLibraryDumper as BaseYamlLibraryDumper;
-use Gnutix\StarWarsLibrary\Model\Book;
+use Gnutix\Library\LibraryInterface;
+use Gnutix\Library\Model\Book;
+use Gnutix\StarWarsLibrary\Model\Book as StarWarsBook;
 use Gnutix\StarWarsLibrary\Model\ChronologicalMarker;
-use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
+use Gnutix\StarWarsLibrary\Model\Library as StarWarsLibrary;
 
-/**
- * YAML Library Dumper
- */
 final class YamlLibraryDumper extends BaseYamlLibraryDumper
 {
     /**
-     * @param string|int $dateInput
-     *
-     * @return string
+     * @param string|float|null $dateInput
      */
-    public function transformToSplitYamlDate($dateInput)
+    public function transformToSplitYamlDate($dateInput): array
     {
         $dates = [];
 
         foreach (explode(' - ', trim((string) $dateInput)) as $date) {
-            $date = str_replace(' ', '', $date);
-            $date = str_replace('ABY', '', $date);
+            $date = str_replace([' ', 'ABY'], '', $date);
 
             if (false !== strpos($date, 'BBY')) {
                 $date = '-'.trim(str_replace('BBY', '', $date));
@@ -40,7 +38,10 @@ final class YamlLibraryDumper extends BaseYamlLibraryDumper
         ];
     }
 
-    protected function buildArray(StarWarsLibraryInterface $library)
+    /**
+     * @param LibraryInterface&StarWarsLibrary $library
+     */
+    protected function buildArray(LibraryInterface $library): array
     {
         $eras = [];
 
@@ -56,7 +57,10 @@ final class YamlLibraryDumper extends BaseYamlLibraryDumper
         ], parent::buildArray($library));
     }
 
-    protected function buildBookArray(Book $book)
+    /**
+     * @param Book&StarWarsBook $book
+     */
+    protected function buildBookArray(Book $book): array
     {
         return array_merge(
             [
@@ -72,10 +76,7 @@ final class YamlLibraryDumper extends BaseYamlLibraryDumper
         );
     }
 
-    /**
-     * @return array
-     */
-    protected function buildTimeArray(ChronologicalMarker $chronologicalMarker)
+    protected function buildTimeArray(ChronologicalMarker $chronologicalMarker): array
     {
         $start = $chronologicalMarker->getTimeStart();
 

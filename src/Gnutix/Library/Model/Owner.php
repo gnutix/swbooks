@@ -1,43 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Books Owner
- */
 final class Owner extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $id;
+    protected string $id;
+    protected ?int $nbCopies = null;
+    protected ?int $nbReadings = null;
 
-    /** @var int */
-    protected $nbCopies;
-
-    /** @var int */
-    protected $nbReadings;
-
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return int
-     */
-    public function getNbCopies()
+    public function getNbCopies(): ?int
     {
         return $this->nbCopies;
     }
 
-    /**
-     * @return int
-     */
-    public function getNbReadings()
+    public function getNbReadings(): ?int
     {
         return $this->nbReadings;
     }

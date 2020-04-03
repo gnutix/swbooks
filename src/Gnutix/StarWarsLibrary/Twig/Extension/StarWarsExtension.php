@@ -1,40 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
-/**
- * Star Wars Twig Extension
- */
 final class StarWarsExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters(): array
     {
         return [new TwigFilter('starWarsDate', [$this, 'transformToStarWarsDate'])];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'gnutix_star_wars_extension';
     }
 
     /**
-     * @param string|int $date
-     *
-     * @return string
+     * @param float|string|null $dateInput
      */
-    public function transformToStarWarsDate($date)
+    public function transformToStarWarsDate($dateInput): string
     {
-        $date = trim((string) $date);
+        $date = trim((string) $dateInput);
         $suffixes = $this->getStarWarsDateSuffixes();
 
         // Replace spaces between numbers by unbreakable spaces
-        $date = preg_replace('#([0-9.]+) ([0-9.]+)#', '$1&nbsp;$2', $date);
+        $date = (string) preg_replace('#([0-9.]+) ([0-9.]+)#', '$1&nbsp;$2', $date);
 
         // For dates with a format "140" or "-3590"
-        if (preg_match('#^\-?(?:[0-9.]+)$#', $date)) {
+        if (preg_match('#^-?(?:[0-9.]+)$#', $date)) {
             if (0 === strpos($date, '-')) {
                 return substr($date, 1).$suffixes['BBY'];
             }
@@ -43,14 +40,14 @@ final class StarWarsExtension extends AbstractExtension
         }
 
         // For dates already having BBY/ABY
-        if (preg_match('# (?:A|B)BY#', $date)) {
+        if (preg_match('# [AB]BY#', $date)) {
             // Replace any minus before a number
-            $date = preg_replace('#\-([0-9.]+)#', '$1', $date);
+            $date = (string) preg_replace('#-([0-9.]+)#', '$1', $date);
 
             // Replace the suffixes
-            return preg_replace_callback(
-                '# ((?:A|B)BY)#',
-                function ($matches) use ($suffixes) {
+            return (string) preg_replace_callback(
+                '# ([AB]BY)#',
+                static function ($matches) use ($suffixes) {
                     return $suffixes[$matches[1]];
                 },
                 $date
@@ -60,10 +57,7 @@ final class StarWarsExtension extends AbstractExtension
         return $date;
     }
 
-    /**
-     * @return array
-     */
-    protected function getStarWarsDateSuffixes()
+    protected function getStarWarsDateSuffixes(): array
     {
         return [
             'BBY' => '&nbsp;<abbr title="Before the Battle of Yavin IV">BBY</abbr>',

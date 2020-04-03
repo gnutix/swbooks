@@ -1,47 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Loader;
 
 use Gnutix\Library\LoaderInterface;
 use Symfony\Component\Yaml\Yaml;
+use Webmozart\Assert\Assert;
 
 /**
  * YAML File Loader
  */
 final class YamlFileLoader implements LoaderInterface
 {
-    /** @var string */
-    private $filePath;
+    private string $filePath;
+    private array $data;
 
-    /** @var array */
-    private $data;
-
-    /**
-     * @throws \InvalidArgumentException If the file path does not exists
-     */
-    public function __construct($filePath)
+    public function __construct(string $filePath)
     {
+        Assert::fileExists($filePath);
         $this->filePath = $filePath;
 
-        if (!file_exists($filePath)) {
-            throw new \InvalidArgumentException('The file "'.$filePath.'" has not been found.');
-        }
+        $fileContent = file_get_contents($filePath);
+        Assert::string($fileContent);
 
-        $this->data = (array) Yaml::parse(file_get_contents($filePath), true, true);
+        $this->data = Yaml::parse($fileContent, Yaml::PARSE_EXCEPTION_ON_INVALID_TYPE + Yaml::PARSE_OBJECT);
     }
 
-    /**
-     * @return array
-     */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
 
-    /**
-     * @return string
-     */
-    public function getSourceFilePath()
+    public function getSourceFilePath(): string
     {
         return $this->filePath;
     }

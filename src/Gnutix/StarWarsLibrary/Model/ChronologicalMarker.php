@@ -1,43 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Chronological Marker
- */
 final class ChronologicalMarker extends ArrayPopulatedObject
 {
-    /** @var int */
-    protected $timeStart;
+    protected ?float $timeStart;
+    protected ?float $timeEnd;
+    protected Era $era;
 
-    /** @var int */
-    protected $timeEnd;
-
-    /** @var \Gnutix\StarWarsLibrary\Model\Era */
-    protected $era;
-
-    /**
-     * @return int
-     */
-    public function getTimeStart()
+    public function getTimeStart(): ?float
     {
         return $this->timeStart;
     }
 
-    /**
-     * @return int
-     */
-    public function getTimeEnd()
+    public function getTimeEnd(): ?float
     {
         return $this->timeEnd;
     }
 
-    /**
-     * @return \Gnutix\StarWarsLibrary\Model\Era
-     */
-    public function getEra()
+    public function getEra(): Era
     {
         return $this->era;
     }

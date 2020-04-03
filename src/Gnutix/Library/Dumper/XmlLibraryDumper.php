@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Dumper;
 
+use BadMethodCallException;
 use Gnutix\Library\LibraryDumperInterface;
 use Gnutix\Library\LibraryInterface;
 
-/**
- * XML Library Dumper
- */
 final class XmlLibraryDumper implements LibraryDumperInterface
 {
-    public function dump(LibraryInterface $library): void
+    public function dump(LibraryInterface $library): string
     {
-        throw new \RuntimeException('The dumper "'.self::class.'" is not yet implemented.');
+        throw new BadMethodCallException('The dumper "'.self::class.'" is not yet implemented.');
     }
 }

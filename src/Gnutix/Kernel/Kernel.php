@@ -1,36 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Kernel;
 
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Webmozart\Assert\Assert;
 
-/**
- * Kernel
- */
 abstract class Kernel implements HttpKernelInterface
 {
-    /** @var string */
-    protected $projectDir;
+    private ?string $projectDir = null;
+    private string $environment;
+    private bool $debug;
+    private ContainerInterface $container;
 
-    /** @var string */
-    protected $environment;
-
-    /** @var bool */
-    protected $debug;
-
-    /** @var \Symfony\Component\DependencyInjection\ContainerInterface */
-    protected $container;
-
-    /**
-     * @param string $environment
-     * @param bool   $debug
-     */
-    public function __construct($environment = 'prod', $debug = false)
+    public function __construct(string $environment = 'prod', bool $debug = false)
     {
         $this->environment = $environment;
         $this->debug = $debug;
@@ -38,44 +27,28 @@ abstract class Kernel implements HttpKernelInterface
         $this->initializeContainer();
     }
 
-    /**
-     * @return \Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    public function getContainer()
+    public function getContainer(): ContainerInterface
     {
         return $this->container;
     }
 
-    /**
-     * @return string
-     */
-    protected function getEnvironment()
+    protected function getEnvironment(): string
     {
         return $this->environment;
     }
 
-    /**
-     * @return bool
-     */
-    protected function getDebug()
+    protected function getDebug(): bool
     {
         return $this->debug;
     }
 
-    /**
-     * @return string
-     */
-    protected function getApplicationRootDir()
+    protected function getApplicationRootDir(): string
     {
         if (null === $this->projectDir) {
             $r = new \ReflectionObject($this);
-
-            if (!file_exists($dir = $r->getFileName())) {
-                throw new \LogicException(sprintf(
-                    'Cannot auto-detect project dir for kernel of class "%s".',
-                    $r->name
-                ));
-            }
+            /** @var string $dir */
+            $dir = $r->getFileName();
+            Assert::fileExists($dir);
 
             $dir = $rootDir = \dirname($dir);
             while (!file_exists($dir.'/composer.json')) {
@@ -90,42 +63,27 @@ abstract class Kernel implements HttpKernelInterface
         return $this->projectDir;
     }
 
-    /**
-     * @return string
-     */
-    protected function getConfigDir()
+    protected function getConfigDir(): string
     {
         return $this->getApplicationRootDir().'/config';
     }
 
-    /**
-     * @return string
-     */
-    protected function getCacheDir()
+    protected function getCacheDir(): string
     {
         return $this->getApplicationRootDir().'/var/cache/'.$this->getEnvironment();
     }
 
-    /**
-     * @return string
-     */
-    protected function getPublicDir()
+    protected function getPublicDir(): string
     {
         return $this->getApplicationRootDir().'/public';
     }
 
-    /**
-     * @return string
-     */
-    protected function getCharset()
+    protected function getCharset(): string
     {
         return 'utf-8';
     }
 
-    /**
-     * @return string
-     */
-    protected function getConfigFilesExtension()
+    protected function getConfigFilesExtension(): string
     {
         return 'yml';
     }
@@ -151,9 +109,6 @@ abstract class Kernel implements HttpKernelInterface
         $container->setParameter('kernel.charset', $this->getCharset());
     }
 
-    /**
-     * Create the container
-     */
     protected function initializeContainer(): void
     {
         // Create the container builder
@@ -177,7 +132,7 @@ abstract class Kernel implements HttpKernelInterface
             $extension->load($container->getExtensionConfig($extension->getAlias()), $container);
         }
 
-        $container->addCompilerPass(new SymfonyTwigEnvironmentPass());
+        $this->addCompilerPasses($container);
 
         // Load the application's services files (so that it can override the extensions ones)
         $this->loadConfigurationFile($configLoader, 'services', $configExtension, false);
@@ -189,18 +144,15 @@ abstract class Kernel implements HttpKernelInterface
         $this->container = $container;
     }
 
-    /**
-     * @param string                                           $fileNamePrefix
-     * @param string                                           $fileNameExtension
-     * @param bool                                             $throwException
-     *
-     * @throws \InvalidArgumentException
-     */
+    protected function addCompilerPasses(ContainerBuilder $container): void
+    {
+    }
+
     protected function loadConfigurationFile(
         LoaderInterface $loader,
-        $fileNamePrefix,
-        $fileNameExtension,
-        $throwException = true
+        string $fileNamePrefix,
+        string $fileNameExtension,
+        bool $throwException = true
     ): void {
         // Try to load the environment specific configuration files
         try {
@@ -221,7 +173,7 @@ abstract class Kernel implements HttpKernelInterface
     /**
      * @return \Symfony\Component\DependencyInjection\Extension\ExtensionInterface[]
      */
-    protected function getExtensions()
+    protected function getExtensions(): array
     {
         return [];
     }

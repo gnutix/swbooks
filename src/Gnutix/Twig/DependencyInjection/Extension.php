@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Twig\DependencyInjection;
 
-use Symfony\Bundle\TwigBundle\DependencyInjection\Compiler\TwigEnvironmentPass as SymfonyTwigEnvironmentPass;
 use Symfony\Bundle\TwigBundle\DependencyInjection\Configuration as SymfonyTwigConfiguration;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
@@ -13,9 +14,6 @@ use Symfony\Component\DependencyInjection\Reference;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-/**
- * Extension
- */
 final class Extension implements ExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container): void
@@ -56,22 +54,19 @@ final class Extension implements ExtensionInterface
         // Load the services
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-
-        // Add the TwigBundle's compiler passes, so that we can create extensions easily
-        //$container->addCompilerPass(new SymfonyTwigEnvironmentPass());
     }
 
-    public function getNamespace()
+    public function getNamespace(): string
     {
         return '';
     }
 
-    public function getXsdValidationBasePath()
+    public function getXsdValidationBasePath(): string
     {
         return '';
     }
 
-    public function getAlias()
+    public function getAlias(): string
     {
         return 'twig';
     }

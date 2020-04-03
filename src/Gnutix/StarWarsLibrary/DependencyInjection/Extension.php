@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\DependencyInjection;
 
 use Gnutix\Library\DependencyInjection\Extension as LibraryExtension;
@@ -7,9 +9,6 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 
-/**
- * Extension
- */
 final class Extension extends LibraryExtension
 {
     public function load(array $config, ContainerBuilder $container): void

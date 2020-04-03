@@ -23,5 +23,4 @@ Access the application at `http://localhost:8000/`.
 Useful commands
 ---------------
 
-* `composer tests`
-* `composer cs`
+* `composer list | grep 'script as defined'` to list all custom scripts, then execute with `composer [script-name]`

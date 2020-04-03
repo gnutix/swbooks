@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Twig\Extension;
 
 use Symfony\Component\Finder\Finder;
@@ -7,47 +9,32 @@ use Symfony\Component\HttpFoundation\Request;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Assets Extension
- */
 final class AssetsExtension extends AbstractExtension
 {
-    /** @var string */
-    protected $publicDir;
+    protected string $publicDir;
 
-    /**
-     * @param string $publicDir
-     */
-    public function __construct($publicDir)
+    public function __construct(string $publicDir)
     {
         $this->publicDir = $publicDir;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'gnutix_twig_assets_extension';
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [new TwigFunction('asset', [$this, 'getAssetPath'])];
     }
 
-    /**
-     * @param string                                    $asset
-     * @param bool                                      $throwException
-     *
-     * @return string
-     * @throws \InvalidArgumentException
-     */
-    public function getAssetPath(Request $request, $asset, $throwException = true)
+    public function getAssetPath(Request $request, string $asset, bool $throwException = true): string
     {
         $finder = new Finder();
-        $assetPathInfo = pathinfo($asset);
 
-        $assetFound = $finder->in(rtrim($this->publicDir, '/').'/'.ltrim($assetPathInfo['dirname'], '/'))
+        $assetFound = $finder->in(rtrim($this->publicDir, '/').'/'.ltrim(pathinfo($asset, PATHINFO_DIRNAME), '/'))
             ->files()
-            ->name($assetPathInfo['filename'].'.'.$assetPathInfo['extension'])
+            ->name(pathinfo($asset, PATHINFO_FILENAME).'.'.pathinfo($asset, PATHINFO_EXTENSION))
             ->count();
 
         if (0 < $assetFound) {

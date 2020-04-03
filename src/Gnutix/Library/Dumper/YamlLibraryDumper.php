@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Dumper;
 
 use Gnutix\Library\LibraryDumperInterface;
@@ -7,25 +9,22 @@ use Gnutix\Library\LibraryInterface;
 use Gnutix\Library\Model\Book;
 use Symfony\Component\Yaml\Dumper;
 
-/**
- * YAML Library Dumper
- */
-final class YamlLibraryDumper implements LibraryDumperInterface
+class YamlLibraryDumper implements LibraryDumperInterface
 {
-    public function dump(LibraryInterface $library)
+    public function dump(LibraryInterface $library): string
     {
         $dumper = new Dumper();
         $dump = $dumper->dump($this->buildArray($library), 99);
 
         // Apply fixes on the dump output
-        return preg_replace(
+        return (string) preg_replace(
             ["#^( +?-)(?:\n)( +?id: )'(&[a-zA-Z_]+)/([a-zA-Z_]+)'$#m", "#''#", "#'#", '#§#', '#null#'],
             ['$1 $3'.PHP_EOL.'$2$4', '§', '', "'", '~'],
             $dump
         );
     }
 
-    private function buildArray(LibraryInterface $library)
+    protected function buildArray(LibraryInterface $library): array
     {
         $array = [
             'languages' => [],
@@ -95,10 +94,7 @@ final class YamlLibraryDumper implements LibraryDumperInterface
         return $array;
     }
 
-    /**
-     * @return array
-     */
-    private function buildBookArray(Book $book)
+    protected function buildBookArray(Book $book): array
     {
         $bookArray = [
             'authors' => [],

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
@@ -9,32 +11,21 @@ use Gnutix\Library\Helper\ArrayPopulatedObject;
  */
 final class Editor extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $id;
+    protected string $id;
+    protected string $name;
+    protected ?string $preferredLanguage = null;
 
-    /** @var string */
-    protected $name;
-
-    /** @var string */
-    protected $preferredLanguage;
-
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function getPreferredLanguage()
+    public function getPreferredLanguage(): ?string
     {
         return $this->preferredLanguage;
     }

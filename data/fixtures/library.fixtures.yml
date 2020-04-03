@@ -51,13 +51,13 @@ eras:
 
 authors:
     - &a_1
-        id: 1
+        id: timothy_zahn
         name: Timothy Zahn
     - &a_2
-        id: 2
+        id: drew_karpyshyn
         name: Drew Karpyshyn
     - &a_3
-        id: 3
+        id: karen_traviss
         name: Karen Traviss
 
 series:

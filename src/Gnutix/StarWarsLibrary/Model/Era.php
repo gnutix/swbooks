@@ -1,29 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Model;
 
 use Gnutix\Library\Helper\ArrayPopulatedObject;
 
-/**
- * Chronological Era
- */
 final class Era extends ArrayPopulatedObject
 {
-    /** @var string */
-    protected $id;
+    protected string $id;
+    protected string $name;
 
-    /** @var string */
-    protected $name;
-
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }

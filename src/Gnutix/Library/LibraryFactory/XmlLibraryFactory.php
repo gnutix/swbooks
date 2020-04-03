@@ -1,48 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\LibraryFactory;
 
+use DateTime;
 use Gnutix\Library\Dumper\YamlLibraryDumper;
 use Gnutix\Library\LibraryFactoryInterface;
+use Gnutix\Library\LibraryInterface;
 use Gnutix\Library\Loader\XmlFileLoader;
+use SimpleXMLElement;
+use Webmozart\Assert\Assert;
 
-/**
- * Library Factory for the XML data
- */
-final class XmlLibraryFactory implements LibraryFactoryInterface
+class XmlLibraryFactory implements LibraryFactoryInterface
 {
-    /** @var array */
-    private $classes;
+    protected array $classes;
+    private LibraryInterface $library;
 
-    /** @var \Gnutix\Library\LibraryInterface */
-    private $library;
-
-    /**
-     * @param array                                $classes
-     */
-    public function __construct(XmlFileLoader $loader, $classes)
+    public function __construct(XmlFileLoader $loader, array $classes)
     {
         $this->classes = $classes;
         $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
     }
 
-    public function getLibrary()
+    public function getLibrary(): LibraryInterface
     {
         return $this->library;
     }
 
-    /**
-     * @return \Gnutix\Library\Dumper\YamlLibraryDumper
-     */
-    public function getLibraryDumper()
+    public function getLibraryDumper(): YamlLibraryDumper
     {
         return new YamlLibraryDumper();
     }
 
-    /**
-     * @return array
-     */
-    private function getLibraryDependencies(\SimpleXMLElement $data)
+    protected function getLibraryDependencies(SimpleXMLElement $data): array
     {
         return [
             'books' => $this->buildBooks($data),
@@ -61,10 +52,7 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
         ];
     }
 
-    /**
-     * @return array
-     */
-    private function renameArrayKeys(array $data, array $keys)
+    protected function renameArrayKeys(array $data, array $keys): array
     {
         foreach ($keys as $old => $new) {
             if (!isset($data[$old])) {
@@ -78,24 +66,18 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
         return $data;
     }
 
-    /**
-     * @param \SimpleXMLElement $data          The XML data
-     * @param string            $xpathSelector The XPath selector
-     * @param string            $targetClass   The target for the class
-     * @param array             $renameKeys    The rename keys array
-     *
-     * @return array
-     */
-    private function buildClassInstanceFromNodeAttributes(
-        \SimpleXMLElement $data,
-        $xpathSelector,
-        $targetClass,
+    protected function buildClassInstanceFromNodeAttributes(
+        SimpleXMLElement $data,
+        string $xpathSelector,
+        string $targetClass,
         array $renameKeys = []
-    ) {
+    ): array {
         $editors = [];
         $className = $this->classes[$targetClass];
+        $elements = $data->xpath($xpathSelector);
+        Assert::isIterable($elements);
 
-        foreach ($data->xpath($xpathSelector) as $element) {
+        foreach ($elements as $element) {
             $dependencies = $this->getSimpleXmlElementAttributesAsArray($element);
 
             if (!empty($renameKeys)) {
@@ -108,10 +90,7 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
         return $editors;
     }
 
-    /**
-     * @return array
-     */
-    private function getSimpleXmlElementAttributesAsArray(?\SimpleXMLElement $xmlElement = null)
+    protected function getSimpleXmlElementAttributesAsArray(?SimpleXMLElement $xmlElement = null): array
     {
         if (null === $xmlElement) {
             return [];
@@ -119,27 +98,23 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
 
         $attributes = (array) $xmlElement->attributes();
 
-        return isset($attributes['@attributes']) ? $attributes['@attributes'] : [];
+        return $attributes['@attributes'] ?? [];
     }
 
-    /**
-     * @return array
-     */
-    private function buildBooks(\SimpleXMLElement $data)
+    protected function buildBooks(SimpleXMLElement $data): array
     {
         $books = [];
+        $elements = $data->xpath('//books/era/book');
+        Assert::isIterable($elements);
 
-        foreach ($data->xpath('//books/era/book') as $book) {
+        foreach ($elements as $book) {
             $books[] = new $this->classes['book']($this->getBooksDependencies($data, $book));
         }
 
         return $books;
     }
 
-    /**
-     * @return array
-     */
-    private function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
+    protected function getBooksDependencies(SimpleXMLElement $data, SimpleXMLElement $book): array
     {
         // Book attributes
         $bookAttributes = $this->getSimpleXmlElementAttributesAsArray($book);
@@ -158,7 +133,10 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
 
         // Categories data
         $categories = $data->xpath('//information/types/type[@code="'.$bookAttributes['type'].'"]');
-        $categoryAttributes = $this->getSimpleXmlElementAttributesAsArray(reset($categories));
+        Assert::isIterable($categories);
+        $category = reset($categories);
+        Assert::isInstanceOf($category, SimpleXMLElement::class);
+        $categoryAttributes = $this->getSimpleXmlElementAttributesAsArray($category);
 
         // Releases data
         $releases = [];
@@ -166,8 +144,11 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
             $releaseNode = $book->{$release};
 
             // Categories data
-            $editor = $data->xpath('//information/editors/editor[@code="'.$releaseEditorAttributes[$release].'"]');
-            $editorAttributes = $this->getSimpleXmlElementAttributesAsArray(reset($editor));
+            $editors = $data->xpath('//information/editors/editor[@code="'.$releaseEditorAttributes[$release].'"]');
+            Assert::isIterable($editors);
+            $editor = reset($editors);
+            Assert::isInstanceOf($editor, SimpleXMLElement::class);
+            $editorAttributes = $this->getSimpleXmlElementAttributesAsArray($editor);
 
             $releases[] = new $this->classes['release'](
                 [
@@ -195,7 +176,7 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
                         null !== $series
                             ? [
                                 'title' => (string) $series,
-                                'bookId' => isset($seriesAttributes['number']) ? $seriesAttributes['number'] : null,
+                                'bookId' => $seriesAttributes['number'] ?? null,
                             ]
                             : []
                     ),
@@ -220,16 +201,11 @@ final class XmlLibraryFactory implements LibraryFactoryInterface
         ];
     }
 
-    /**
-     * @param string $date
-     *
-     * @return \DateTime
-     */
-    private function transformToDateTime($date)
+    private function transformToDateTime(string $date): DateTime
     {
         $explodedDate = explode('.', $date);
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
-        return $dateTime->setDate($explodedDate[2], $explodedDate[1], $explodedDate[0]);
+        return $dateTime->setDate((int) $explodedDate[2], (int) $explodedDate[1], (int) $explodedDate[0]);
     }
 }

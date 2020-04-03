@@ -1,21 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library;
 
-/**
- * Loader Interface
- */
 interface LoaderInterface
 {
-    /**
-     * @param string $fileName
-     */
-    public function __construct($fileName);
+    public function __construct(string $fileName);
 
+    /**
+     * @return mixed
+     */
     public function getData();
 
-    /**
-     * @return string
-     */
-    public function getSourceFilePath();
+    public function getSourceFilePath(): string;
 }

@@ -1,0 +1,4 @@
+path: ./
+exclude:
+    - var
+    - vendor

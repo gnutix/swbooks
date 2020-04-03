@@ -1,17 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\LibraryFactory;
 
 use Gnutix\Library\LibraryFactory\XmlLibraryFactory as BaseXmlLibraryFactory;
+use Gnutix\StarWarsLibrary\Model\Library;
+use SimpleXMLElement;
+use Webmozart\Assert\Assert;
 
 /**
- * Library Factory for the XML data
- *
- * @method \Gnutix\StarWarsLibrary\Model\Library getLibrary()    This allows the auto-completion to work correctly
+ * @method Library getLibrary()
  */
 final class XmlLibraryFactory extends BaseXmlLibraryFactory
 {
-    protected function getLibraryDependencies(\SimpleXMLElement $data)
+    protected function getLibraryDependencies(SimpleXMLElement $data): array
     {
         return array_merge(
             parent::getLibraryDependencies($data),
@@ -21,9 +24,12 @@ final class XmlLibraryFactory extends BaseXmlLibraryFactory
         );
     }
 
-    protected function getBooksDependencies(\SimpleXMLElement $data, \SimpleXMLElement $book)
+    protected function getBooksDependencies(SimpleXMLElement $data, SimpleXMLElement $book): array
     {
-        $era = $book->xpath('parent::era');
+        $eras = $book->xpath('parent::era');
+        Assert::isIterable($eras);
+        $era = reset($eras);
+        Assert::isInstanceOf($era, SimpleXMLElement::class);
 
         return array_merge(
             parent::getBooksDependencies($data, $book),
@@ -31,7 +37,7 @@ final class XmlLibraryFactory extends BaseXmlLibraryFactory
                 'chronologicalMarker' => new $this->classes['chronologicalMarker'](
                     [
                         'timeStart' => (string) $book->{'time'},
-                        'era' => new $this->classes['era']($this->getSimpleXmlElementAttributesAsArray(reset($era))),
+                        'era' => new $this->classes['era']($this->getSimpleXmlElementAttributesAsArray($era)),
                     ]
                 ),
             ]

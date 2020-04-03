@@ -1,16 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library;
 
-/**
- * Library Dumper Interface
- */
 interface LibraryDumperInterface
 {
-    /**
-     * @param \Gnutix\Library\LibraryInterface $library
-     *
-     * @return string
-     */
-    public function dump(LibraryInterface $library);
+    public function dump(LibraryInterface $library): string;
 }

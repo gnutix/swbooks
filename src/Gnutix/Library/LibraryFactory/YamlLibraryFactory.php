@@ -1,53 +1,37 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library\LibraryFactory;
 
+use DateTime;
 use Gnutix\Library\Dumper\YamlLibraryDumper;
 use Gnutix\Library\LibraryFactoryInterface;
+use Gnutix\Library\LibraryInterface;
 use Gnutix\Library\Loader\YamlFileLoader;
 
-/**
- * Library Factory for the YAML data
- */
 class YamlLibraryFactory implements LibraryFactoryInterface
 {
-    /** @var array */
-    protected $classes;
+    protected array $classes;
+    private LibraryInterface $library;
 
-    /** @var \Gnutix\Library\LibraryInterface */
-    private $library;
-
-    /**
-     * @param array                                 $classes
-     */
-    public function __construct(YamlFileLoader $loader, $classes)
+    public function __construct(YamlFileLoader $loader, array $classes)
     {
         $this->classes = $classes;
         $this->library = new $this->classes['library']($this->getLibraryDependencies($loader->getData()));
     }
 
-    public function getLibrary()
+    public function getLibrary(): LibraryInterface
     {
         return $this->library;
     }
 
-    /**
-     * @return \Gnutix\Library\Dumper\YamlLibraryDumper
-     */
-    public function getLibraryDumper()
+    public function getLibraryDumper(): YamlLibraryDumper
     {
         return new YamlLibraryDumper();
     }
 
-    protected function getClass(string $class)
-    {
-        return $this->classes[$class];
-    }
-
-    /**
-     * @return array
-     */
-    protected function getLibraryDependencies(array $data)
+    protected function getLibraryDependencies(array $data): array
     {
         return [
             'books' => $this->buildBooks($this->get($data, 'books', [])),
@@ -56,17 +40,10 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         ];
     }
 
-    /**
-     * @param array  $data        The XML data
-     * @param string $targetClass The target for the class
-     * @param array  $renameKeys  The rename keys array
-     *
-     * @return array
-     */
-    protected function buildClassInstanceFromArray(array $data, $targetClass, array $renameKeys = [])
+    protected function buildClassInstanceFromArray(array $data, string $targetClass, array $renameKeys = []): array
     {
         $elements = [];
-        $className = $this->getClass($targetClass);
+        $className = $this->classes[$targetClass];
 
         foreach ($data as $element) {
             $elements[] = new $className($this->renameArrayKeys($element, $renameKeys));
@@ -75,10 +52,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         return $elements;
     }
 
-    /**
-     * @return array
-     */
-    protected function buildBooks(array $books)
+    protected function buildBooks(array $books): array
     {
         $booksObjects = [];
 
@@ -89,10 +63,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         return $booksObjects;
     }
 
-    /**
-     * @return array
-     */
-    protected function getBookDependencies(array $book)
+    protected function getBookDependencies(array $book): array
     {
         return [
             'category' => new $this->classes['category']($this->get($book, 'category', [])),
@@ -101,10 +72,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         ];
     }
 
-    /**
-     * @return array
-     */
-    protected function buildAuthors(array $book)
+    protected function buildAuthors(array $book): array
     {
         $authorsObjects = [];
 
@@ -120,10 +88,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         return $authorsObjects;
     }
 
-    /**
-     * @return array
-     */
-    protected function buildReleases(array $releases)
+    protected function buildReleases(array $releases): array
     {
         $releasesObjects = [];
 
@@ -134,10 +99,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         return $releasesObjects;
     }
 
-    /**
-     * @return array
-     */
-    protected function buildReleaseDependencies(array $release)
+    protected function buildReleaseDependencies(array $release): array
     {
         return [
             'title' => $this->get($release, 'title'),
@@ -176,13 +138,17 @@ class YamlLibraryFactory implements LibraryFactoryInterface
     }
 
     /**
-     * @param string   $index
-     * @param bool     $throwException
+     * @param mixed|null $default
      *
-     * @throws \InvalidArgumentException
+     * @return mixed
      */
-    protected function get(array $data, $index, $default = null, ?callable $callback = null, $throwException = false)
-    {
+    protected function get(
+        array $data,
+        string $index,
+        $default = null,
+        ?callable $callback = null,
+        bool $throwException = false
+    ) {
         if (isset($data[$index])) {
             if (is_callable($callback)) {
                 return $callback($data[$index]);
@@ -198,7 +164,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
         throw new \InvalidArgumentException('Index "'.$index.'" could not be found.');
     }
 
-    protected function transformToDateTime(array $date): \DateTime
+    protected function transformToDateTime(array $date): DateTime
     {
         foreach (['day', 'month', 'year'] as $key) {
             if (!isset($date[$key])) {
@@ -206,7 +172,7 @@ class YamlLibraryFactory implements LibraryFactoryInterface
             }
         }
 
-        $dateTime = new \DateTime();
+        $dateTime = new DateTime();
 
         return $dateTime->setDate($date['year'], $date['month'], $date['day']);
     }

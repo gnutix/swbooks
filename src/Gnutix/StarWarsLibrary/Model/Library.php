@@ -1,30 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\StarWarsLibrary\Model;
 
 use Gnutix\Library\Model\Library as BaseLibrary;
 use Gnutix\StarWarsLibrary\StarWarsLibraryInterface;
 
-/**
- * Star Wars Library
- */
 final class Library extends BaseLibrary implements StarWarsLibraryInterface
 {
-    /** @var \Gnutix\StarWarsLibrary\Model\Era[] */
-    protected $eras;
+    /** @var Era[] */
+    protected array $eras;
 
     /**
-     * @return \Gnutix\StarWarsLibrary\Model\Era[]
+     * @return Era[]
      */
-    public function getEras()
+    public function getEras(): array
     {
         return $this->eras;
     }
 
-    public function getBooksByEra(string $eraId)
+    /**
+     * @return Book[]
+     */
+    public function getBooksByEra(string $eraId): array
     {
-        return array_filter($this->getBooks(), static function (Book $book) use ($eraId): bool {
+        /** @var Book[] $books */
+        $books = array_filter($this->getBooks(), static function (Book $book) use ($eraId): bool {
             return $book->getChronologicalMarker()->getEra()->getId() === $eraId;
         });
+
+        return $books;
     }
 }

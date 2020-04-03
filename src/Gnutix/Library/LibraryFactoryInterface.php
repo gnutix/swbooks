@@ -1,21 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gnutix\Library;
 
-/**
- * Library Factory Interface
- */
 interface LibraryFactoryInterface
 {
-    /**
-     * @return \Gnutix\Library\LibraryInterface
-     *
-     * @return string
-     */
-    public function getLibrary();
+    public function getLibrary(): LibraryInterface;
 
-    /**
-     * @return \Gnutix\Library\LibraryDumperInterface
-     */
-    public function getLibraryDumper();
+    public function getLibraryDumper(): LibraryDumperInterface;
 }
