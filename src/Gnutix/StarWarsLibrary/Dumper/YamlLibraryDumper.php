@@ -10,6 +10,7 @@ use Gnutix\Library\Model\Book;
 use Gnutix\StarWarsLibrary\Model\Book as StarWarsBook;
 use Gnutix\StarWarsLibrary\Model\ChronologicalMarker;
 use Gnutix\StarWarsLibrary\Model\Library as StarWarsLibrary;
+use Webmozart\Assert\Assert;
 
 final class YamlLibraryDumper extends BaseYamlLibraryDumper
 {
@@ -43,6 +44,9 @@ final class YamlLibraryDumper extends BaseYamlLibraryDumper
      */
     protected function buildArray(LibraryInterface $library): array
     {
+        /** @var StarWarsLibrary $library */
+        Assert::isInstanceOf($library, StarWarsLibrary::class);
+
         $eras = [];
 
         foreach ($library->getEras() as $era) {
@@ -62,6 +66,9 @@ final class YamlLibraryDumper extends BaseYamlLibraryDumper
      */
     protected function buildBookArray(Book $book): array
     {
+        /** @var StarWarsBook $book */
+        Assert::isInstanceOf($book, StarWarsBook::class);
+
         return array_merge(
             [
                 'starWars' => [
