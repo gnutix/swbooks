@@ -15,7 +15,6 @@ Project setup
 -------------
 
 * `composer install`
-* `bower install` (maybe `sudo snap install bower` first - PS: this is *not* BowerPHP)
 * `php -S localhost:8000 -t public/`
 
 Access the application at `http://localhost:8000/`.
@@ -24,3 +23,24 @@ Useful commands
 ---------------
 
 * `composer list | grep 'script as defined'` to list all custom scripts, then execute with `composer [script-name]`
+
+DEPRECATED: Bower
+-----------------
+
+The project used Bower back in the day with the following `bower.json` : 
+
+```json
+{
+  "name": "swbooks",
+  "private": true,
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "~3.0.1",
+    "paul-irish-jquery-unique-duck-punching": "*",
+    "brandon-aaron-jquery-outerhtml-function": "*",
+    "edward-hotchkiss-wrapper": "~0.0.3"
+  }
+}
+```
+
+It should be migrated to more recent systems at some point.

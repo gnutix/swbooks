@@ -1,10 +1,6 @@
-.vagrant/
-bin/
-!bin/console
 var/
 !var/.gitkeep
 vendor/
-web/components/
 composer.phar
 phpunit.xml
 .phplint-cache
